@@ -31,8 +31,9 @@ jobs:
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         with:
-          token: ${{ secrets.GH_PAT }}
           commit_message: Apply php-cs-fixer changes
 
       - name: "Run if changes have been detected"
