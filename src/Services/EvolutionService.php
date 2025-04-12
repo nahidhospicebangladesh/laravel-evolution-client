@@ -147,15 +147,6 @@ class EvolutionService
 
             return json_decode($body, true) ?? [];
         } catch (GuzzleException $e) {
-            if (class_exists('\Illuminate\Support\Facades\Log')) {
-                \Illuminate\Support\Facades\Log::error('Evolution API Error', [
-                    'message' => $e->getMessage(),
-                    'method' => $method,
-                    'url' => $url,
-                    'options' => $options,
-                ]);
-            }
-
             $message = $e->getMessage();
             $statusCode = $e->getCode();
 

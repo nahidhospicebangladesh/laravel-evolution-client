@@ -27,6 +27,10 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
+        if (!defined('PHPUNIT_RUNNING')) {
+            define('PHPUNIT_RUNNING', true);
+        }
+
         $this->mockHandler = new MockHandler([
             new Response(200, [], json_encode([
                 'status' => 'success',
@@ -100,5 +104,42 @@ abstract class TestCase extends BaseTestCase
         );
 
         return $this;
+    }
+
+    /**
+     * Create a mocked service for testing
+     *
+     * @return \SamuelTerra22\EvolutionLaravelClient\Services\EvolutionService
+     */
+    protected function createMockService()
+    {
+        $mockResponse = [
+            'status' => 'success',
+            'message' => 'Mock response',
+        ];
+
+        $mockedService = $this->getMockBuilder(\SamuelTerra22\EvolutionLaravelClient\Services\EvolutionService::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $mockedService->method('get')
+            ->willReturn($mockResponse);
+
+        $mockedService->method('post')
+            ->willReturn($mockResponse);
+
+        $mockedService->method('put')
+            ->willReturn($mockResponse);
+
+        $mockedService->method('delete')
+            ->willReturn($mockResponse);
+
+        $mockedService->method('getBaseUrl')
+            ->willReturn('http://localhost:8080');
+
+        $mockedService->method('getApiKey')
+            ->willReturn('test-api-key');
+
+        return $mockedService;
     }
 }

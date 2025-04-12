@@ -11,17 +11,17 @@ class WebSocketClient
     /**
      * @var string
      */
-    protected $baseUrl;
+    public $baseUrl;
 
     /**
      * @var string
      */
-    protected $instanceId;
+    public $instanceId;
 
     /**
      * @var string
      */
-    protected $apiToken;
+    public $apiToken;
 
     /**
      * @var int

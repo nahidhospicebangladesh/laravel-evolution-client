@@ -2,7 +2,6 @@
 
 namespace SamuelTerra22\EvolutionLaravelClient\Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
 use SamuelTerra22\EvolutionLaravelClient\Models\Button;
 use SamuelTerra22\EvolutionLaravelClient\Models\Contact;
 use SamuelTerra22\EvolutionLaravelClient\Models\ContactMessage;
@@ -15,6 +14,7 @@ use SamuelTerra22\EvolutionLaravelClient\Models\QuotedMessage;
 use SamuelTerra22\EvolutionLaravelClient\Models\ReactionMessage;
 use SamuelTerra22\EvolutionLaravelClient\Models\StatusMessage;
 use SamuelTerra22\EvolutionLaravelClient\Models\TextMessage;
+use SamuelTerra22\EvolutionLaravelClient\Tests\TestCase;
 
 class MessageModelTest extends TestCase
 {

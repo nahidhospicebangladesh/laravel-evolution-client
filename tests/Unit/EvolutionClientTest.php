@@ -6,9 +6,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
 use SamuelTerra22\EvolutionLaravelClient\EvolutionApiClient;
 use SamuelTerra22\EvolutionLaravelClient\Services\EvolutionService;
+use SamuelTerra22\EvolutionLaravelClient\Tests\TestCase;
 
 class EvolutionClientTest extends TestCase
 {

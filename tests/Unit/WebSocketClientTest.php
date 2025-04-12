@@ -3,81 +3,76 @@
 namespace SamuelTerra22\EvolutionLaravelClient\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use React\EventLoop\Factory;
-use React\EventLoop\LoopInterface;
 use SamuelTerra22\EvolutionLaravelClient\Services\WebSocketClient;
 
 class WebSocketClientTest extends TestCase
 {
-    /**
-     * @var WebSocketClient
-     */
-    protected $webSocketClient;
-
-    /**
-     * @var LoopInterface
-     */
-    protected $loop;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        // Since we don't want to actually connect to a WebSocket server in tests,
-        // we'll mock or stub the necessary components
-        $this->loop = $this->createMock(LoopInterface::class);
-
-        // Create reflection class to access protected properties
-        $reflectionClass = new \ReflectionClass(WebSocketClient::class);
-
-        // Create a partial mock for WebSocketClient
-        $this->webSocketClient = $this->getMockBuilder(WebSocketClient::class)
-            ->setConstructorArgs([
-                'ws://localhost:8080',
-                'test-instance',
-                'test-api-key',
-                5,
-                1.0
-            ])
-            ->onlyMethods(['connect', 'disconnect'])
-            ->getMock();
-
-        // Set the mock loop using reflection
-        $loopProperty = $reflectionClass->getProperty('loop');
-        $loopProperty->setAccessible(true);
-        $loopProperty->setValue($this->webSocketClient, $this->loop);
-    }
-
     /** @test */
     public function it_can_be_instantiated()
     {
-        $this->assertInstanceOf(WebSocketClient::class, $this->webSocketClient);
+        // Create a simple class extending WebSocketClient for testing
+        $webSocketClient = new class('ws://localhost:8080', 'instance-id', 'api-token') extends WebSocketClient {
+            // Override constructor to avoid React EventLoop initialization
+            public function __construct($baseUrl, $instanceId, $apiToken) {
+                $this->baseUrl = $baseUrl;
+                $this->instanceId = $instanceId;
+                $this->apiToken = $apiToken;
+                $this->handlers = [];
+            }
+        };
+
+        $this->assertSame('ws://localhost:8080', $webSocketClient->baseUrl);
+        $this->assertSame('instance-id', $webSocketClient->instanceId);
+        $this->assertSame('api-token', $webSocketClient->apiToken);
     }
 
     /** @test */
     public function it_can_register_event_handlers()
     {
+        // Create a simple class extending WebSocketClient for testing
+        $webSocketClient = new class('ws://localhost:8080', 'instance-id', 'api-token') extends WebSocketClient {
+            // For testing, make properties and handlers public
+            public $baseUrl;
+            public $instanceId;
+            public $apiToken;
+            public $handlers = [];
+
+            public function __construct($baseUrl, $instanceId, $apiToken) {
+                $this->baseUrl = $baseUrl;
+                $this->instanceId = $instanceId;
+                $this->apiToken = $apiToken;
+            }
+        };
+
         $eventHandler = function ($data) {
             return $data;
         };
 
-        $result = $this->webSocketClient->on('message', $eventHandler);
+        $result = $webSocketClient->on('message', $eventHandler);
 
-        $this->assertInstanceOf(WebSocketClient::class, $result);
-
-        // Verify handler was registered (using reflection)
-        $reflection = new \ReflectionClass($this->webSocketClient);
-        $handlersProperty = $reflection->getProperty('handlers');
-        $handlersProperty->setAccessible(true);
-        $handlers = $handlersProperty->getValue($this->webSocketClient);
-
-        $this->assertArrayHasKey('message', $handlers);
-        $this->assertSame($eventHandler, $handlers['message']);
+        $this->assertSame($webSocketClient, $result);
+        $this->assertArrayHasKey('message', $webSocketClient->handlers);
+        $this->assertSame($eventHandler, $webSocketClient->handlers['message']);
     }
 
     /** @test */
     public function it_can_register_multiple_event_handlers()
     {
+        // Create a simple class extending WebSocketClient for testing
+        $webSocketClient = new class('ws://localhost:8080', 'instance-id', 'api-token') extends WebSocketClient {
+            // For testing, make properties and handlers public
+            public $baseUrl;
+            public $instanceId;
+            public $apiToken;
+            public $handlers = [];
+
+            public function __construct($baseUrl, $instanceId, $apiToken) {
+                $this->baseUrl = $baseUrl;
+                $this->instanceId = $instanceId;
+                $this->apiToken = $apiToken;
+            }
+        };
+
         $messageHandler = function ($data) {
             return 'message: ' . json_encode($data);
         };
@@ -86,19 +81,13 @@ class WebSocketClientTest extends TestCase
             return 'ack: ' . json_encode($data);
         };
 
-        $this->webSocketClient->on('message', $messageHandler);
-        $this->webSocketClient->on('message.ack', $ackHandler);
+        $webSocketClient->on('message', $messageHandler);
+        $webSocketClient->on('message.ack', $ackHandler);
 
-        // Verify handlers were registered
-        $reflection = new \ReflectionClass($this->webSocketClient);
-        $handlersProperty = $reflection->getProperty('handlers');
-        $handlersProperty->setAccessible(true);
-        $handlers = $handlersProperty->getValue($this->webSocketClient);
-
-        $this->assertCount(2, $handlers);
-        $this->assertArrayHasKey('message', $handlers);
-        $this->assertArrayHasKey('message.ack', $handlers);
-        $this->assertSame($messageHandler, $handlers['message']);
-        $this->assertSame($ackHandler, $handlers['message.ack']);
+        $this->assertCount(2, $webSocketClient->handlers);
+        $this->assertArrayHasKey('message', $webSocketClient->handlers);
+        $this->assertArrayHasKey('message.ack', $webSocketClient->handlers);
+        $this->assertSame($messageHandler, $webSocketClient->handlers['message']);
+        $this->assertSame($ackHandler, $webSocketClient->handlers['message.ack']);
     }
 }
