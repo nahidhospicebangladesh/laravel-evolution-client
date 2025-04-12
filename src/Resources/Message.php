@@ -41,6 +41,16 @@ class Message
     }
 
     /**
+     * Get the instance name.
+     *
+     * @return string
+     */
+    public function getInstanceName(): string
+    {
+        return $this->instanceName;
+    }
+
+    /**
      * Format phone number to be used with the API.
      *
      * @param string $phoneNumber

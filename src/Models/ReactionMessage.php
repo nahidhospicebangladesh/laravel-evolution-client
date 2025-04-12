@@ -2,7 +2,7 @@
 
 namespace SamuelTerra22\EvolutionLaravelClient\Models;
 
-class Message
+class ReactionMessage
 {
     /**
      * @var array
@@ -10,13 +10,17 @@ class Message
     protected $attributes = [];
 
     /**
-     * Create a new Message instance.
+     * Create a new ReactionMessage instance.
      *
-     * @param array $attributes
+     * @param array $key
+     * @param string $reaction
      */
-    public function __construct(array $attributes = [])
+    public function __construct(array $key, string $reaction)
     {
-        $this->attributes = $attributes;
+        $this->attributes = [
+            'key' => $key,
+            'reaction' => $reaction,
+        ];
     }
 
     /**

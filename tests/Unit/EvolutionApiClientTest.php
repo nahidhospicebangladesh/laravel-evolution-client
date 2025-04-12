@@ -64,14 +64,14 @@ class EvolutionApiClientTest extends TestCase
     /** @test */
     public function it_provides_access_to_all_resources()
     {
-        $this->assertObjectHasAttribute('chat', $this->client);
-        $this->assertObjectHasAttribute('group', $this->client);
-        $this->assertObjectHasAttribute('message', $this->client);
-        $this->assertObjectHasAttribute('instance', $this->client);
-        $this->assertObjectHasAttribute('call', $this->client);
-        $this->assertObjectHasAttribute('label', $this->client);
-        $this->assertObjectHasAttribute('profile', $this->client);
-        $this->assertObjectHasAttribute('websocket', $this->client);
+        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Chat', $this->client->chat);
+        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Group', $this->client->group);
+        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Message', $this->client->message);
+        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Instance', $this->client->instance);
+        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Call', $this->client->call);
+        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Label', $this->client->label);
+        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Profile', $this->client->profile);
+        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\WebSocket', $this->client->websocket);
     }
 
     /** @test */

@@ -42,6 +42,16 @@ class Label
     }
 
     /**
+     * Get the instance name.
+     *
+     * @return string
+     */
+    public function getInstanceName(): string
+    {
+        return $this->instanceName;
+    }
+
+    /**
      * Find all labels.
      *
      * @return array

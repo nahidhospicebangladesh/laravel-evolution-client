@@ -43,6 +43,16 @@ class WebSocket
     }
 
     /**
+     * Get the instance name.
+     *
+     * @return string
+     */
+    public function getInstanceName(): string
+    {
+        return $this->instanceName;
+    }
+
+    /**
      * Configure WebSocket settings.
      *
      * @param bool $enabled

@@ -2,7 +2,7 @@
 
 namespace SamuelTerra22\EvolutionLaravelClient\Models;
 
-class Message
+class QuotedMessage
 {
     /**
      * @var array
@@ -10,13 +10,18 @@ class Message
     protected $attributes = [];
 
     /**
-     * Create a new Message instance.
+     * Create a new QuotedMessage instance.
      *
-     * @param array $attributes
+     * @param array $key
+     * @param array|null $message
      */
-    public function __construct(array $attributes = [])
+    public function __construct(array $key, ?array $message = null)
     {
-        $this->attributes = $attributes;
+        $this->attributes = ['key' => $key];
+
+        if ($message !== null) {
+            $this->attributes['message'] = $message;
+        }
     }
 
     /**

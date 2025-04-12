@@ -46,6 +46,16 @@ class Profile
     }
 
     /**
+     * Get the instance name.
+     *
+     * @return string
+     */
+    public function getInstanceName(): string
+    {
+        return $this->instanceName;
+    }
+
+    /**
      * Fetch business profile.
      *
      * @param string $number
