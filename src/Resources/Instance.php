@@ -21,22 +21,11 @@ class Instance
      * Create a new Instance resource instance.
      *
      * @param EvolutionService $service
-     * @param string $instanceName
+     * @param string           $instanceName
      */
     public function __construct(EvolutionService $service, string $instanceName)
     {
         $this->service = $service;
-        $this->instanceName = $instanceName;
-    }
-
-    /**
-     * Set the instance name.
-     *
-     * @param string $instanceName
-     * @return void
-     */
-    public function setInstanceName(string $instanceName): void
-    {
         $this->instanceName = $instanceName;
     }
 
@@ -51,14 +40,15 @@ class Instance
     }
 
     /**
-     * Get the status of the instance.
+     * Set the instance name.
      *
-     * @return array
-     * @throws EvolutionApiException
+     * @param string $instanceName
+     *
+     * @return void
      */
-    public function getStatus(): array
+    public function setInstanceName(string $instanceName): void
     {
-        return $this->service->get("/instance/status/{$this->instanceName}");
+        $this->instanceName = $instanceName;
     }
 
     /**
@@ -86,6 +76,17 @@ class Instance
     }
 
     /**
+     * Get the status of the instance.
+     *
+     * @return array
+     * @throws EvolutionApiException
+     */
+    public function getStatus(): array
+    {
+        return $this->service->get("/instance/status/{$this->instanceName}");
+    }
+
+    /**
      * Connect the instance.
      *
      * @return array
@@ -108,17 +109,6 @@ class Instance
     }
 
     /**
-     * Restart the instance.
-     *
-     * @return array
-     * @throws EvolutionApiException
-     */
-    public function restart(): array
-    {
-        return $this->service->post("/instance/restart/{$this->instanceName}");
-    }
-
-    /**
      * Delete the instance.
      *
      * @return array
@@ -130,17 +120,29 @@ class Instance
     }
 
     /**
+     * Restart the instance.
+     *
+     * @return array
+     * @throws EvolutionApiException
+     */
+    public function restart(): array
+    {
+        return $this->service->post("/instance/restart/{$this->instanceName}");
+    }
+
+    /**
      * Set the webhook URL for the instance.
      *
      * @param string $url
-     * @param array $events
+     * @param array  $events
+     *
      * @return array
      * @throws EvolutionApiException
      */
     public function setWebhook(string $url, array $events = []): array
     {
         return $this->service->post("/instance/webhook/{$this->instanceName}", [
-            'url' => $url,
+            'url'    => $url,
             'events' => $events,
         ]);
     }

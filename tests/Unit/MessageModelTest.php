@@ -2,12 +2,11 @@
 
 namespace SamuelTerra22\EvolutionLaravelClient\Tests\Unit;
 
-use SamuelTerra22\EvolutionLaravelClient\Models\Button;
 use SamuelTerra22\EvolutionLaravelClient\Models\Contact;
 use SamuelTerra22\EvolutionLaravelClient\Models\ContactMessage;
+use SamuelTerra22\EvolutionLaravelClient\Models\ListMessage;
 use SamuelTerra22\EvolutionLaravelClient\Models\ListRow;
 use SamuelTerra22\EvolutionLaravelClient\Models\ListSection;
-use SamuelTerra22\EvolutionLaravelClient\Models\ListMessage;
 use SamuelTerra22\EvolutionLaravelClient\Models\LocationMessage;
 use SamuelTerra22\EvolutionLaravelClient\Models\PollMessage;
 use SamuelTerra22\EvolutionLaravelClient\Models\QuotedMessage;
@@ -62,8 +61,8 @@ class MessageModelTest extends TestCase
 
         $quotedMessageKey = [
             'remoteJid' => '5511999999999@c.us',
-            'fromMe' => false,
-            'id' => '12345'
+            'fromMe'    => false,
+            'id'        => '12345'
         ];
 
         $quoted = new QuotedMessage($quotedMessageKey);
@@ -118,8 +117,8 @@ class MessageModelTest extends TestCase
     {
         $key = [
             'remoteJid' => '5511999999999@c.us',
-            'fromMe' => false,
-            'id' => '12345'
+            'fromMe'    => false,
+            'id'        => '12345'
         ];
         $reaction = '👍';
 

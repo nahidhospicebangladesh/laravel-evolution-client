@@ -22,31 +22,6 @@ class EvolutionApiClientTest extends TestCase
      */
     protected $client;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->mockHandler = new MockHandler([
-            new Response(200, [], json_encode([
-                'status' => 'success',
-                'message' => 'Mock response',
-            ])),
-        ]);
-
-        $handlerStack = HandlerStack::create($this->mockHandler);
-        $httpClient = new Client(['handler' => $handlerStack]);
-
-        // Mock the EvolutionService but allow actual method calls
-        $service = $this->getMockBuilder(EvolutionService::class)
-            ->setConstructorArgs(['http://localhost:8080', 'test-api-key', 30])
-            ->onlyMethods(['getClient'])
-            ->getMock();
-
-        $service->method('getClient')->willReturn($httpClient);
-
-        $this->client = new EvolutionApiClient($service, 'test-instance');
-    }
-
     /** @test */
     public function it_can_be_instantiated()
     {
@@ -88,5 +63,30 @@ class EvolutionApiClientTest extends TestCase
         $this->assertEquals($instanceName, $this->client->label->getInstanceName());
         $this->assertEquals($instanceName, $this->client->profile->getInstanceName());
         $this->assertEquals($instanceName, $this->client->websocket->getInstanceName());
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->mockHandler = new MockHandler([
+            new Response(200, [], json_encode([
+                'status'  => 'success',
+                'message' => 'Mock response',
+            ])),
+        ]);
+
+        $handlerStack = HandlerStack::create($this->mockHandler);
+        $httpClient = new Client(['handler' => $handlerStack]);
+
+        // Mock the EvolutionService but allow actual method calls
+        $service = $this->getMockBuilder(EvolutionService::class)
+            ->setConstructorArgs(['http://localhost:8080', 'test-api-key', 30])
+            ->onlyMethods(['getClient'])
+            ->getMock();
+
+        $service->method('getClient')->willReturn($httpClient);
+
+        $this->client = new EvolutionApiClient($service, 'test-instance');
     }
 }

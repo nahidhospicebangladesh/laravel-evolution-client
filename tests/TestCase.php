@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use Illuminate\Foundation\Application;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use SamuelTerra22\EvolutionLaravelClient\EvolutionServiceProvider;
 use SamuelTerra22\EvolutionLaravelClient\Facades\Evolution;
@@ -33,7 +34,7 @@ abstract class TestCase extends BaseTestCase
 
         $this->mockHandler = new MockHandler([
             new Response(200, [], json_encode([
-                'status' => 'success',
+                'status'  => 'success',
                 'message' => 'Mock response',
             ])),
         ]);
@@ -52,7 +53,8 @@ abstract class TestCase extends BaseTestCase
     /**
      * Get package providers.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param Application $app
+     *
      * @return array
      */
     protected function getPackageProviders($app)
@@ -65,7 +67,8 @@ abstract class TestCase extends BaseTestCase
     /**
      * Get package aliases.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param Application $app
+     *
      * @return array
      */
     protected function getPackageAliases($app)
@@ -78,7 +81,8 @@ abstract class TestCase extends BaseTestCase
     /**
      * Define environment setup.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param Application $app
+     *
      * @return void
      */
     protected function getEnvironmentSetUp($app)
@@ -93,8 +97,9 @@ abstract class TestCase extends BaseTestCase
      * Add a mock response to the handler.
      *
      * @param array $body
-     * @param int $status
+     * @param int   $status
      * @param array $headers
+     *
      * @return self
      */
     protected function addMockResponse(array $body = [], int $status = 200, array $headers = [])
@@ -109,16 +114,16 @@ abstract class TestCase extends BaseTestCase
     /**
      * Create a mocked service for testing
      *
-     * @return \SamuelTerra22\EvolutionLaravelClient\Services\EvolutionService
+     * @return EvolutionService
      */
     protected function createMockService()
     {
         $mockResponse = [
-            'status' => 'success',
+            'status'  => 'success',
             'message' => 'Mock response',
         ];
 
-        $mockedService = $this->getMockBuilder(\SamuelTerra22\EvolutionLaravelClient\Services\EvolutionService::class)
+        $mockedService = $this->getMockBuilder(EvolutionService::class)
             ->disableOriginalConstructor()
             ->getMock();
 

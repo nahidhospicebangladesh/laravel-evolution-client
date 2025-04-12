@@ -16,60 +16,51 @@ use SamuelTerra22\EvolutionLaravelClient\Services\EvolutionService;
 class EvolutionApiClient
 {
     /**
+     * @var Chat The Chat resource
+     */
+    public Chat $chat;
+    /**
+     * @var Group The Group resource
+     */
+    public Group $group;
+    /**
+     * @var Message The Message resource
+     */
+    public Message $message;
+    /**
+     * @var Instance The Instance resource
+     */
+    public Instance $instance;
+    /**
+     * @var Call The Call resource
+     */
+    public Call $call;
+    /**
+     * @var Label The Label resource
+     */
+    public Label $label;
+    /**
+     * @var Profile The Profile resource
+     */
+    public Profile $profile;
+    /**
+     * @var WebSocket The WebSocket resource
+     */
+    public WebSocket $websocket;
+    /**
      * @var string The instance name
      */
     protected string $instanceName;
-
     /**
      * @var EvolutionService The Evolution API service
      */
     protected EvolutionService $service;
 
     /**
-     * @var Chat The Chat resource
-     */
-    public Chat $chat;
-
-    /**
-     * @var Group The Group resource
-     */
-    public Group $group;
-
-    /**
-     * @var Message The Message resource
-     */
-    public Message $message;
-
-    /**
-     * @var Instance The Instance resource
-     */
-    public Instance $instance;
-
-    /**
-     * @var Call The Call resource
-     */
-    public Call $call;
-
-    /**
-     * @var Label The Label resource
-     */
-    public Label $label;
-
-    /**
-     * @var Profile The Profile resource
-     */
-    public Profile $profile;
-
-    /**
-     * @var WebSocket The WebSocket resource
-     */
-    public WebSocket $websocket;
-
-    /**
      * Create a new EvolutionApiClient instance.
      *
      * @param EvolutionService $service
-     * @param string $instanceName
+     * @param string           $instanceName
      */
     public function __construct(EvolutionService $service, string $instanceName = 'default')
     {
@@ -91,6 +82,7 @@ class EvolutionApiClient
      * Set the instance name.
      *
      * @param string $instanceName
+     *
      * @return self
      */
     public function instance(string $instanceName): self
@@ -148,6 +140,7 @@ class EvolutionApiClient
      *
      * @param string $phoneNumber
      * @param string $message
+     *
      * @return array
      * @throws EvolutionApiException
      */

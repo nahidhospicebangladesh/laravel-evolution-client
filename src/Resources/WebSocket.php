@@ -5,6 +5,7 @@ namespace SamuelTerra22\EvolutionLaravelClient\Resources;
 use SamuelTerra22\EvolutionLaravelClient\Exceptions\EvolutionApiException;
 use SamuelTerra22\EvolutionLaravelClient\Models\WebSocket as WebSocketModel;
 use SamuelTerra22\EvolutionLaravelClient\Services\EvolutionService;
+use SamuelTerra22\EvolutionLaravelClient\Services\WebSocketClient;
 
 class WebSocket
 {
@@ -31,6 +32,16 @@ class WebSocket
     }
 
     /**
+     * Get the instance name.
+     *
+     * @return string
+     */
+    public function getInstanceName(): string
+    {
+        return $this->instanceName;
+    }
+
+    /**
      * Set the instance name.
      *
      * @param string $instanceName
@@ -40,16 +51,6 @@ class WebSocket
     public function setInstanceName(string $instanceName): void
     {
         $this->instanceName = $instanceName;
-    }
-
-    /**
-     * Get the instance name.
-     *
-     * @return string
-     */
-    public function getInstanceName(): string
-    {
-        return $this->instanceName;
     }
 
     /**
@@ -82,8 +83,9 @@ class WebSocket
     /**
      * Create a WebSocket client.
      *
-     * @param int $maxRetries
+     * @param int   $maxRetries
      * @param float $retryDelay
+     *
      * @return mixed
      */
     public function createClient(int $maxRetries = 5, float $retryDelay = 1.0)
@@ -93,7 +95,7 @@ class WebSocket
             return null;
         }
 
-        return new \SamuelTerra22\EvolutionLaravelClient\Services\WebSocketClient(
+        return new WebSocketClient(
             $this->service->getBaseUrl(),
             $this->instanceName,
             $this->service->getApiKey(),

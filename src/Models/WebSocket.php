@@ -17,7 +17,7 @@ class WebSocket
     /**
      * Create a new WebSocket instance.
      *
-     * @param bool $enabled
+     * @param bool  $enabled
      * @param array $events
      */
     public function __construct(bool $enabled, array $events = [])
@@ -35,7 +35,7 @@ class WebSocket
     {
         return [
             'enabled' => $this->enabled,
-            'events' => $this->events,
+            'events'  => $this->events,
         ];
     }
 }

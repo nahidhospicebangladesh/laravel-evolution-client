@@ -2,6 +2,8 @@
 
 namespace SamuelTerra22\EvolutionLaravelClient\Models;
 
+use InvalidArgumentException;
+
 class Label
 {
     /**
@@ -22,15 +24,16 @@ class Label
     /**
      * Create a new Label instance.
      *
-     * @param string $number The phone number
+     * @param string $number  The phone number
      * @param string $labelId The label ID
-     * @param string $action The action (add or remove)
-     * @throws \InvalidArgumentException
+     * @param string $action  The action (add or remove)
+     *
+     * @throws InvalidArgumentException
      */
     public function __construct(string $number, string $labelId, string $action)
     {
         if (!in_array($action, ['add', 'remove'])) {
-            throw new \InvalidArgumentException("Action must be 'add' or 'remove'");
+            throw new InvalidArgumentException("Action must be 'add' or 'remove'");
         }
 
         $this->number = $number;
@@ -46,9 +49,9 @@ class Label
     public function toArray(): array
     {
         return [
-            'number' => $this->number,
+            'number'  => $this->number,
             'labelId' => $this->labelId,
-            'action' => $this->action,
+            'action'  => $this->action,
         ];
     }
 }

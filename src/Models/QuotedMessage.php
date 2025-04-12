@@ -12,7 +12,7 @@ class QuotedMessage
     /**
      * Create a new QuotedMessage instance.
      *
-     * @param array $key
+     * @param array      $key
      * @param array|null $message
      */
     public function __construct(array $key, ?array $message = null)

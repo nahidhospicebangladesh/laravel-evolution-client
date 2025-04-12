@@ -12,23 +12,24 @@ class ButtonMessage
     /**
      * Create a new ButtonMessage instance.
      *
-     * @param string $number
-     * @param string $title
-     * @param string $description
-     * @param string $footer
-     * @param array $buttons
-     * @param int|null $delay
+     * @param string             $number
+     * @param string             $title
+     * @param string             $description
+     * @param string             $footer
+     * @param array              $buttons
+     * @param int|null           $delay
      * @param QuotedMessage|null $quoted
      */
     public function __construct(
-        string $number,
-        string $title,
-        string $description,
-        string $footer,
-        array $buttons,
-        ?int $delay = null,
+        string         $number,
+        string         $title,
+        string         $description,
+        string         $footer,
+        array          $buttons,
+        ?int           $delay = null,
         ?QuotedMessage $quoted = null
-    ) {
+    )
+    {
         $buttonsArray = [];
 
         foreach ($buttons as $button) {
@@ -40,11 +41,11 @@ class ButtonMessage
         }
 
         $this->attributes = [
-            'number' => $number,
-            'title' => $title,
+            'number'      => $number,
+            'title'       => $title,
             'description' => $description,
-            'footer' => $footer,
-            'buttons' => $buttonsArray,
+            'footer'      => $footer,
+            'buttons'     => $buttonsArray,
         ];
 
         if ($delay !== null) {

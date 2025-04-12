@@ -13,7 +13,8 @@ class WebSocketClientTest extends TestCase
         // Create a simple class extending WebSocketClient for testing
         $webSocketClient = new class('ws://localhost:8080', 'instance-id', 'api-token') extends WebSocketClient {
             // Override constructor to avoid React EventLoop initialization
-            public function __construct($baseUrl, $instanceId, $apiToken) {
+            public function __construct($baseUrl, $instanceId, $apiToken)
+            {
                 $this->baseUrl = $baseUrl;
                 $this->instanceId = $instanceId;
                 $this->apiToken = $apiToken;
@@ -37,7 +38,8 @@ class WebSocketClientTest extends TestCase
             public $apiToken;
             public $handlers = [];
 
-            public function __construct($baseUrl, $instanceId, $apiToken) {
+            public function __construct($baseUrl, $instanceId, $apiToken)
+            {
                 $this->baseUrl = $baseUrl;
                 $this->instanceId = $instanceId;
                 $this->apiToken = $apiToken;
@@ -66,7 +68,8 @@ class WebSocketClientTest extends TestCase
             public $apiToken;
             public $handlers = [];
 
-            public function __construct($baseUrl, $instanceId, $apiToken) {
+            public function __construct($baseUrl, $instanceId, $apiToken)
+            {
                 $this->baseUrl = $baseUrl;
                 $this->instanceId = $instanceId;
                 $this->apiToken = $apiToken;

@@ -12,13 +12,13 @@ class ReactionMessage
     /**
      * Create a new ReactionMessage instance.
      *
-     * @param array $key
+     * @param array  $key
      * @param string $reaction
      */
     public function __construct(array $key, string $reaction)
     {
         $this->attributes = [
-            'key' => $key,
+            'key'      => $key,
             'reaction' => $reaction,
         ];
     }

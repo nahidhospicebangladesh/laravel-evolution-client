@@ -30,31 +30,6 @@ class MessageResourceTest extends TestCase
      */
     protected $service;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->mockHandler = new MockHandler([
-            new Response(200, [], json_encode([
-                'status' => 'success',
-                'key' => [
-                    'id' => '12345',
-                    'remoteJid' => '5511999999999@c.us',
-                    'fromMe' => true
-                ]
-            ])),
-        ]);
-
-        $handlerStack = HandlerStack::create($this->mockHandler);
-        $httpClient = new Client(['handler' => $handlerStack]);
-
-        $this->service = $this->createMockService();
-
-        $this->service->method('getClient')->willReturn($httpClient);
-
-        $this->messageResource = new Message($this->service, 'test-instance');
-    }
-
     /** @test */
     public function it_can_send_text_message()
     {
@@ -97,12 +72,12 @@ class MessageResourceTest extends TestCase
     public function it_can_send_list_message()
     {
         $rows1 = [
-            new \SamuelTerra22\EvolutionLaravelClient\Models\ListRow('Option 1', 'Description 1', 'opt1'),
-            new \SamuelTerra22\EvolutionLaravelClient\Models\ListRow('Option 2', 'Description 2', 'opt2')
+            new ListRow('Option 1', 'Description 1', 'opt1'),
+            new ListRow('Option 2', 'Description 2', 'opt2')
         ];
 
         $sections = [
-            new \SamuelTerra22\EvolutionLaravelClient\Models\ListSection('Section 1', $rows1)
+            new ListSection('Section 1', $rows1)
         ];
 
         $result = $this->messageResource->sendList(
@@ -122,8 +97,8 @@ class MessageResourceTest extends TestCase
     public function it_can_send_buttons_message()
     {
         $buttons = [
-            new \SamuelTerra22\EvolutionLaravelClient\Models\Button('reply', 'Yes', ['id' => 'btn-yes']),
-            new \SamuelTerra22\EvolutionLaravelClient\Models\Button('reply', 'No', ['id' => 'btn-no'])
+            new Button('reply', 'Yes', ['id' => 'btn-yes']),
+            new Button('reply', 'No', ['id' => 'btn-no'])
         ];
 
         $result = $this->messageResource->sendButtons(
@@ -142,7 +117,7 @@ class MessageResourceTest extends TestCase
     public function it_can_format_phone_number()
     {
         // Criar uma subclasse de Message com o método público para teste
-        $messageResource = new class($this->service, 'test-instance') extends \SamuelTerra22\EvolutionLaravelClient\Resources\Message {
+        $messageResource = new class($this->service, 'test-instance') extends Message {
             public function publicFormatPhoneNumber(string $phoneNumber): string
             {
                 return $this->formatPhoneNumber($phoneNumber);
@@ -154,5 +129,30 @@ class MessageResourceTest extends TestCase
 
         // Test with formatted number
         $this->assertEquals('5511999999999@c.us', $messageResource->publicFormatPhoneNumber('+55 (11) 99999-9999'));
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->mockHandler = new MockHandler([
+            new Response(200, [], json_encode([
+                'status' => 'success',
+                'key'    => [
+                    'id'        => '12345',
+                    'remoteJid' => '5511999999999@c.us',
+                    'fromMe'    => true
+                ]
+            ])),
+        ]);
+
+        $handlerStack = HandlerStack::create($this->mockHandler);
+        $httpClient = new Client(['handler' => $handlerStack]);
+
+        $this->service = $this->createMockService();
+
+        $this->service->method('getClient')->willReturn($httpClient);
+
+        $this->messageResource = new Message($this->service, 'test-instance');
     }
 }

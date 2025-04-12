@@ -3,6 +3,7 @@
 namespace SamuelTerra22\EvolutionLaravelClient\Tests\Unit;
 
 use GuzzleHttp\Handler\MockHandler;
+use ReflectionClass;
 use SamuelTerra22\EvolutionLaravelClient\Resources\WebSocket;
 use SamuelTerra22\EvolutionLaravelClient\Services\EvolutionService;
 use SamuelTerra22\EvolutionLaravelClient\Services\WebSocketClient;
@@ -24,14 +25,6 @@ class WebSocketResourceTest extends TestCase
      * @var EvolutionService
      */
     protected $service;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->service = $this->createMockService();
-        $this->webSocketResource = new WebSocket($this->service, 'test-instance');
-    }
 
     /** @test */
     public function it_can_set_websocket_config()
@@ -57,7 +50,8 @@ class WebSocketResourceTest extends TestCase
     {
         // Create a simple subclass for testing
         $client = new class('ws://localhost:8080', 'test-instance', 'test-api-key') extends WebSocketClient {
-            public function __construct($baseUrl, $instanceId, $apiToken) {
+            public function __construct($baseUrl, $instanceId, $apiToken)
+            {
                 $this->baseUrl = $baseUrl;
                 $this->instanceId = $instanceId;
                 $this->apiToken = $apiToken;
@@ -65,11 +59,19 @@ class WebSocketResourceTest extends TestCase
         };
 
         // Use reflection to verify the instance creation works
-        $reflectionClass = new \ReflectionClass($this->webSocketResource);
+        $reflectionClass = new ReflectionClass($this->webSocketResource);
         $reflectionMethod = $reflectionClass->getMethod('createClient');
         $reflectionMethod->setAccessible(true);
 
         // We just need to verify that the method completes without error
         $this->assertNull($reflectionMethod->invokeArgs($this->webSocketResource, []));
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->service = $this->createMockService();
+        $this->webSocketResource = new WebSocket($this->service, 'test-instance');
     }
 }

@@ -13,7 +13,7 @@ class ContactMessage
      * Create a new ContactMessage instance.
      *
      * @param string $number
-     * @param array $contacts
+     * @param array  $contacts
      */
     public function __construct(string $number, array $contacts)
     {
@@ -28,7 +28,7 @@ class ContactMessage
         }
 
         $this->attributes = [
-            'number' => $number,
+            'number'  => $number,
             'contact' => $contactsArray,
         ];
     }

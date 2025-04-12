@@ -22,13 +22,27 @@ class EvolutionClientTest extends TestCase
      */
     protected $client;
 
+    /** @test */
+    public function it_can_be_instantiated()
+    {
+        $this->assertInstanceOf(EvolutionApiClient::class, $this->client);
+    }
+
+    /** @test */
+    public function it_can_set_instance_name()
+    {
+        $this->client->instance('new-instance');
+
+        $this->assertEquals('new-instance', $this->client->instance->getInstanceName());
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->mockHandler = new MockHandler([
             new Response(200, [], json_encode([
-                'status' => 'success',
+                'status'  => 'success',
                 'message' => 'Mock response',
             ])),
         ]);
@@ -45,19 +59,5 @@ class EvolutionClientTest extends TestCase
         $service->method('getClient')->willReturn($httpClient);
 
         $this->client = new EvolutionApiClient($service, 'default');
-    }
-
-    /** @test */
-    public function it_can_be_instantiated()
-    {
-        $this->assertInstanceOf(EvolutionApiClient::class, $this->client);
-    }
-
-    /** @test */
-    public function it_can_set_instance_name()
-    {
-        $this->client->instance('new-instance');
-
-        $this->assertEquals('new-instance', $this->client->instance->getInstanceName());
     }
 }

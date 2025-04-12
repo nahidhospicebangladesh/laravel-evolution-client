@@ -3,22 +3,31 @@
 namespace SamuelTerra22\EvolutionLaravelClient\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use SamuelTerra22\EvolutionLaravelClient\EvolutionApiClient;
+use SamuelTerra22\EvolutionLaravelClient\Resources\Call;
+use SamuelTerra22\EvolutionLaravelClient\Resources\Chat;
+use SamuelTerra22\EvolutionLaravelClient\Resources\Group;
+use SamuelTerra22\EvolutionLaravelClient\Resources\Instance;
+use SamuelTerra22\EvolutionLaravelClient\Resources\Label;
+use SamuelTerra22\EvolutionLaravelClient\Resources\Message;
+use SamuelTerra22\EvolutionLaravelClient\Resources\Profile;
+use SamuelTerra22\EvolutionLaravelClient\Resources\WebSocket;
 
 /**
- * @method static \SamuelTerra22\EvolutionLaravelClient\EvolutionApiClient instance(string $instanceName)
+ * @method static EvolutionApiClient instance(string $instanceName)
  * @method static array getQrCode()
  * @method static bool isConnected()
  * @method static array disconnect()
  * @method static array sendText(string $phoneNumber, string $message)
  *
- * @method static \SamuelTerra22\EvolutionLaravelClient\Resources\Chat getChatAttribute()
- * @method static \SamuelTerra22\EvolutionLaravelClient\Resources\Group getGroupAttribute()
- * @method static \SamuelTerra22\EvolutionLaravelClient\Resources\Message getMessageAttribute()
- * @method static \SamuelTerra22\EvolutionLaravelClient\Resources\Instance getInstanceAttribute()
- * @method static \SamuelTerra22\EvolutionLaravelClient\Resources\Call getCallAttribute()
- * @method static \SamuelTerra22\EvolutionLaravelClient\Resources\Label getLabelAttribute()
- * @method static \SamuelTerra22\EvolutionLaravelClient\Resources\Profile getProfileAttribute()
- * @method static \SamuelTerra22\EvolutionLaravelClient\Resources\WebSocket getWebsocketAttribute()
+ * @method static Chat getChatAttribute()
+ * @method static Group getGroupAttribute()
+ * @method static Message getMessageAttribute()
+ * @method static Instance getInstanceAttribute()
+ * @method static Call getCallAttribute()
+ * @method static Label getLabelAttribute()
+ * @method static Profile getProfileAttribute()
+ * @method static WebSocket getWebsocketAttribute()
  *
  * @see \SamuelTerra22\EvolutionLaravelClient\EvolutionApiClient
  */

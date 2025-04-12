@@ -21,22 +21,11 @@ class Chat
      * Create a new Chat resource instance.
      *
      * @param EvolutionService $service
-     * @param string $instanceName
+     * @param string           $instanceName
      */
     public function __construct(EvolutionService $service, string $instanceName)
     {
         $this->service = $service;
-        $this->instanceName = $instanceName;
-    }
-
-    /**
-     * Set the instance name.
-     *
-     * @param string $instanceName
-     * @return void
-     */
-    public function setInstanceName(string $instanceName): void
-    {
         $this->instanceName = $instanceName;
     }
 
@@ -51,18 +40,15 @@ class Chat
     }
 
     /**
-     * Format phone number to be used with the API.
+     * Set the instance name.
      *
-     * @param string $phoneNumber
-     * @return string
+     * @param string $instanceName
+     *
+     * @return void
      */
-    protected function formatPhoneNumber(string $phoneNumber): string
+    public function setInstanceName(string $instanceName): void
     {
-        // Remove any non-digit characters
-        $number = preg_replace('/\D/', '', $phoneNumber);
-
-        // Add @ to create a valid recipient id for the API
-        return $number . '@c.us';
+        $this->instanceName = $instanceName;
     }
 
     /**
@@ -80,6 +66,7 @@ class Chat
      * Get a specific chat.
      *
      * @param string $phoneNumber
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -93,10 +80,27 @@ class Chat
     }
 
     /**
+     * Format phone number to be used with the API.
+     *
+     * @param string $phoneNumber
+     *
+     * @return string
+     */
+    protected function formatPhoneNumber(string $phoneNumber): string
+    {
+        // Remove any non-digit characters
+        $number = preg_replace('/\D/', '', $phoneNumber);
+
+        // Add @ to create a valid recipient id for the API
+        return $number . '@c.us';
+    }
+
+    /**
      * Get chat messages.
      *
      * @param string $phoneNumber
-     * @param int $count
+     * @param int    $count
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -106,7 +110,7 @@ class Chat
 
         return $this->service->get("/chat/messages/{$this->instanceName}", [
             'number' => $number,
-            'count' => $count,
+            'count'  => $count,
         ]);
     }
 
@@ -114,6 +118,7 @@ class Chat
      * Clear all messages in a chat.
      *
      * @param string $phoneNumber
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -130,6 +135,7 @@ class Chat
      * Archive a chat.
      *
      * @param string $phoneNumber
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -138,7 +144,7 @@ class Chat
         $number = $this->formatPhoneNumber($phoneNumber);
 
         return $this->service->post("/chat/archive/{$this->instanceName}", [
-            'number' => $number,
+            'number'  => $number,
             'archive' => true,
         ]);
     }
@@ -147,6 +153,7 @@ class Chat
      * Unarchive a chat.
      *
      * @param string $phoneNumber
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -155,7 +162,7 @@ class Chat
         $number = $this->formatPhoneNumber($phoneNumber);
 
         return $this->service->post("/chat/archive/{$this->instanceName}", [
-            'number' => $number,
+            'number'  => $number,
             'archive' => false,
         ]);
     }
@@ -164,6 +171,7 @@ class Chat
      * Delete a chat.
      *
      * @param string $phoneNumber
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -180,6 +188,7 @@ class Chat
      * Mark chat as read.
      *
      * @param string $phoneNumber
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -196,7 +205,8 @@ class Chat
      * Start typing in a chat.
      *
      * @param string $phoneNumber
-     * @param int $duration
+     * @param int    $duration
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -205,7 +215,7 @@ class Chat
         $number = $this->formatPhoneNumber($phoneNumber);
 
         return $this->service->post("/chat/presence/{$this->instanceName}", [
-            'number' => $number,
+            'number'   => $number,
             'presence' => 'composing',
             'duration' => $duration,
         ]);
@@ -215,6 +225,7 @@ class Chat
      * Stop typing in a chat.
      *
      * @param string $phoneNumber
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -223,7 +234,7 @@ class Chat
         $number = $this->formatPhoneNumber($phoneNumber);
 
         return $this->service->post("/chat/presence/{$this->instanceName}", [
-            'number' => $number,
+            'number'   => $number,
             'presence' => 'paused',
         ]);
     }

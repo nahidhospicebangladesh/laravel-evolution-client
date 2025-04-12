@@ -3,6 +3,14 @@
 namespace SamuelTerra22\EvolutionLaravelClient\Resources;
 
 use SamuelTerra22\EvolutionLaravelClient\Exceptions\EvolutionApiException;
+use SamuelTerra22\EvolutionLaravelClient\Models\ButtonMessage;
+use SamuelTerra22\EvolutionLaravelClient\Models\Contact;
+use SamuelTerra22\EvolutionLaravelClient\Models\ContactMessage;
+use SamuelTerra22\EvolutionLaravelClient\Models\ListMessage;
+use SamuelTerra22\EvolutionLaravelClient\Models\PollMessage;
+use SamuelTerra22\EvolutionLaravelClient\Models\ReactionMessage;
+use SamuelTerra22\EvolutionLaravelClient\Models\StatusMessage;
+use SamuelTerra22\EvolutionLaravelClient\Models\TextMessage;
 use SamuelTerra22\EvolutionLaravelClient\Services\EvolutionService;
 
 class Message
@@ -21,22 +29,11 @@ class Message
      * Create a new Message resource instance.
      *
      * @param EvolutionService $service
-     * @param string $instanceName
+     * @param string           $instanceName
      */
     public function __construct(EvolutionService $service, string $instanceName)
     {
         $this->service = $service;
-        $this->instanceName = $instanceName;
-    }
-
-    /**
-     * Set the instance name.
-     *
-     * @param string $instanceName
-     * @return void
-     */
-    public function setInstanceName(string $instanceName): void
-    {
         $this->instanceName = $instanceName;
     }
 
@@ -51,47 +48,46 @@ class Message
     }
 
     /**
-     * Format phone number to be used with the API.
+     * Set the instance name.
      *
-     * @param string $phoneNumber
-     * @return string
+     * @param string $instanceName
+     *
+     * @return void
      */
-    protected function formatPhoneNumber(string $phoneNumber): string
+    public function setInstanceName(string $instanceName): void
     {
-        // Remove any non-digit characters
-        $number = preg_replace('/\D/', '', $phoneNumber);
-
-        // Add @ to create a valid recipient id for the API
-        return $number . '@c.us';
+        $this->instanceName = $instanceName;
     }
 
     /**
      * Send a text message.
      *
-     * @param string $phoneNumber
-     * @param string $message
-     * @param bool $isGroup
-     * @param int|null $delay
-     * @param bool|null $linkPreview
-     * @param bool|null $mentionsEveryOne
+     * @param string     $phoneNumber
+     * @param string     $message
+     * @param bool       $isGroup
+     * @param int|null   $delay
+     * @param bool|null  $linkPreview
+     * @param bool|null  $mentionsEveryOne
      * @param array|null $mentioned
+     *
      * @return array
      * @throws EvolutionApiException
      */
     public function sendText(
         string $phoneNumber,
         string $message,
-        bool $isGroup = false,
-        ?int $delay = null,
-        ?bool $linkPreview = null,
-        ?bool $mentionsEveryOne = null,
+        bool   $isGroup = false,
+        ?int   $delay = null,
+        ?bool  $linkPreview = null,
+        ?bool  $mentionsEveryOne = null,
         ?array $mentioned = null
-    ): array {
+    ): array
+    {
         $recipient = $isGroup
             ? $phoneNumber . '@g.us'
             : $this->formatPhoneNumber($phoneNumber);
 
-        $textMessage = new \SamuelTerra22\EvolutionLaravelClient\Models\TextMessage(
+        $textMessage = new TextMessage(
             $recipient,
             $message,
             $delay,
@@ -105,12 +101,29 @@ class Message
     }
 
     /**
+     * Format phone number to be used with the API.
+     *
+     * @param string $phoneNumber
+     *
+     * @return string
+     */
+    protected function formatPhoneNumber(string $phoneNumber): string
+    {
+        // Remove any non-digit characters
+        $number = preg_replace('/\D/', '', $phoneNumber);
+
+        // Add @ to create a valid recipient id for the API
+        return $number . '@c.us';
+    }
+
+    /**
      * Send an image message.
      *
      * @param string $phoneNumber
      * @param string $image
      * @param string $caption
-     * @param bool $isGroup
+     * @param bool   $isGroup
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -121,13 +134,13 @@ class Message
             : $this->formatPhoneNumber($phoneNumber);
 
         return $this->service->post("/message/chat/send/image/{$this->instanceName}", [
-            'number' => $recipient,
-            'options' => [
-                'delay' => 1200,
+            'number'       => $recipient,
+            'options'      => [
+                'delay'    => 1200,
                 'presence' => 'composing',
             ],
             'imageMessage' => [
-                'image' => $image,
+                'image'   => $image,
                 'caption' => $caption,
             ],
         ]);
@@ -140,7 +153,8 @@ class Message
      * @param string $document
      * @param string $fileName
      * @param string $caption
-     * @param bool $isGroup
+     * @param bool   $isGroup
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -151,15 +165,15 @@ class Message
             : $this->formatPhoneNumber($phoneNumber);
 
         return $this->service->post("/message/chat/send/document/{$this->instanceName}", [
-            'number' => $recipient,
-            'options' => [
-                'delay' => 1200,
+            'number'          => $recipient,
+            'options'         => [
+                'delay'    => 1200,
                 'presence' => 'composing',
             ],
             'documentMessage' => [
                 'document' => $document,
                 'fileName' => $fileName,
-                'caption' => $caption,
+                'caption'  => $caption,
             ],
         ]);
     }
@@ -168,11 +182,12 @@ class Message
      * Send a location message.
      *
      * @param string $phoneNumber
-     * @param float $latitude
-     * @param float $longitude
+     * @param float  $latitude
+     * @param float  $longitude
      * @param string $name
      * @param string $address
-     * @param bool $isGroup
+     * @param bool   $isGroup
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -183,15 +198,15 @@ class Message
             : $this->formatPhoneNumber($phoneNumber);
 
         return $this->service->post("/message/chat/send/location/{$this->instanceName}", [
-            'number' => $recipient,
-            'options' => [
-                'delay' => 1200,
+            'number'          => $recipient,
+            'options'         => [
+                'delay'    => 1200,
                 'presence' => 'composing',
             ],
             'locationMessage' => [
-                'lat' => $latitude,
-                'lng' => $longitude,
-                'name' => $name,
+                'lat'     => $latitude,
+                'lng'     => $longitude,
+                'name'    => $name,
                 'address' => $address,
             ],
         ]);
@@ -203,7 +218,8 @@ class Message
      * @param string $phoneNumber
      * @param string $contactName
      * @param string $contactNumber
-     * @param bool $isGroup
+     * @param bool   $isGroup
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -213,13 +229,13 @@ class Message
             ? $phoneNumber . '@g.us'
             : $this->formatPhoneNumber($phoneNumber);
 
-        $contact = new \SamuelTerra22\EvolutionLaravelClient\Models\Contact(
+        $contact = new Contact(
             $contactName,
             $contactNumber,
             $contactNumber
         );
 
-        $contactMessage = new \SamuelTerra22\EvolutionLaravelClient\Models\ContactMessage(
+        $contactMessage = new ContactMessage(
             $recipient,
             [$contact]
         );
@@ -230,28 +246,30 @@ class Message
     /**
      * Send a poll message.
      *
-     * @param string $phoneNumber
-     * @param string $name
-     * @param int $selectableCount
-     * @param array $values
+     * @param string   $phoneNumber
+     * @param string   $name
+     * @param int      $selectableCount
+     * @param array    $values
      * @param int|null $delay
-     * @param bool $isGroup
+     * @param bool     $isGroup
+     *
      * @return array
      * @throws EvolutionApiException
      */
     public function sendPoll(
         string $phoneNumber,
         string $name,
-        int $selectableCount,
-        array $values,
-        ?int $delay = null,
-        bool $isGroup = false
-    ): array {
+        int    $selectableCount,
+        array  $values,
+        ?int   $delay = null,
+        bool   $isGroup = false
+    ): array
+    {
         $recipient = $isGroup
             ? $phoneNumber . '@g.us'
             : $this->formatPhoneNumber($phoneNumber);
 
-        $pollMessage = new \SamuelTerra22\EvolutionLaravelClient\Models\PollMessage(
+        $pollMessage = new PollMessage(
             $recipient,
             $name,
             $selectableCount,
@@ -265,14 +283,15 @@ class Message
     /**
      * Send a list message.
      *
-     * @param string $phoneNumber
-     * @param string $title
-     * @param string $description
-     * @param string $buttonText
-     * @param string $footerText
-     * @param array $sections
+     * @param string   $phoneNumber
+     * @param string   $title
+     * @param string   $description
+     * @param string   $buttonText
+     * @param string   $footerText
+     * @param array    $sections
      * @param int|null $delay
-     * @param bool $isGroup
+     * @param bool     $isGroup
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -282,15 +301,16 @@ class Message
         string $description,
         string $buttonText,
         string $footerText,
-        array $sections,
-        ?int $delay = null,
-        bool $isGroup = false
-    ): array {
+        array  $sections,
+        ?int   $delay = null,
+        bool   $isGroup = false
+    ): array
+    {
         $recipient = $isGroup
             ? $phoneNumber . '@g.us'
             : $this->formatPhoneNumber($phoneNumber);
 
-        $listMessage = new \SamuelTerra22\EvolutionLaravelClient\Models\ListMessage(
+        $listMessage = new ListMessage(
             $recipient,
             $title,
             $description,
@@ -306,13 +326,14 @@ class Message
     /**
      * Send a button message.
      *
-     * @param string $phoneNumber
-     * @param string $title
-     * @param string $description
-     * @param string $footer
-     * @param array $buttons
+     * @param string   $phoneNumber
+     * @param string   $title
+     * @param string   $description
+     * @param string   $footer
+     * @param array    $buttons
      * @param int|null $delay
-     * @param bool $isGroup
+     * @param bool     $isGroup
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -321,15 +342,16 @@ class Message
         string $title,
         string $description,
         string $footer,
-        array $buttons,
-        ?int $delay = null,
-        bool $isGroup = false
-    ): array {
+        array  $buttons,
+        ?int   $delay = null,
+        bool   $isGroup = false
+    ): array
+    {
         $recipient = $isGroup
             ? $phoneNumber . '@g.us'
             : $this->formatPhoneNumber($phoneNumber);
 
-        $buttonMessage = new \SamuelTerra22\EvolutionLaravelClient\Models\ButtonMessage(
+        $buttonMessage = new ButtonMessage(
             $recipient,
             $title,
             $description,
@@ -344,14 +366,15 @@ class Message
     /**
      * Send a reaction to a message.
      *
-     * @param array $key
+     * @param array  $key
      * @param string $reaction
+     *
      * @return array
      * @throws EvolutionApiException
      */
     public function sendReaction(array $key, string $reaction): array
     {
-        $reactionMessage = new \SamuelTerra22\EvolutionLaravelClient\Models\ReactionMessage(
+        $reactionMessage = new ReactionMessage(
             $key,
             $reaction
         );
@@ -362,26 +385,28 @@ class Message
     /**
      * Send a status message.
      *
-     * @param string $type
-     * @param string $content
+     * @param string      $type
+     * @param string      $content
      * @param string|null $caption
      * @param string|null $backgroundColor
-     * @param int|null $font
-     * @param bool $allContacts
-     * @param array|null $statusJidList
+     * @param int|null    $font
+     * @param bool        $allContacts
+     * @param array|null  $statusJidList
+     *
      * @return array
      * @throws EvolutionApiException
      */
     public function sendStatus(
-        string $type,
-        string $content,
+        string  $type,
+        string  $content,
         ?string $caption = null,
         ?string $backgroundColor = null,
-        ?int $font = null,
-        bool $allContacts = false,
-        ?array $statusJidList = null
-    ): array {
-        $statusMessage = new \SamuelTerra22\EvolutionLaravelClient\Models\StatusMessage(
+        ?int    $font = null,
+        bool    $allContacts = false,
+        ?array  $statusJidList = null
+    ): array
+    {
+        $statusMessage = new StatusMessage(
             $type,
             $content,
             $caption,

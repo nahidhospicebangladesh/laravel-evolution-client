@@ -22,9 +22,9 @@ class Call
     /**
      * Create a new Call instance.
      *
-     * @param string $number The phone number
-     * @param bool $isVideo Whether it's a video call
-     * @param int $callDuration The call duration in seconds
+     * @param string $number       The phone number
+     * @param bool   $isVideo      Whether it's a video call
+     * @param int    $callDuration The call duration in seconds
      */
     public function __construct(string $number, bool $isVideo, int $callDuration)
     {
@@ -41,8 +41,8 @@ class Call
     public function toArray(): array
     {
         return [
-            'number' => $this->number,
-            'isVideo' => $this->isVideo,
+            'number'       => $this->number,
+            'isVideo'      => $this->isVideo,
             'callDuration' => $this->callDuration,
         ];
     }

@@ -12,25 +12,26 @@ class ListMessage
     /**
      * Create a new ListMessage instance.
      *
-     * @param string $number
-     * @param string $title
-     * @param string $description
-     * @param string $buttonText
-     * @param string $footerText
-     * @param array $sections
-     * @param int|null $delay
+     * @param string             $number
+     * @param string             $title
+     * @param string             $description
+     * @param string             $buttonText
+     * @param string             $footerText
+     * @param array              $sections
+     * @param int|null           $delay
      * @param QuotedMessage|null $quoted
      */
     public function __construct(
-        string $number,
-        string $title,
-        string $description,
-        string $buttonText,
-        string $footerText,
-        array $sections,
-        ?int $delay = null,
+        string         $number,
+        string         $title,
+        string         $description,
+        string         $buttonText,
+        string         $footerText,
+        array          $sections,
+        ?int           $delay = null,
         ?QuotedMessage $quoted = null
-    ) {
+    )
+    {
         $sectionsArray = [];
 
         foreach ($sections as $section) {
@@ -42,12 +43,12 @@ class ListMessage
         }
 
         $this->attributes = [
-            'number' => $number,
-            'title' => $title,
+            'number'      => $number,
+            'title'       => $title,
             'description' => $description,
-            'buttonText' => $buttonText,
-            'footerText' => $footerText,
-            'sections' => $sectionsArray,
+            'buttonText'  => $buttonText,
+            'footerText'  => $footerText,
+            'sections'    => $sectionsArray,
         ];
 
         if ($delay !== null) {

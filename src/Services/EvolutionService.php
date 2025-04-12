@@ -4,7 +4,6 @@ namespace SamuelTerra22\EvolutionLaravelClient\Services;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Illuminate\Support\Facades\Log;
 use SamuelTerra22\EvolutionLaravelClient\Exceptions\EvolutionApiException;
 
 class EvolutionService
@@ -23,6 +22,28 @@ class EvolutionService
      * @var string The API key
      */
     protected string $apiKey;
+
+    /**
+     * Create a new EvolutionService instance.
+     *
+     * @param string $baseUrl
+     * @param string $apiKey
+     * @param int    $timeout
+     */
+    public function __construct(string $baseUrl, string $apiKey, int $timeout = 30)
+    {
+        $this->baseUrl = rtrim($baseUrl, '/');
+        $this->apiKey = $apiKey;
+        $this->client = new Client([
+            'base_uri' => $this->baseUrl,
+            'timeout'  => $timeout,
+            'headers'  => [
+                'Content-Type' => 'application/json',
+                'Accept'       => 'application/json',
+                'apikey'       => $this->apiKey,
+            ],
+        ]);
+    }
 
     /**
      * Get the base URL.
@@ -55,32 +76,11 @@ class EvolutionService
     }
 
     /**
-     * Create a new EvolutionService instance.
-     *
-     * @param string $baseUrl
-     * @param string $apiKey
-     * @param int $timeout
-     */
-    public function __construct(string $baseUrl, string $apiKey, int $timeout = 30)
-    {
-        $this->baseUrl = rtrim($baseUrl, '/');
-        $this->apiKey = $apiKey;
-        $this->client = new Client([
-            'base_uri' => $this->baseUrl,
-            'timeout' => $timeout,
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-                'apikey' => $this->apiKey,
-            ],
-        ]);
-    }
-
-    /**
      * Make a GET request to the Evolution API.
      *
      * @param string $endpoint
-     * @param array $queryParams
+     * @param array  $queryParams
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -90,50 +90,12 @@ class EvolutionService
     }
 
     /**
-     * Make a POST request to the Evolution API.
-     *
-     * @param string $endpoint
-     * @param array $data
-     * @return array
-     * @throws EvolutionApiException
-     */
-    public function post(string $endpoint, array $data = []): array
-    {
-        return $this->request('POST', $endpoint, ['json' => $data]);
-    }
-
-    /**
-     * Make a PUT request to the Evolution API.
-     *
-     * @param string $endpoint
-     * @param array $data
-     * @return array
-     * @throws EvolutionApiException
-     */
-    public function put(string $endpoint, array $data = []): array
-    {
-        return $this->request('PUT', $endpoint, ['json' => $data]);
-    }
-
-    /**
-     * Make a DELETE request to the Evolution API.
-     *
-     * @param string $endpoint
-     * @param array $queryParams
-     * @return array
-     * @throws EvolutionApiException
-     */
-    public function delete(string $endpoint, array $queryParams = []): array
-    {
-        return $this->request('DELETE', $endpoint, ['query' => $queryParams]);
-    }
-
-    /**
      * Make a request to the Evolution API.
      *
      * @param string $method
      * @param string $endpoint
-     * @param array $options
+     * @param array  $options
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -162,5 +124,47 @@ class EvolutionService
 
             throw new EvolutionApiException($message, $statusCode);
         }
+    }
+
+    /**
+     * Make a POST request to the Evolution API.
+     *
+     * @param string $endpoint
+     * @param array  $data
+     *
+     * @return array
+     * @throws EvolutionApiException
+     */
+    public function post(string $endpoint, array $data = []): array
+    {
+        return $this->request('POST', $endpoint, ['json' => $data]);
+    }
+
+    /**
+     * Make a PUT request to the Evolution API.
+     *
+     * @param string $endpoint
+     * @param array  $data
+     *
+     * @return array
+     * @throws EvolutionApiException
+     */
+    public function put(string $endpoint, array $data = []): array
+    {
+        return $this->request('PUT', $endpoint, ['json' => $data]);
+    }
+
+    /**
+     * Make a DELETE request to the Evolution API.
+     *
+     * @param string $endpoint
+     * @param array  $queryParams
+     *
+     * @return array
+     * @throws EvolutionApiException
+     */
+    public function delete(string $endpoint, array $queryParams = []): array
+    {
+        return $this->request('DELETE', $endpoint, ['query' => $queryParams]);
     }
 }

@@ -41,9 +41,9 @@ class ListRow
     public function toArray(): array
     {
         return [
-            'title' => $this->title,
+            'title'       => $this->title,
             'description' => $this->description,
-            'rowId' => $this->rowId,
+            'rowId'       => $this->rowId,
         ];
     }
 }

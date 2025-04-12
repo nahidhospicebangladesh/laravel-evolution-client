@@ -18,7 +18,7 @@ class ListSection
      * Create a new ListSection instance.
      *
      * @param string $title
-     * @param array $rows
+     * @param array  $rows
      */
     public function __construct(string $title, array $rows)
     {
@@ -46,7 +46,7 @@ class ListSection
     {
         return [
             'title' => $this->title,
-            'rows' => $this->rows,
+            'rows'  => $this->rows,
         ];
     }
 }

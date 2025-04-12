@@ -22,22 +22,11 @@ class Label
      * Create a new Label resource instance.
      *
      * @param EvolutionService $service
-     * @param string $instanceName
+     * @param string           $instanceName
      */
     public function __construct(EvolutionService $service, string $instanceName)
     {
         $this->service = $service;
-        $this->instanceName = $instanceName;
-    }
-
-    /**
-     * Set the instance name.
-     *
-     * @param string $instanceName
-     * @return void
-     */
-    public function setInstanceName(string $instanceName): void
-    {
         $this->instanceName = $instanceName;
     }
 
@@ -52,6 +41,18 @@ class Label
     }
 
     /**
+     * Set the instance name.
+     *
+     * @param string $instanceName
+     *
+     * @return void
+     */
+    public function setInstanceName(string $instanceName): void
+    {
+        $this->instanceName = $instanceName;
+    }
+
+    /**
      * Find all labels.
      *
      * @return array
@@ -63,11 +64,26 @@ class Label
     }
 
     /**
+     * Add a label to a chat.
+     *
+     * @param string $number
+     * @param string $labelId
+     *
+     * @return array
+     * @throws EvolutionApiException
+     */
+    public function addLabel(string $number, string $labelId): array
+    {
+        return $this->handleLabel($number, $labelId, 'add');
+    }
+
+    /**
      * Add or remove a label to/from a chat.
      *
      * @param string $number
      * @param string $labelId
      * @param string $action
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -79,23 +95,11 @@ class Label
     }
 
     /**
-     * Add a label to a chat.
-     *
-     * @param string $number
-     * @param string $labelId
-     * @return array
-     * @throws EvolutionApiException
-     */
-    public function addLabel(string $number, string $labelId): array
-    {
-        return $this->handleLabel($number, $labelId, 'add');
-    }
-
-    /**
      * Remove a label from a chat.
      *
      * @param string $number
      * @param string $labelId
+     *
      * @return array
      * @throws EvolutionApiException
      */

@@ -21,22 +21,11 @@ class Group
      * Create a new Group resource instance.
      *
      * @param EvolutionService $service
-     * @param string $instanceName
+     * @param string           $instanceName
      */
     public function __construct(EvolutionService $service, string $instanceName)
     {
         $this->service = $service;
-        $this->instanceName = $instanceName;
-    }
-
-    /**
-     * Set the instance name.
-     *
-     * @param string $instanceName
-     * @return void
-     */
-    public function setInstanceName(string $instanceName): void
-    {
         $this->instanceName = $instanceName;
     }
 
@@ -51,15 +40,15 @@ class Group
     }
 
     /**
-     * Format phone number to be used with the API.
+     * Set the instance name.
      *
-     * @param string $phoneNumber
-     * @return string
+     * @param string $instanceName
+     *
+     * @return void
      */
-    protected function formatPhoneNumber(string $phoneNumber): string
+    public function setInstanceName(string $instanceName): void
     {
-        // Remove any non-digit characters
-        return preg_replace('/\D/', '', $phoneNumber);
+        $this->instanceName = $instanceName;
     }
 
     /**
@@ -77,6 +66,7 @@ class Group
      * Get group info.
      *
      * @param string $groupId
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -91,7 +81,8 @@ class Group
      * Create a new group.
      *
      * @param string $name
-     * @param array $participants
+     * @param array  $participants
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -103,9 +94,22 @@ class Group
         }, $participants);
 
         return $this->service->post("/group/create/{$this->instanceName}", [
-            'name' => $name,
+            'name'         => $name,
             'participants' => $formattedParticipants,
         ]);
+    }
+
+    /**
+     * Format phone number to be used with the API.
+     *
+     * @param string $phoneNumber
+     *
+     * @return string
+     */
+    protected function formatPhoneNumber(string $phoneNumber): string
+    {
+        // Remove any non-digit characters
+        return preg_replace('/\D/', '', $phoneNumber);
     }
 
     /**
@@ -113,6 +117,7 @@ class Group
      *
      * @param string $groupId
      * @param string $subject
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -129,13 +134,14 @@ class Group
      *
      * @param string $groupId
      * @param string $description
+     *
      * @return array
      * @throws EvolutionApiException
      */
     public function updateDescription(string $groupId, string $description): array
     {
         return $this->service->put("/group/update-description/{$this->instanceName}", [
-            'groupId' => $groupId,
+            'groupId'     => $groupId,
             'description' => $description,
         ]);
     }
@@ -144,7 +150,8 @@ class Group
      * Add participants to a group.
      *
      * @param string $groupId
-     * @param array $participants
+     * @param array  $participants
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -156,7 +163,7 @@ class Group
         }, $participants);
 
         return $this->service->post("/group/add-participants/{$this->instanceName}", [
-            'groupId' => $groupId,
+            'groupId'      => $groupId,
             'participants' => $formattedParticipants,
         ]);
     }
@@ -165,7 +172,8 @@ class Group
      * Remove participants from a group.
      *
      * @param string $groupId
-     * @param array $participants
+     * @param array  $participants
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -177,7 +185,7 @@ class Group
         }, $participants);
 
         return $this->service->post("/group/remove-participants/{$this->instanceName}", [
-            'groupId' => $groupId,
+            'groupId'      => $groupId,
             'participants' => $formattedParticipants,
         ]);
     }
@@ -187,6 +195,7 @@ class Group
      *
      * @param string $groupId
      * @param string $participant
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -195,7 +204,7 @@ class Group
         $formattedParticipant = $this->formatPhoneNumber($participant);
 
         return $this->service->post("/group/promote-participants/{$this->instanceName}", [
-            'groupId' => $groupId,
+            'groupId'      => $groupId,
             'participants' => [$formattedParticipant],
         ]);
     }
@@ -205,6 +214,7 @@ class Group
      *
      * @param string $groupId
      * @param string $participant
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -213,7 +223,7 @@ class Group
         $formattedParticipant = $this->formatPhoneNumber($participant);
 
         return $this->service->post("/group/demote-participants/{$this->instanceName}", [
-            'groupId' => $groupId,
+            'groupId'      => $groupId,
             'participants' => [$formattedParticipant],
         ]);
     }
@@ -222,6 +232,7 @@ class Group
      * Leave a group.
      *
      * @param string $groupId
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -236,6 +247,7 @@ class Group
      * Get group invite code.
      *
      * @param string $groupId
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -250,6 +262,7 @@ class Group
      * Join a group using invite code.
      *
      * @param string $inviteCode
+     *
      * @return array
      * @throws EvolutionApiException
      */

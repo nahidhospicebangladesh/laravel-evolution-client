@@ -12,26 +12,27 @@ class TextMessage
     /**
      * Create a new TextMessage instance.
      *
-     * @param string $number
-     * @param string $text
-     * @param int|null $delay
+     * @param string             $number
+     * @param string             $text
+     * @param int|null           $delay
      * @param QuotedMessage|null $quoted
-     * @param bool|null $linkPreview
-     * @param bool|null $mentionsEveryOne
-     * @param array|null $mentioned
+     * @param bool|null          $linkPreview
+     * @param bool|null          $mentionsEveryOne
+     * @param array|null         $mentioned
      */
     public function __construct(
-        string $number,
-        string $text,
-        ?int $delay = null,
+        string         $number,
+        string         $text,
+        ?int           $delay = null,
         ?QuotedMessage $quoted = null,
-        ?bool $linkPreview = null,
-        ?bool $mentionsEveryOne = null,
-        ?array $mentioned = null
-    ) {
+        ?bool          $linkPreview = null,
+        ?bool          $mentionsEveryOne = null,
+        ?array         $mentioned = null
+    )
+    {
         $this->attributes = [
             'number' => $number,
-            'text' => $text,
+            'text'   => $text,
         ];
 
         if ($delay !== null) {

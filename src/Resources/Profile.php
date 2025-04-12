@@ -4,10 +4,10 @@ namespace SamuelTerra22\EvolutionLaravelClient\Resources;
 
 use SamuelTerra22\EvolutionLaravelClient\Exceptions\EvolutionApiException;
 use SamuelTerra22\EvolutionLaravelClient\Models\FetchProfile;
-use SamuelTerra22\EvolutionLaravelClient\Models\ProfileName;
-use SamuelTerra22\EvolutionLaravelClient\Models\ProfileStatus;
-use SamuelTerra22\EvolutionLaravelClient\Models\ProfilePicture;
 use SamuelTerra22\EvolutionLaravelClient\Models\PrivacySettings;
+use SamuelTerra22\EvolutionLaravelClient\Models\ProfileName;
+use SamuelTerra22\EvolutionLaravelClient\Models\ProfilePicture;
+use SamuelTerra22\EvolutionLaravelClient\Models\ProfileStatus;
 use SamuelTerra22\EvolutionLaravelClient\Services\EvolutionService;
 
 class Profile
@@ -26,22 +26,11 @@ class Profile
      * Create a new Profile resource instance.
      *
      * @param EvolutionService $service
-     * @param string $instanceName
+     * @param string           $instanceName
      */
     public function __construct(EvolutionService $service, string $instanceName)
     {
         $this->service = $service;
-        $this->instanceName = $instanceName;
-    }
-
-    /**
-     * Set the instance name.
-     *
-     * @param string $instanceName
-     * @return void
-     */
-    public function setInstanceName(string $instanceName): void
-    {
         $this->instanceName = $instanceName;
     }
 
@@ -56,9 +45,22 @@ class Profile
     }
 
     /**
+     * Set the instance name.
+     *
+     * @param string $instanceName
+     *
+     * @return void
+     */
+    public function setInstanceName(string $instanceName): void
+    {
+        $this->instanceName = $instanceName;
+    }
+
+    /**
      * Fetch business profile.
      *
      * @param string $number
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -73,6 +75,7 @@ class Profile
      * Fetch profile.
      *
      * @param string $number
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -87,6 +90,7 @@ class Profile
      * Update profile name.
      *
      * @param string $name
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -101,6 +105,7 @@ class Profile
      * Update profile status.
      *
      * @param string $status
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -115,6 +120,7 @@ class Profile
      * Update profile picture.
      *
      * @param string $picture
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -156,6 +162,7 @@ class Profile
      * @param string $online
      * @param string $last
      * @param string $groupadd
+     *
      * @return array
      * @throws EvolutionApiException
      */
@@ -166,7 +173,8 @@ class Profile
         string $online,
         string $last,
         string $groupadd
-    ): array {
+    ): array
+    {
         $privacy = new PrivacySettings($readreceipts, $profile, $status, $online, $last, $groupadd);
 
         return $this->service->post("/chat/updatePrivacySettings/{$this->instanceName}", $privacy->toArray());

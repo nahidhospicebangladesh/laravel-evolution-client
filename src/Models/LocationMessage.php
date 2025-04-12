@@ -12,28 +12,29 @@ class LocationMessage
     /**
      * Create a new LocationMessage instance.
      *
-     * @param string $number
-     * @param string $name
-     * @param string $address
-     * @param float $latitude
-     * @param float $longitude
-     * @param int|null $delay
+     * @param string             $number
+     * @param string             $name
+     * @param string             $address
+     * @param float              $latitude
+     * @param float              $longitude
+     * @param int|null           $delay
      * @param QuotedMessage|null $quoted
      */
     public function __construct(
-        string $number,
-        string $name,
-        string $address,
-        float $latitude,
-        float $longitude,
-        ?int $delay = null,
+        string         $number,
+        string         $name,
+        string         $address,
+        float          $latitude,
+        float          $longitude,
+        ?int           $delay = null,
         ?QuotedMessage $quoted = null
-    ) {
+    )
+    {
         $this->attributes = [
-            'number' => $number,
-            'name' => $name,
-            'address' => $address,
-            'latitude' => $latitude,
+            'number'    => $number,
+            'name'      => $name,
+            'address'   => $address,
+            'latitude'  => $latitude,
             'longitude' => $longitude,
         ];
 
