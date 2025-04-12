@@ -45,6 +45,16 @@ class EvolutionService
     }
 
     /**
+     * Get the HTTP client.
+     *
+     * @return Client
+     */
+    public function getClient(): Client
+    {
+        return $this->client;
+    }
+
+    /**
      * Create a new EvolutionService instance.
      *
      * @param string $baseUrl
