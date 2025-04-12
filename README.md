@@ -1,7 +1,7 @@
 # Evolution Client PHP
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/samuelterra22/evolution-client-php.svg?style=flat-square)](https://packagist.org/packages/samuelterra22/evolution-client-php)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/samuelterra22/evolution-client-php/run-tests?label=tests)](https://github.com/samuelterra22/evolution-client-php/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![run-tests](https://github.com/samuelterra22/evolution-client-php/actions/workflows/run-tests.yml/badge.svg)](https://github.com/samuelterra22/evolution-client-php/actions/workflows/run-tests.yml)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/samuelterra22/evolution-client-php/Check%20&%20fix%20styling?label=code%20style)](https://github.com/samuelterra22/evolution-client-php/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/samuelterra22/evolution-client-php.svg?style=flat-square)](https://packagist.org/packages/samuelterra22/evolution-client-php)
 
