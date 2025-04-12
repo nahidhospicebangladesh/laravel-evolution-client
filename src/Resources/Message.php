@@ -61,25 +61,37 @@ class Message
      * @param string $phoneNumber
      * @param string $message
      * @param bool $isGroup
+     * @param int|null $delay
+     * @param bool|null $linkPreview
+     * @param bool|null $mentionsEveryOne
+     * @param array|null $mentioned
      * @return array
      * @throws EvolutionApiException
      */
-    public function sendText(string $phoneNumber, string $message, bool $isGroup = false): array
-    {
+    public function sendText(
+        string $phoneNumber,
+        string $message,
+        bool $isGroup = false,
+        ?int $delay = null,
+        ?bool $linkPreview = null,
+        ?bool $mentionsEveryOne = null,
+        ?array $mentioned = null
+    ): array {
         $recipient = $isGroup
             ? $phoneNumber . '@g.us'
             : $this->formatPhoneNumber($phoneNumber);
 
-        return $this->service->post("/message/chat/send/text/{$this->instanceName}", [
-            'number' => $recipient,
-            'options' => [
-                'delay' => 1200,
-                'presence' => 'composing',
-            ],
-            'textMessage' => [
-                'text' => $message,
-            ],
-        ]);
+        $textMessage = new \SamuelTerra22\EvolutionLaravelClient\Models\TextMessage(
+            $recipient,
+            $message,
+            $delay,
+            null,
+            $linkPreview,
+            $mentionsEveryOne,
+            $mentioned
+        );
+
+        return $this->service->post("/message/sendText/{$this->instanceName}", $textMessage->toArray());
     }
 
     /**
@@ -191,16 +203,184 @@ class Message
             ? $phoneNumber . '@g.us'
             : $this->formatPhoneNumber($phoneNumber);
 
-        return $this->service->post("/message/chat/send/contact/{$this->instanceName}", [
-            'number' => $recipient,
-            'options' => [
-                'delay' => 1200,
-                'presence' => 'composing',
-            ],
-            'contactMessage' => [
-                'displayName' => $contactName,
-                'vcard' => "BEGIN:VCARD\nVERSION:3.0\nN:;{$contactName};;;\nFN:{$contactName}\nTEL;type=CELL;waid={$contactNumber}:{$contactNumber}\nEND:VCARD",
-            ],
-        ]);
+        $contact = new \SamuelTerra22\EvolutionLaravelClient\Models\Contact(
+            $contactName,
+            $contactNumber,
+            $contactNumber
+        );
+
+        $contactMessage = new \SamuelTerra22\EvolutionLaravelClient\Models\ContactMessage(
+            $recipient,
+            [$contact]
+        );
+
+        return $this->service->post("/message/sendContact/{$this->instanceName}", $contactMessage->toArray());
+    }
+
+    /**
+     * Send a poll message.
+     *
+     * @param string $phoneNumber
+     * @param string $name
+     * @param int $selectableCount
+     * @param array $values
+     * @param int|null $delay
+     * @param bool $isGroup
+     * @return array
+     * @throws EvolutionApiException
+     */
+    public function sendPoll(
+        string $phoneNumber,
+        string $name,
+        int $selectableCount,
+        array $values,
+        ?int $delay = null,
+        bool $isGroup = false
+    ): array {
+        $recipient = $isGroup
+            ? $phoneNumber . '@g.us'
+            : $this->formatPhoneNumber($phoneNumber);
+
+        $pollMessage = new \SamuelTerra22\EvolutionLaravelClient\Models\PollMessage(
+            $recipient,
+            $name,
+            $selectableCount,
+            $values,
+            $delay
+        );
+
+        return $this->service->post("/message/sendPoll/{$this->instanceName}", $pollMessage->toArray());
+    }
+
+    /**
+     * Send a list message.
+     *
+     * @param string $phoneNumber
+     * @param string $title
+     * @param string $description
+     * @param string $buttonText
+     * @param string $footerText
+     * @param array $sections
+     * @param int|null $delay
+     * @param bool $isGroup
+     * @return array
+     * @throws EvolutionApiException
+     */
+    public function sendList(
+        string $phoneNumber,
+        string $title,
+        string $description,
+        string $buttonText,
+        string $footerText,
+        array $sections,
+        ?int $delay = null,
+        bool $isGroup = false
+    ): array {
+        $recipient = $isGroup
+            ? $phoneNumber . '@g.us'
+            : $this->formatPhoneNumber($phoneNumber);
+
+        $listMessage = new \SamuelTerra22\EvolutionLaravelClient\Models\ListMessage(
+            $recipient,
+            $title,
+            $description,
+            $buttonText,
+            $footerText,
+            $sections,
+            $delay
+        );
+
+        return $this->service->post("/message/sendList/{$this->instanceName}", $listMessage->toArray());
+    }
+
+    /**
+     * Send a button message.
+     *
+     * @param string $phoneNumber
+     * @param string $title
+     * @param string $description
+     * @param string $footer
+     * @param array $buttons
+     * @param int|null $delay
+     * @param bool $isGroup
+     * @return array
+     * @throws EvolutionApiException
+     */
+    public function sendButtons(
+        string $phoneNumber,
+        string $title,
+        string $description,
+        string $footer,
+        array $buttons,
+        ?int $delay = null,
+        bool $isGroup = false
+    ): array {
+        $recipient = $isGroup
+            ? $phoneNumber . '@g.us'
+            : $this->formatPhoneNumber($phoneNumber);
+
+        $buttonMessage = new \SamuelTerra22\EvolutionLaravelClient\Models\ButtonMessage(
+            $recipient,
+            $title,
+            $description,
+            $footer,
+            $buttons,
+            $delay
+        );
+
+        return $this->service->post("/message/sendButtons/{$this->instanceName}", $buttonMessage->toArray());
+    }
+
+    /**
+     * Send a reaction to a message.
+     *
+     * @param array $key
+     * @param string $reaction
+     * @return array
+     * @throws EvolutionApiException
+     */
+    public function sendReaction(array $key, string $reaction): array
+    {
+        $reactionMessage = new \SamuelTerra22\EvolutionLaravelClient\Models\ReactionMessage(
+            $key,
+            $reaction
+        );
+
+        return $this->service->post("/message/sendReaction/{$this->instanceName}", $reactionMessage->toArray());
+    }
+
+    /**
+     * Send a status message.
+     *
+     * @param string $type
+     * @param string $content
+     * @param string|null $caption
+     * @param string|null $backgroundColor
+     * @param int|null $font
+     * @param bool $allContacts
+     * @param array|null $statusJidList
+     * @return array
+     * @throws EvolutionApiException
+     */
+    public function sendStatus(
+        string $type,
+        string $content,
+        ?string $caption = null,
+        ?string $backgroundColor = null,
+        ?int $font = null,
+        bool $allContacts = false,
+        ?array $statusJidList = null
+    ): array {
+        $statusMessage = new \SamuelTerra22\EvolutionLaravelClient\Models\StatusMessage(
+            $type,
+            $content,
+            $caption,
+            $backgroundColor,
+            $font,
+            $allContacts,
+            $statusJidList
+        );
+
+        return $this->service->post("/message/sendStatus/{$this->instanceName}", $statusMessage->toArray());
     }
 }

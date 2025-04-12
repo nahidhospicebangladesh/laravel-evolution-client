@@ -19,8 +19,11 @@
         verbose="true"
 >
     <testsuites>
-        <testsuite name="SamuelTerra22 Test Suite">
-            <directory>tests</directory>
+        <testsuite name="Evolution Laravel Client Unit Tests">
+            <directory>tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Evolution Laravel Client Feature Tests">
+            <directory>tests/Feature</directory>
         </testsuite>
     </testsuites>
     <coverage>
@@ -36,4 +39,9 @@
     <logging>
         <junit outputFile="build/report.junit.xml"/>
     </logging>
+    <php>
+        <env name="EVOLUTION_API_URL" value="http://localhost:8080"/>
+        <env name="EVOLUTION_API_KEY" value="test-api-key"/>
+        <env name="EVOLUTION_DEFAULT_INSTANCE" value="test-instance"/>
+    </php>
 </phpunit>

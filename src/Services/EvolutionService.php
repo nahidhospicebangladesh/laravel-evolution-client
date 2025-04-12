@@ -25,6 +25,26 @@ class EvolutionService
     protected string $apiKey;
 
     /**
+     * Get the base URL.
+     *
+     * @return string
+     */
+    public function getBaseUrl(): string
+    {
+        return $this->baseUrl;
+    }
+
+    /**
+     * Get the API key.
+     *
+     * @return string
+     */
+    public function getApiKey(): string
+    {
+        return $this->apiKey;
+    }
+
+    /**
      * Create a new EvolutionService instance.
      *
      * @param string $baseUrl
