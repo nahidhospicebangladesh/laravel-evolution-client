@@ -1,11 +1,12 @@
 # Evolution Client PHP
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/samuelterra22/evolution-client-php.svg?style=flat-square)](https://packagist.org/packages/samuelterra22/evolution-client-php)
-[![run-tests](https://github.com/samuelterra22/evolution-client-php/actions/workflows/run-tests.yml/badge.svg)](https://github.com/samuelterra22/evolution-client-php/actions/workflows/run-tests.yml)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/samuelterra22/evolution-client-php/Check%20&%20fix%20styling?label=code%20style)](https://github.com/samuelterra22/evolution-client-php/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Github All Releases](https://img.shields.io/github/downloads/samuelterra22/evolution-client-php/total.svg)]()
+[//]: # ([![Latest Version on Packagist]&#40;https://img.shields.io/packagist/v/samuelterra22/evolution-laravel-client.svg?style=flat-square&#41;]&#40;https://packagist.org/packages/samuelterra22/evolution-laravel-client&#41;)
+[![run-tests](https://github.com/samuelterra22/evolution-laravel-client/actions/workflows/run-tests.yml/badge.svg)](https://github.com/samuelterra22/evolution-laravel-client/actions/workflows/run-tests.yml)
 
-[//]: # ([![Total Downloads]&#40;https://img.shields.io/packagist/dt/samuelterra22/evolution-client-php.svg?style=flat-square&#41;]&#40;https://packagist.org/packages/samuelterra22/evolution-client-php&#41;)
+[//]: # ([![GitHub Code Style Action Status]&#40;https://img.shields.io/github/workflow/status/samuelterra22/evolution-laravel-client/Check%20&%20fix%20styling?label=code%20style&#41;]&#40;https://github.com/samuelterra22/evolution-laravel-client/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain&#41;)
+[//]: # ([![Github All Releases]&#40;https://img.shields.io/github/downloads/samuelterra22/evolution-laravel-client/total.svg&#41;]&#40;&#41;)
+
+[//]: # ([![Total Downloads]&#40;https://img.shields.io/packagist/dt/samuelterra22/evolution-laravel-client.svg?style=flat-square&#41;]&#40;https://packagist.org/packages/samuelterra22/evolution-laravel-client&#41;)
 
 Cliente Laravel para a Evolution API, permitindo integração fácil com WhatsApp.
 
@@ -14,7 +15,7 @@ Cliente Laravel para a Evolution API, permitindo integração fácil com WhatsAp
 Você pode instalar o pacote via composer:
 
 ```bash
-composer require samuelterra22/evolution-client-php
+composer require samuelterra22/evolution-laravel-client
 ```
 
 Você pode publicar o arquivo de configuração com:
