@@ -71,7 +71,7 @@ class EvolutionApiClientTest extends TestCase
 
         $this->mockHandler = new MockHandler([
             new Response(200, [], json_encode([
-                'status'  => 'success',
+                'status' => 'success',
                 'message' => 'Mock response',
             ])),
         ]);

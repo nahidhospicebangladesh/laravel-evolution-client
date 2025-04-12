@@ -36,11 +36,11 @@ class EvolutionService
         $this->apiKey = $apiKey;
         $this->client = new Client([
             'base_uri' => $this->baseUrl,
-            'timeout'  => $timeout,
-            'headers'  => [
+            'timeout' => $timeout,
+            'headers' => [
                 'Content-Type' => 'application/json',
-                'Accept'       => 'application/json',
-                'apikey'       => $this->apiKey,
+                'Accept' => 'application/json',
+                'apikey' => $this->apiKey,
             ],
         ]);
     }

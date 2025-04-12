@@ -30,8 +30,7 @@ class ListMessage
         array          $sections,
         ?int           $delay = null,
         ?QuotedMessage $quoted = null
-    )
-    {
+    ) {
         $sectionsArray = [];
 
         foreach ($sections as $section) {
@@ -43,12 +42,12 @@ class ListMessage
         }
 
         $this->attributes = [
-            'number'      => $number,
-            'title'       => $title,
+            'number' => $number,
+            'title' => $title,
             'description' => $description,
-            'buttonText'  => $buttonText,
-            'footerText'  => $footerText,
-            'sections'    => $sectionsArray,
+            'buttonText' => $buttonText,
+            'footerText' => $footerText,
+            'sections' => $sectionsArray,
         ];
 
         if ($delay !== null) {

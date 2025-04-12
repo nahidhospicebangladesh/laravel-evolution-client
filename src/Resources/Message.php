@@ -81,8 +81,7 @@ class Message
         ?bool  $linkPreview = null,
         ?bool  $mentionsEveryOne = null,
         ?array $mentioned = null
-    ): array
-    {
+    ): array {
         $recipient = $isGroup
             ? $phoneNumber . '@g.us'
             : $this->formatPhoneNumber($phoneNumber);
@@ -134,13 +133,13 @@ class Message
             : $this->formatPhoneNumber($phoneNumber);
 
         return $this->service->post("/message/chat/send/image/{$this->instanceName}", [
-            'number'       => $recipient,
-            'options'      => [
-                'delay'    => 1200,
+            'number' => $recipient,
+            'options' => [
+                'delay' => 1200,
                 'presence' => 'composing',
             ],
             'imageMessage' => [
-                'image'   => $image,
+                'image' => $image,
                 'caption' => $caption,
             ],
         ]);
@@ -165,15 +164,15 @@ class Message
             : $this->formatPhoneNumber($phoneNumber);
 
         return $this->service->post("/message/chat/send/document/{$this->instanceName}", [
-            'number'          => $recipient,
-            'options'         => [
-                'delay'    => 1200,
+            'number' => $recipient,
+            'options' => [
+                'delay' => 1200,
                 'presence' => 'composing',
             ],
             'documentMessage' => [
                 'document' => $document,
                 'fileName' => $fileName,
-                'caption'  => $caption,
+                'caption' => $caption,
             ],
         ]);
     }
@@ -198,15 +197,15 @@ class Message
             : $this->formatPhoneNumber($phoneNumber);
 
         return $this->service->post("/message/chat/send/location/{$this->instanceName}", [
-            'number'          => $recipient,
-            'options'         => [
-                'delay'    => 1200,
+            'number' => $recipient,
+            'options' => [
+                'delay' => 1200,
                 'presence' => 'composing',
             ],
             'locationMessage' => [
-                'lat'     => $latitude,
-                'lng'     => $longitude,
-                'name'    => $name,
+                'lat' => $latitude,
+                'lng' => $longitude,
+                'name' => $name,
                 'address' => $address,
             ],
         ]);
@@ -263,8 +262,7 @@ class Message
         array  $values,
         ?int   $delay = null,
         bool   $isGroup = false
-    ): array
-    {
+    ): array {
         $recipient = $isGroup
             ? $phoneNumber . '@g.us'
             : $this->formatPhoneNumber($phoneNumber);
@@ -304,8 +302,7 @@ class Message
         array  $sections,
         ?int   $delay = null,
         bool   $isGroup = false
-    ): array
-    {
+    ): array {
         $recipient = $isGroup
             ? $phoneNumber . '@g.us'
             : $this->formatPhoneNumber($phoneNumber);
@@ -345,8 +342,7 @@ class Message
         array  $buttons,
         ?int   $delay = null,
         bool   $isGroup = false
-    ): array
-    {
+    ): array {
         $recipient = $isGroup
             ? $phoneNumber . '@g.us'
             : $this->formatPhoneNumber($phoneNumber);
@@ -404,8 +400,7 @@ class Message
         ?int    $font = null,
         bool    $allContacts = false,
         ?array  $statusJidList = null
-    ): array
-    {
+    ): array {
         $statusMessage = new StatusMessage(
             $type,
             $content,

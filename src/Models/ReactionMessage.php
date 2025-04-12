@@ -18,7 +18,7 @@ class ReactionMessage
     public function __construct(array $key, string $reaction)
     {
         $this->attributes = [
-            'key'      => $key,
+            'key' => $key,
             'reaction' => $reaction,
         ];
     }

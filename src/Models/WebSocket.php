@@ -35,7 +35,7 @@ class WebSocket
     {
         return [
             'enabled' => $this->enabled,
-            'events'  => $this->events,
+            'events' => $this->events,
         ];
     }
 }

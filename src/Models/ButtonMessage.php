@@ -28,8 +28,7 @@ class ButtonMessage
         array          $buttons,
         ?int           $delay = null,
         ?QuotedMessage $quoted = null
-    )
-    {
+    ) {
         $buttonsArray = [];
 
         foreach ($buttons as $button) {
@@ -41,11 +40,11 @@ class ButtonMessage
         }
 
         $this->attributes = [
-            'number'      => $number,
-            'title'       => $title,
+            'number' => $number,
+            'title' => $title,
             'description' => $description,
-            'footer'      => $footer,
-            'buttons'     => $buttonsArray,
+            'footer' => $footer,
+            'buttons' => $buttonsArray,
         ];
 
         if ($delay !== null) {

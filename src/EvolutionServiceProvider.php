@@ -16,7 +16,8 @@ class EvolutionServiceProvider extends ServiceProvider
     {
         // Merge config
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/evolution.php', 'evolution'
+            __DIR__ . '/../config/evolution.php',
+            'evolution'
         );
 
         // Register the main class to use with the facade

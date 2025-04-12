@@ -61,8 +61,8 @@ class MessageModelTest extends TestCase
 
         $quotedMessageKey = [
             'remoteJid' => '5511999999999@c.us',
-            'fromMe'    => false,
-            'id'        => '12345'
+            'fromMe' => false,
+            'id' => '12345',
         ];
 
         $quoted = new QuotedMessage($quotedMessageKey);
@@ -117,8 +117,8 @@ class MessageModelTest extends TestCase
     {
         $key = [
             'remoteJid' => '5511999999999@c.us',
-            'fromMe'    => false,
-            'id'        => '12345'
+            'fromMe' => false,
+            'id' => '12345',
         ];
         $reaction = '👍';
 
@@ -157,17 +157,17 @@ class MessageModelTest extends TestCase
 
         $rows1 = [
             new ListRow('Option 1', 'Description 1', 'opt1'),
-            new ListRow('Option 2', 'Description 2', 'opt2')
+            new ListRow('Option 2', 'Description 2', 'opt2'),
         ];
 
         $rows2 = [
             new ListRow('Option 3', 'Description 3', 'opt3'),
-            new ListRow('Option 4', 'Description 4', 'opt4')
+            new ListRow('Option 4', 'Description 4', 'opt4'),
         ];
 
         $sections = [
             new ListSection('Section 1', $rows1),
-            new ListSection('Section 2', $rows2)
+            new ListSection('Section 2', $rows2),
         ];
 
         $message = new ListMessage($number, $title, $description, $buttonText, $footerText, $sections);

@@ -28,13 +28,13 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        if (!defined('PHPUNIT_RUNNING')) {
+        if (! defined('PHPUNIT_RUNNING')) {
             define('PHPUNIT_RUNNING', true);
         }
 
         $this->mockHandler = new MockHandler([
             new Response(200, [], json_encode([
-                'status'  => 'success',
+                'status' => 'success',
                 'message' => 'Mock response',
             ])),
         ]);
@@ -119,7 +119,7 @@ abstract class TestCase extends BaseTestCase
     protected function createMockService()
     {
         $mockResponse = [
-            'status'  => 'success',
+            'status' => 'success',
             'message' => 'Mock response',
         ];
 

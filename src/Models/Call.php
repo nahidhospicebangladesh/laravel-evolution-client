@@ -41,8 +41,8 @@ class Call
     public function toArray(): array
     {
         return [
-            'number'       => $this->number,
-            'isVideo'      => $this->isVideo,
+            'number' => $this->number,
+            'isVideo' => $this->isVideo,
             'callDuration' => $this->callDuration,
         ];
     }

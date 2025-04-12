@@ -49,7 +49,7 @@ class EvolutionServiceProviderTest extends TestCase
     {
         $this->artisan('vendor:publish', [
             '--provider' => 'SamuelTerra22\EvolutionLaravelClient\EvolutionServiceProvider',
-            '--tag'      => 'evolution-config'
+            '--tag' => 'evolution-config',
         ]);
 
         $this->assertFileExists(config_path('evolution.php'));

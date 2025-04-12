@@ -28,11 +28,10 @@ class TextMessage
         ?bool          $linkPreview = null,
         ?bool          $mentionsEveryOne = null,
         ?array         $mentioned = null
-    )
-    {
+    ) {
         $this->attributes = [
             'number' => $number,
-            'text'   => $text,
+            'text' => $text,
         ];
 
         if ($delay !== null) {

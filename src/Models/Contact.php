@@ -51,8 +51,7 @@ class Contact
         ?string $organization = null,
         ?string $email = null,
         ?string $url = null
-    )
-    {
+    ) {
         $this->fullName = $fullName;
         $this->wuid = $wuid;
         $this->phoneNumber = $phoneNumber;
@@ -69,8 +68,8 @@ class Contact
     public function toArray(): array
     {
         $attributes = [
-            'fullName'    => $this->fullName,
-            'wuid'        => $this->wuid,
+            'fullName' => $this->fullName,
+            'wuid' => $this->wuid,
             'phoneNumber' => $this->phoneNumber,
         ];
 

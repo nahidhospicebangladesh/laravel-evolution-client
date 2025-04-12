@@ -26,13 +26,12 @@ class PollMessage
         array          $values,
         ?int           $delay = null,
         ?QuotedMessage $quoted = null
-    )
-    {
+    ) {
         $this->attributes = [
-            'number'          => $number,
-            'name'            => $name,
+            'number' => $number,
+            'name' => $name,
             'selectableCount' => $selectableCount,
-            'values'          => $values,
+            'values' => $values,
         ];
 
         if ($delay !== null) {

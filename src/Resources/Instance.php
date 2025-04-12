@@ -142,7 +142,7 @@ class Instance
     public function setWebhook(string $url, array $events = []): array
     {
         return $this->service->post("/instance/webhook/{$this->instanceName}", [
-            'url'    => $url,
+            'url' => $url,
             'events' => $events,
         ]);
     }

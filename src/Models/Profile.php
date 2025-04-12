@@ -103,8 +103,7 @@ class PrivacySettings extends Profile
         string $online,
         string $last,
         string $groupadd
-    )
-    {
+    ) {
         // Validate each parameter
         $this->validatePrivacyOption('readreceipts', $readreceipts, ['all', 'none']);
         $this->validatePrivacyOption('profile', $profile, ['all', 'contacts', 'contact_blacklist', 'none']);
@@ -115,11 +114,11 @@ class PrivacySettings extends Profile
 
         parent::__construct([
             'readreceipts' => $readreceipts,
-            'profile'      => $profile,
-            'status'       => $status,
-            'online'       => $online,
-            'last'         => $last,
-            'groupadd'     => $groupadd,
+            'profile' => $profile,
+            'status' => $status,
+            'online' => $online,
+            'last' => $last,
+            'groupadd' => $groupadd,
         ]);
     }
 
@@ -134,7 +133,7 @@ class PrivacySettings extends Profile
      */
     private function validatePrivacyOption(string $option, string $value, array $allowedValues): void
     {
-        if (!in_array($value, $allowedValues)) {
+        if (! in_array($value, $allowedValues)) {
             throw new InvalidArgumentException(
                 sprintf(
                     "Invalid value for '%s'. Allowed values: %s",

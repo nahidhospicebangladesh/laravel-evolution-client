@@ -73,11 +73,11 @@ class MessageResourceTest extends TestCase
     {
         $rows1 = [
             new ListRow('Option 1', 'Description 1', 'opt1'),
-            new ListRow('Option 2', 'Description 2', 'opt2')
+            new ListRow('Option 2', 'Description 2', 'opt2'),
         ];
 
         $sections = [
-            new ListSection('Section 1', $rows1)
+            new ListSection('Section 1', $rows1),
         ];
 
         $result = $this->messageResource->sendList(
@@ -98,7 +98,7 @@ class MessageResourceTest extends TestCase
     {
         $buttons = [
             new Button('reply', 'Yes', ['id' => 'btn-yes']),
-            new Button('reply', 'No', ['id' => 'btn-no'])
+            new Button('reply', 'No', ['id' => 'btn-no']),
         ];
 
         $result = $this->messageResource->sendButtons(
@@ -138,11 +138,11 @@ class MessageResourceTest extends TestCase
         $this->mockHandler = new MockHandler([
             new Response(200, [], json_encode([
                 'status' => 'success',
-                'key'    => [
-                    'id'        => '12345',
+                'key' => [
+                    'id' => '12345',
                     'remoteJid' => '5511999999999@c.us',
-                    'fromMe'    => true
-                ]
+                    'fromMe' => true,
+                ],
             ])),
         ]);
 

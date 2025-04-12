@@ -46,7 +46,7 @@ class ListSection
     {
         return [
             'title' => $this->title,
-            'rows'  => $this->rows,
+            'rows' => $this->rows,
         ];
     }
 }

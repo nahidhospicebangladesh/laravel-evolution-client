@@ -173,8 +173,7 @@ class Profile
         string $online,
         string $last,
         string $groupadd
-    ): array
-    {
+    ): array {
         $privacy = new PrivacySettings($readreceipts, $profile, $status, $online, $last, $groupadd);
 
         return $this->service->post("/chat/updatePrivacySettings/{$this->instanceName}", $privacy->toArray());

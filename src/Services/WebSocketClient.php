@@ -74,8 +74,7 @@ class WebSocketClient
         string $apiToken,
         int    $maxRetries = 5,
         float  $retryDelay = 1.0
-    )
-    {
+    ) {
         $this->baseUrl = rtrim(preg_replace('/^http/', 'ws', $baseUrl), '/');
         $this->instanceId = $instanceId;
         $this->apiToken = $apiToken;
@@ -95,6 +94,7 @@ class WebSocketClient
     public function on(string $event, callable $callback): self
     {
         $this->handlers[$event] = $callback;
+
         return $this;
     }
 
