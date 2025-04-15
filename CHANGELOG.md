@@ -1,17 +1,17 @@
 # Changelog
 
-Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
+All notable changes to this project will be documented in this file.
 
-O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-e este projeto adere ao [Versionamento Semântico](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
 ## [1.0.0] - 2025-04-11
 
-### Adicionado
-- Versão inicial do pacote
-- Suporte para gerenciamento de instâncias
-- Envio de mensagens de texto, imagens, documentos, localização e contatos
-- Gerenciamento de chats e grupos
-- Webhooks para eventos
+### Added
+- Initial package version
+- Support for instance management
+- Sending text messages, images, documents, location, and contacts
+- Chat and group management
+- Webhooks for events

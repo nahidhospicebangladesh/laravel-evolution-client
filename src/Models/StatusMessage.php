@@ -1,6 +1,6 @@
 <?php
 
-namespace SamuelTerra22\EvolutionLaravelClient\Models;
+namespace SamuelTerra22\LaravelEvolutionClient\Models;
 
 class StatusMessage
 {

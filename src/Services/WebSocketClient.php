@@ -1,6 +1,6 @@
 <?php
 
-namespace SamuelTerra22\EvolutionLaravelClient\Services;
+namespace SamuelTerra22\LaravelEvolutionClient\Services;
 
 use Exception;
 use Illuminate\Support\Facades\Log;

@@ -1,11 +1,11 @@
 <?php
 
-namespace SamuelTerra22\EvolutionLaravelClient\Tests\Feature;
+namespace SamuelTerra22\LaravelEvolutionClient\Tests\Feature;
 
 use Orchestra\Testbench\TestCase;
-use SamuelTerra22\EvolutionLaravelClient\EvolutionApiClient;
-use SamuelTerra22\EvolutionLaravelClient\EvolutionServiceProvider;
-use SamuelTerra22\EvolutionLaravelClient\Facades\Evolution;
+use SamuelTerra22\LaravelEvolutionClient\EvolutionApiClient;
+use SamuelTerra22\LaravelEvolutionClient\EvolutionServiceProvider;
+use SamuelTerra22\LaravelEvolutionClient\Facades\Evolution;
 
 class EvolutionServiceProviderTest extends TestCase
 {
@@ -34,21 +34,21 @@ class EvolutionServiceProviderTest extends TestCase
     public function the_facade_provides_access_to_all_resources()
     {
         $client = app('evolution');
-        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Chat', $client->chat);
-        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Group', $client->group);
-        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Message', $client->message);
-        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Instance', $client->instance);
-        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Call', $client->call);
-        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Label', $client->label);
-        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Profile', $client->profile);
-        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\WebSocket', $client->websocket);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Chat', $client->chat);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Group', $client->group);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Message', $client->message);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Instance', $client->instance);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Call', $client->call);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Label', $client->label);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Profile', $client->profile);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\WebSocket', $client->websocket);
     }
 
     /** @test */
     public function it_publishes_the_config()
     {
         $this->artisan('vendor:publish', [
-            '--provider' => 'SamuelTerra22\EvolutionLaravelClient\EvolutionServiceProvider',
+            '--provider' => 'SamuelTerra22\LaravelEvolutionClient\EvolutionServiceProvider',
             '--tag'      => 'evolution-config',
         ]);
 

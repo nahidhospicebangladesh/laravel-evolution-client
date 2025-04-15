@@ -1,14 +1,14 @@
 <?php
 
-namespace SamuelTerra22\EvolutionLaravelClient\Tests\Unit;
+namespace SamuelTerra22\LaravelEvolutionClient\Tests\Unit;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use SamuelTerra22\EvolutionLaravelClient\EvolutionApiClient;
-use SamuelTerra22\EvolutionLaravelClient\Services\EvolutionService;
-use SamuelTerra22\EvolutionLaravelClient\Tests\TestCase;
+use SamuelTerra22\LaravelEvolutionClient\EvolutionApiClient;
+use SamuelTerra22\LaravelEvolutionClient\Services\EvolutionService;
+use SamuelTerra22\LaravelEvolutionClient\Tests\TestCase;
 
 class EvolutionApiClientTest extends TestCase
 {
@@ -39,14 +39,14 @@ class EvolutionApiClientTest extends TestCase
     /** @test */
     public function it_provides_access_to_all_resources()
     {
-        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Chat', $this->client->chat);
-        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Group', $this->client->group);
-        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Message', $this->client->message);
-        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Instance', $this->client->instance);
-        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Call', $this->client->call);
-        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Label', $this->client->label);
-        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\Profile', $this->client->profile);
-        $this->assertInstanceOf('SamuelTerra22\EvolutionLaravelClient\Resources\WebSocket', $this->client->websocket);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Chat', $this->client->chat);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Group', $this->client->group);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Message', $this->client->message);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Instance', $this->client->instance);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Call', $this->client->call);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Label', $this->client->label);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Profile', $this->client->profile);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\WebSocket', $this->client->websocket);
     }
 
     /** @test */

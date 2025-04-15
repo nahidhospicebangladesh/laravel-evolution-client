@@ -1,9 +1,9 @@
 <?php
 
-namespace SamuelTerra22\EvolutionLaravelClient;
+namespace SamuelTerra22\LaravelEvolutionClient;
 
 use Illuminate\Support\ServiceProvider;
-use SamuelTerra22\EvolutionLaravelClient\Services\EvolutionService;
+use SamuelTerra22\LaravelEvolutionClient\Services\EvolutionService;
 
 class EvolutionServiceProvider extends ServiceProvider
 {

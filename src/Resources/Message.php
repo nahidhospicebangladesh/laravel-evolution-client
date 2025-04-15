@@ -1,17 +1,17 @@
 <?php
 
-namespace SamuelTerra22\EvolutionLaravelClient\Resources;
+namespace SamuelTerra22\LaravelEvolutionClient\Resources;
 
-use SamuelTerra22\EvolutionLaravelClient\Exceptions\EvolutionApiException;
-use SamuelTerra22\EvolutionLaravelClient\Models\ButtonMessage;
-use SamuelTerra22\EvolutionLaravelClient\Models\Contact;
-use SamuelTerra22\EvolutionLaravelClient\Models\ContactMessage;
-use SamuelTerra22\EvolutionLaravelClient\Models\ListMessage;
-use SamuelTerra22\EvolutionLaravelClient\Models\PollMessage;
-use SamuelTerra22\EvolutionLaravelClient\Models\ReactionMessage;
-use SamuelTerra22\EvolutionLaravelClient\Models\StatusMessage;
-use SamuelTerra22\EvolutionLaravelClient\Models\TextMessage;
-use SamuelTerra22\EvolutionLaravelClient\Services\EvolutionService;
+use SamuelTerra22\LaravelEvolutionClient\Exceptions\EvolutionApiException;
+use SamuelTerra22\LaravelEvolutionClient\Models\ButtonMessage;
+use SamuelTerra22\LaravelEvolutionClient\Models\Contact;
+use SamuelTerra22\LaravelEvolutionClient\Models\ContactMessage;
+use SamuelTerra22\LaravelEvolutionClient\Models\ListMessage;
+use SamuelTerra22\LaravelEvolutionClient\Models\PollMessage;
+use SamuelTerra22\LaravelEvolutionClient\Models\ReactionMessage;
+use SamuelTerra22\LaravelEvolutionClient\Models\StatusMessage;
+use SamuelTerra22\LaravelEvolutionClient\Models\TextMessage;
+use SamuelTerra22\LaravelEvolutionClient\Services\EvolutionService;
 
 class Message
 {

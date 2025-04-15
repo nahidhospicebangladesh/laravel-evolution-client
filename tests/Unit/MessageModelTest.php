@@ -1,19 +1,19 @@
 <?php
 
-namespace SamuelTerra22\EvolutionLaravelClient\Tests\Unit;
+namespace SamuelTerra22\LaravelEvolutionClient\Tests\Unit;
 
-use SamuelTerra22\EvolutionLaravelClient\Models\Contact;
-use SamuelTerra22\EvolutionLaravelClient\Models\ContactMessage;
-use SamuelTerra22\EvolutionLaravelClient\Models\ListMessage;
-use SamuelTerra22\EvolutionLaravelClient\Models\ListRow;
-use SamuelTerra22\EvolutionLaravelClient\Models\ListSection;
-use SamuelTerra22\EvolutionLaravelClient\Models\LocationMessage;
-use SamuelTerra22\EvolutionLaravelClient\Models\PollMessage;
-use SamuelTerra22\EvolutionLaravelClient\Models\QuotedMessage;
-use SamuelTerra22\EvolutionLaravelClient\Models\ReactionMessage;
-use SamuelTerra22\EvolutionLaravelClient\Models\StatusMessage;
-use SamuelTerra22\EvolutionLaravelClient\Models\TextMessage;
-use SamuelTerra22\EvolutionLaravelClient\Tests\TestCase;
+use SamuelTerra22\LaravelEvolutionClient\Models\Contact;
+use SamuelTerra22\LaravelEvolutionClient\Models\ContactMessage;
+use SamuelTerra22\LaravelEvolutionClient\Models\ListMessage;
+use SamuelTerra22\LaravelEvolutionClient\Models\ListRow;
+use SamuelTerra22\LaravelEvolutionClient\Models\ListSection;
+use SamuelTerra22\LaravelEvolutionClient\Models\LocationMessage;
+use SamuelTerra22\LaravelEvolutionClient\Models\PollMessage;
+use SamuelTerra22\LaravelEvolutionClient\Models\QuotedMessage;
+use SamuelTerra22\LaravelEvolutionClient\Models\ReactionMessage;
+use SamuelTerra22\LaravelEvolutionClient\Models\StatusMessage;
+use SamuelTerra22\LaravelEvolutionClient\Models\TextMessage;
+use SamuelTerra22\LaravelEvolutionClient\Tests\TestCase;
 
 class MessageModelTest extends TestCase
 {

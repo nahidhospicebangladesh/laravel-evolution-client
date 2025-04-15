@@ -1,9 +1,9 @@
 <?php
 
-namespace SamuelTerra22\EvolutionLaravelClient\Tests\Unit;
+namespace SamuelTerra22\LaravelEvolutionClient\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use SamuelTerra22\EvolutionLaravelClient\Services\WebSocketClient;
+use SamuelTerra22\LaravelEvolutionClient\Services\WebSocketClient;
 
 class WebSocketClientTest extends TestCase
 {

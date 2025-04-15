@@ -1,17 +1,17 @@
 <?php
 
-namespace SamuelTerra22\EvolutionLaravelClient\Tests\Unit;
+namespace SamuelTerra22\LaravelEvolutionClient\Tests\Unit;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use SamuelTerra22\EvolutionLaravelClient\Models\Button;
-use SamuelTerra22\EvolutionLaravelClient\Models\ListRow;
-use SamuelTerra22\EvolutionLaravelClient\Models\ListSection;
-use SamuelTerra22\EvolutionLaravelClient\Resources\Message;
-use SamuelTerra22\EvolutionLaravelClient\Services\EvolutionService;
-use SamuelTerra22\EvolutionLaravelClient\Tests\TestCase;
+use SamuelTerra22\LaravelEvolutionClient\Models\Button;
+use SamuelTerra22\LaravelEvolutionClient\Models\ListRow;
+use SamuelTerra22\LaravelEvolutionClient\Models\ListSection;
+use SamuelTerra22\LaravelEvolutionClient\Resources\Message;
+use SamuelTerra22\LaravelEvolutionClient\Services\EvolutionService;
+use SamuelTerra22\LaravelEvolutionClient\Tests\TestCase;
 
 class MessageResourceTest extends TestCase
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace SamuelTerra22\EvolutionLaravelClient\Resources;
+namespace SamuelTerra22\LaravelEvolutionClient\Resources;
 
-use SamuelTerra22\EvolutionLaravelClient\Exceptions\EvolutionApiException;
-use SamuelTerra22\EvolutionLaravelClient\Services\EvolutionService;
+use SamuelTerra22\LaravelEvolutionClient\Exceptions\EvolutionApiException;
+use SamuelTerra22\LaravelEvolutionClient\Services\EvolutionService;
 
 class Instance
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace SamuelTerra22\EvolutionLaravelClient\Tests\Unit;
+namespace SamuelTerra22\LaravelEvolutionClient\Tests\Unit;
 
 use GuzzleHttp\Handler\MockHandler;
 use ReflectionClass;
-use SamuelTerra22\EvolutionLaravelClient\Resources\WebSocket;
-use SamuelTerra22\EvolutionLaravelClient\Services\EvolutionService;
-use SamuelTerra22\EvolutionLaravelClient\Services\WebSocketClient;
-use SamuelTerra22\EvolutionLaravelClient\Tests\TestCase;
+use SamuelTerra22\LaravelEvolutionClient\Resources\WebSocket;
+use SamuelTerra22\LaravelEvolutionClient\Services\EvolutionService;
+use SamuelTerra22\LaravelEvolutionClient\Services\WebSocketClient;
+use SamuelTerra22\LaravelEvolutionClient\Tests\TestCase;
 
 class WebSocketResourceTest extends TestCase
 {

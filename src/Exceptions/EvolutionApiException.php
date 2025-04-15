@@ -1,6 +1,6 @@
 <?php
 
-namespace SamuelTerra22\EvolutionLaravelClient\Exceptions;
+namespace SamuelTerra22\LaravelEvolutionClient\Exceptions;
 
 use Exception;
 use Throwable;

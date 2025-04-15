@@ -1,17 +1,17 @@
 <?php
 
-namespace SamuelTerra22\EvolutionLaravelClient;
+namespace SamuelTerra22\LaravelEvolutionClient;
 
-use SamuelTerra22\EvolutionLaravelClient\Exceptions\EvolutionApiException;
-use SamuelTerra22\EvolutionLaravelClient\Resources\Call;
-use SamuelTerra22\EvolutionLaravelClient\Resources\Chat;
-use SamuelTerra22\EvolutionLaravelClient\Resources\Group;
-use SamuelTerra22\EvolutionLaravelClient\Resources\Instance;
-use SamuelTerra22\EvolutionLaravelClient\Resources\Label;
-use SamuelTerra22\EvolutionLaravelClient\Resources\Message;
-use SamuelTerra22\EvolutionLaravelClient\Resources\Profile;
-use SamuelTerra22\EvolutionLaravelClient\Resources\WebSocket;
-use SamuelTerra22\EvolutionLaravelClient\Services\EvolutionService;
+use SamuelTerra22\LaravelEvolutionClient\Exceptions\EvolutionApiException;
+use SamuelTerra22\LaravelEvolutionClient\Resources\Call;
+use SamuelTerra22\LaravelEvolutionClient\Resources\Chat;
+use SamuelTerra22\LaravelEvolutionClient\Resources\Group;
+use SamuelTerra22\LaravelEvolutionClient\Resources\Instance;
+use SamuelTerra22\LaravelEvolutionClient\Resources\Label;
+use SamuelTerra22\LaravelEvolutionClient\Resources\Message;
+use SamuelTerra22\LaravelEvolutionClient\Resources\Profile;
+use SamuelTerra22\LaravelEvolutionClient\Resources\WebSocket;
+use SamuelTerra22\LaravelEvolutionClient\Services\EvolutionService;
 
 class EvolutionApiClient
 {

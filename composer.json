@@ -1,5 +1,5 @@
 {
-  "name": "samuelterra22/evolution-laravel-client",
+  "name": "samuelterra22/laravel-evolution-client",
   "description": "A comprehensive Laravel client for Evolution API that enables seamless WhatsApp integration.",
   "keywords": [
     "laravel",
@@ -7,10 +7,10 @@
     "api",
     "whatsapp"
   ],
-  "homepage": "https://github.com/samuelterra22/evolution-laravel-client",
+  "homepage": "https://github.com/samuelterra22/laravel-evolution-client",
   "support": {
-    "issues": "https://github.com/samuelterra22/evolution-laravel-client/issues",
-    "source": "https://github.com/samuelterra22/evolution-laravel-client"
+    "issues": "https://github.com/samuelterra22/laravel-evolution-client/issues",
+    "source": "https://github.com/samuelterra22/laravel-evolution-client"
   },
   "license": "MIT",
   "authors": [
@@ -37,12 +37,12 @@
   },
   "autoload": {
     "psr-4": {
-      "SamuelTerra22\\EvolutionLaravelClient\\": "src"
+      "SamuelTerra22\\LaravelEvolutionClient\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "SamuelTerra22\\EvolutionLaravelClient\\Tests\\": "tests"
+      "SamuelTerra22\\LaravelEvolutionClient\\Tests\\": "tests"
     }
   },
   "scripts": {
@@ -61,10 +61,10 @@
   "extra": {
     "laravel": {
       "providers": [
-        "SamuelTerra22\\EvolutionLaravelClient\\EvolutionServiceProvider"
+        "SamuelTerra22\\LaravelEvolutionClient\\EvolutionServiceProvider"
       ],
       "aliases": {
-        "Evolution": "SamuelTerra22\\EvolutionLaravelClient\\Facades\\Evolution"
+        "Evolution": "SamuelTerra22\\LaravelEvolutionClient\\Facades\\Evolution"
       }
     }
   },

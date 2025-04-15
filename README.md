@@ -1,30 +1,31 @@
 # Evolution Client PHP
 
-[//]: # ([![Latest Version on Packagist]&#40;https://img.shields.io/packagist/v/samuelterra22/evolution-laravel-client.svg?style=flat-square&#41;]&#40;https://packagist.org/packages/samuelterra22/evolution-laravel-client&#41;)
-[![run-tests](https://github.com/samuelterra22/evolution-laravel-client/actions/workflows/run-tests.yml/badge.svg)](https://github.com/samuelterra22/evolution-laravel-client/actions/workflows/run-tests.yml)
+[//]: # ([![Latest Version on Packagist]&#40;https://img.shields.io/packagist/v/samuelterra22/laravel-evolution-client.svg?style=flat-square&#41;]&#40;https://packagist.org/packages/samuelterra22/laravel-evolution-client&#41;)
+[![run-tests](https://github.com/samuelterra22/laravel-evolution-client/actions/workflows/run-tests.yml/badge.svg)](https://github.com/samuelterra22/laravel-evolution-client/actions/workflows/run-tests.yml)
 
-[//]: # ([![GitHub Code Style Action Status]&#40;https://img.shields.io/github/workflow/status/samuelterra22/evolution-laravel-client/Check%20&%20fix%20styling?label=code%20style&#41;]&#40;https://github.com/samuelterra22/evolution-laravel-client/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain&#41;)
-[//]: # ([![Github All Releases]&#40;https://img.shields.io/github/downloads/samuelterra22/evolution-laravel-client/total.svg&#41;]&#40;&#41;)
+[//]: # ([![GitHub Code Style Action Status]&#40;https://img.shields.io/github/workflow/status/samuelterra22/laravel-evolution-client/Check%20&%20fix%20styling?label=code%20style&#41;]&#40;https://github.com/samuelterra22/laravel-evolution-client/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain&#41;)
+[//]: # ([![Github All Releases]&#40;https://img.shields.io/github/downloads/samuelterra22/laravel-evolution-client/total.svg&#41;]&#40;&#41;)
 
-[//]: # ([![Total Downloads]&#40;https://img.shields.io/packagist/dt/samuelterra22/evolution-laravel-client.svg?style=flat-square&#41;]&#40;https://packagist.org/packages/samuelterra22/evolution-laravel-client&#41;)
+[//]: # ([![Total Downloads]&#40;https://img.shields.io/packagist/dt/samuelterra22/laravel-evolution-client.svg?style=flat-square&#41;]&#40;https://packagist.org/packages/samuelterra22/laravel-evolution-client&#41;)
+# Laravel Evolution Client
 
-Cliente Laravel para a Evolution API, permitindo integração fácil com WhatsApp.
+Laravel Client for Evolution API, allowing easy integration with WhatsApp.
 
-## Instalação
+## Installation
 
-Você pode instalar o pacote via composer:
+You can install the package via composer:
 
 ```bash
-composer require samuelterra22/evolution-laravel-client
+composer require samuelterra22/laravel-evolution-client
 ```
 
-Você pode publicar o arquivo de configuração com:
+You can publish the configuration file with:
 
 ```bash
 php artisan vendor:publish --tag="evolution-config"
 ```
 
-Este é o conteúdo do arquivo de configuração publicado:
+This is the content of the published configuration file:
 
 ```php
 return [
@@ -41,159 +42,159 @@ return [
 ];
 ```
 
-## Uso
+## Usage
 
-### Configurando o .env
+### Configuring the .env
 
 ```
-EVOLUTION_API_URL=http://sua-evolution-api.com
-EVOLUTION_API_KEY=sua-api-key
+EVOLUTION_API_URL=http://your-evolution-api.com
+EVOLUTION_API_KEY=your-api-key
 EVOLUTION_DEFAULT_INSTANCE=default
 ```
 
-### Usando a Facade
+### Using the Facade
 
 ```php
-use SamuelTerra22\EvolutionLaravelClient\Facades\Evolution;
+use SamuelTerra22\LaravelEvolutionClient\Facades\Evolution;
 
-// Verificar QR Code
+// Check QR Code
 $qrCode = Evolution::getQrCode();
 
-// Verificar se está conectado
+// Check if connected
 $connected = Evolution::isConnected();
 
-// Enviar mensagem de texto
-$result = Evolution::sendText('5511999999999', 'Olá, esta é uma mensagem de teste!');
+// Send text message
+$result = Evolution::sendText('5511999999999', 'Hello, this is a test message!');
 ```
 
-### Usando Instâncias Diferentes
+### Using Different Instances
 
 ```php
-use SamuelTerra22\EvolutionLaravelClient\Facades\Evolution;
+use SamuelTerra22\LaravelEvolutionClient\Facades\Evolution;
 
-// Usar uma instância específica
-$result = Evolution::instance('minha-instancia')->sendText('5511999999999', 'Olá!');
+// Use a specific instance
+$result = Evolution::instance('my-instance')->sendText('5511999999999', 'Hello!');
 ```
 
-### Trabalhando com Chats
+### Working with Chats
 
 ```php
-use SamuelTerra22\EvolutionLaravelClient\Facades\Evolution;
+use SamuelTerra22\LaravelEvolutionClient\Facades\Evolution;
 
-// Listar todos os chats
+// List all chats
 $chats = Evolution::chat->all();
 
-// Buscar um chat específico
+// Find a specific chat
 $chat = Evolution::chat->find('5511999999999');
 
-// Obter mensagens de um chat
+// Get messages from a chat
 $messages = Evolution::chat->messages('5511999999999', 20);
 
-// Marcar um chat como lido
+// Mark a chat as read
 Evolution::chat->markAsRead('5511999999999');
 ```
 
-### Trabalhando com Grupos
+### Working with Groups
 
 ```php
-use SamuelTerra22\EvolutionLaravelClient\Facades\Evolution;
+use SamuelTerra22\LaravelEvolutionClient\Facades\Evolution;
 
-// Listar todos os grupos
+// List all groups
 $groups = Evolution::group->all();
 
-// Criar um novo grupo
-$newGroup = Evolution::group->create('Nome do Grupo', [
+// Create a new group
+$newGroup = Evolution::group->create('Group Name', [
     '5511999999999',
     '5511888888888',
 ]);
 
-// Adicionar participantes a um grupo
+// Add participants to a group
 Evolution::group->addParticipants($groupId, [
     '5511777777777',
 ]);
 
-// Promover a administrador
+// Promote to admin
 Evolution::group->promoteToAdmin($groupId, '5511999999999');
 ```
 
-### Enviando Diferentes Tipos de Mensagens
+### Sending Different Types of Messages
 
 ```php
-use SamuelTerra22\EvolutionLaravelClient\Facades\Evolution;
-use SamuelTerra22\EvolutionLaravelClient\Models\Button;
-use SamuelTerra22\EvolutionLaravelClient\Models\ListRow;
-use SamuelTerra22\EvolutionLaravelClient\Models\ListSection;
+use SamuelTerra22\LaravelEvolutionClient\Facades\Evolution;
+use SamuelTerra22\LaravelEvolutionClient\Models\Button;
+use SamuelTerra22\LaravelEvolutionClient\Models\ListRow;
+use SamuelTerra22\LaravelEvolutionClient\Models\ListSection;
 
-// Enviar texto
-Evolution::message->sendText('5511999999999', 'Olá, tudo bem?');
+// Send text
+Evolution::message->sendText('5511999999999', 'Hello, how are you?');
 
-// Enviar texto com delay e preview de link
-Evolution::message->sendText('5511999999999', 'Confira este site: https://exemplo.com', false, 1000, true);
+// Send text with delay and link preview
+Evolution::message->sendText('5511999999999', 'Check out this website: https://example.com', false, 1000, true);
 
-// Enviar imagem
-Evolution::message->sendImage('5511999999999', 'https://exemplo.com/imagem.jpg', 'Legenda da imagem');
+// Send image
+Evolution::message->sendImage('5511999999999', 'https://example.com/image.jpg', 'Image caption');
 
-// Enviar documento
-Evolution::message->sendDocument('5511999999999', 'https://exemplo.com/documento.pdf', 'nome-arquivo.pdf', 'Confira este documento');
+// Send document
+Evolution::message->sendDocument('5511999999999', 'https://example.com/document.pdf', 'filename.pdf', 'Check out this document');
 
-// Enviar localização
-Evolution::message->sendLocation('5511999999999', -23.5505, -46.6333, 'São Paulo', 'Avenida Paulista, 1000');
+// Send location
+Evolution::message->sendLocation('5511999999999', -23.5505, -46.6333, 'São Paulo', 'Paulista Avenue, 1000');
 
-// Enviar contato
-Evolution::message->sendContact('5511999999999', 'Nome do Contato', '5511888888888');
+// Send contact
+Evolution::message->sendContact('5511999999999', 'Contact Name', '5511888888888');
 
-// Enviar enquete
-Evolution::message->sendPoll('5511999999999', 'Qual sua cor favorita?', 1, ['Azul', 'Verde', 'Vermelho', 'Amarelo']);
+// Send poll
+Evolution::message->sendPoll('5511999999999', 'What is your favorite color?', 1, ['Blue', 'Green', 'Red', 'Yellow']);
 
-// Enviar lista
+// Send list
 $rows1 = [
-    new ListRow('Opção 1', 'Descrição da opção 1', 'opt1'),
-    new ListRow('Opção 2', 'Descrição da opção 2', 'opt2')
+    new ListRow('Option 1', 'Description of option 1', 'opt1'),
+    new ListRow('Option 2', 'Description of option 2', 'opt2')
 ];
 $rows2 = [
-    new ListRow('Opção 3', 'Descrição da opção 3', 'opt3'),
-    new ListRow('Opção 4', 'Descrição da opção 4', 'opt4')
+    new ListRow('Option 3', 'Description of option 3', 'opt3'),
+    new ListRow('Option 4', 'Description of option 4', 'opt4')
 ];
 
 $sections = [
-    new ListSection('Seção 1', $rows1),
-    new ListSection('Seção 2', $rows2)
+    new ListSection('Section 1', $rows1),
+    new ListSection('Section 2', $rows2)
 ];
 
 Evolution::message->sendList(
     '5511999999999',
-    'Título da Lista',
-    'Escolha uma opção',
-    'Ver Opções',
-    'Rodapé da lista',
+    'List Title',
+    'Choose an option',
+    'View Options',
+    'List footer',
     $sections
 );
 
-// Enviar botões
+// Send buttons
 $buttons = [
-    new Button('reply', 'Sim', ['id' => 'btn-yes']),
-    new Button('reply', 'Não', ['id' => 'btn-no']),
-    new Button('url', 'Visitar Site', ['url' => 'https://exemplo.com'])
+    new Button('reply', 'Yes', ['id' => 'btn-yes']),
+    new Button('reply', 'No', ['id' => 'btn-no']),
+    new Button('url', 'Visit Website', ['url' => 'https://example.com'])
 ];
 
 Evolution::message->sendButtons(
     '5511999999999',
-    'Confirmação',
-    'Deseja prosseguir com a operação?',
-    'Escolha uma opção abaixo',
+    'Confirmation',
+    'Do you want to proceed with the operation?',
+    'Choose an option below',
     $buttons
 );
 
-// Enviar reação a uma mensagem
+// Send reaction to a message
 Evolution::message->sendReaction(
     ['remoteJid' => '5511999999999@c.us', 'id' => 'ABCDEF123456', 'fromMe' => false],
     '👍'
 );
 
-// Enviar status
+// Send status
 Evolution::message->sendStatus(
     'text',
-    'Olá, este é meu status!',
+    'Hello, this is my status!',
     null,
     '#25D366',
     2,
@@ -201,58 +202,58 @@ Evolution::message->sendStatus(
 );
 ```
 
-### Trabalhando com Labels
+### Working with Labels
 
 ```php
-use SamuelTerra22\EvolutionLaravelClient\Facades\Evolution;
+use SamuelTerra22\LaravelEvolutionClient\Facades\Evolution;
 
-// Listar todas as etiquetas
+// List all labels
 $labels = Evolution::label->findLabels();
 
-// Adicionar uma etiqueta a um chat
+// Add a label to a chat
 Evolution::label->addLabel('5511999999999', 'label_id_123');
 
-// Remover uma etiqueta de um chat
+// Remove a label from a chat
 Evolution::label->removeLabel('5511999999999', 'label_id_123');
 ```
 
-### Trabalhando com Chamadas
+### Working with Calls
 
 ```php
-use SamuelTerra22\EvolutionLaravelClient\Facades\Evolution;
+use SamuelTerra22\LaravelEvolutionClient\Facades\Evolution;
 
-// Fazer uma chamada fake
-Evolution::call->fakeCall('5511999999999', false, 45); // Chamada de voz com 45 segundos
-Evolution::call->fakeCall('5511999999999', true, 30);  // Chamada de vídeo com 30 segundos
+// Make a fake call
+Evolution::call->fakeCall('5511999999999', false, 45); // Voice call with 45 seconds
+Evolution::call->fakeCall('5511999999999', true, 30);  // Video call with 30 seconds
 ```
 
-### Trabalhando com Perfil
+### Working with Profile
 
 ```php
-use SamuelTerra22\EvolutionLaravelClient\Facades\Evolution;
+use SamuelTerra22\LaravelEvolutionClient\Facades\Evolution;
 
-// Buscar perfil de um contato
+// Fetch a contact's profile
 $profile = Evolution::profile->fetchProfile('5511999999999');
 
-// Buscar perfil de empresa
+// Fetch business profile
 $businessProfile = Evolution::profile->fetchBusinessProfile('5511999999999');
 
-// Atualizar nome do perfil
-Evolution::profile->updateProfileName('Meu Nome');
+// Update profile name
+Evolution::profile->updateProfileName('My Name');
 
-// Atualizar status
-Evolution::profile->updateProfileStatus('Disponível para atendimento');
+// Update status
+Evolution::profile->updateProfileStatus('Available for service');
 
-// Atualizar foto de perfil
+// Update profile picture
 Evolution::profile->updateProfilePicture('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQE...');
 
-// Remover foto de perfil
+// Remove profile picture
 Evolution::profile->removeProfilePicture();
 
-// Buscar configurações de privacidade
+// Fetch privacy settings
 $privacySettings = Evolution::profile->fetchPrivacySettings();
 
-// Atualizar configurações de privacidade
+// Update privacy settings
 Evolution::profile->updatePrivacySettings(
     'all',               // readreceipts
     'contacts',          // profile
@@ -263,43 +264,43 @@ Evolution::profile->updatePrivacySettings(
 );
 ```
 
-### Trabalhando com WebSocket
+### Working with WebSocket
 
 ```php
-use SamuelTerra22\EvolutionLaravelClient\Facades\Evolution;
+use SamuelTerra22\LaravelEvolutionClient\Facades\Evolution;
 
-// Configurar WebSocket
+// Configure WebSocket
 Evolution::websocket->setWebSocket(true, [
     'message',
     'message.ack',
     'status.instance'
 ]);
 
-// Buscar configurações do WebSocket
+// Fetch WebSocket configuration
 $webSocketConfig = Evolution::websocket->findWebSocket();
 
-// Criar um cliente WebSocket
+// Create a WebSocket client
 $webSocketClient = Evolution::websocket->createClient();
 
-// Registrar handlers para eventos
+// Register handlers for events
 $webSocketClient->on('message', function ($data) {
-    // Processar mensagem recebida
-    Log::info('Nova mensagem recebida', $data);
+    // Process received message
+    Log::info('New message received', $data);
 });
 
 $webSocketClient->on('message.ack', function ($data) {
-    // Processar confirmação de leitura
-    Log::info('Mensagem lida', $data);
+    // Process read confirmation
+    Log::info('Message read', $data);
 });
 
-// Conectar ao servidor WebSocket
+// Connect to WebSocket server
 $webSocketClient->connect();
 
-// ... Em algum momento posterior, desconectar
+// ... At some later point, disconnect
 $webSocketClient->disconnect();
 ```
 
-## Testando
+## Testing
 
 ```bash
 composer test
@@ -307,21 +308,21 @@ composer test
 
 ## Changelog
 
-Consulte o [CHANGELOG](CHANGELOG.md) para mais informações sobre o que mudou recentemente.
+Please see the [CHANGELOG](CHANGELOG.md) for more information about what has changed recently.
 
-## Contribuindo
+## Contributing
 
-Por favor, veja [CONTRIBUTING](CONTRIBUTING.md) para detalhes.
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
-## Segurança
+## Security
 
-Se você descobrir algum problema relacionado à segurança, envie um e-mail para seu-email@exemplo.com em vez de usar o issue tracker.
+If you discover any security-related issues, please email your-email@example.com instead of using the issue tracker.
 
-## Créditos
+## Credits
 
 - [Samuel Terra](https://github.com/samuelterra22)
-- [Todos os Contribuidores](../../contributors)
+- [All Contributors](../../contributors)
 
-## Licença
+## License
 
-The MIT License (MIT). Consulte o [Arquivo de Licença](LICENSE.md) para mais informações.
+The MIT License (MIT). Please see the [License File](LICENSE.md) for more information.

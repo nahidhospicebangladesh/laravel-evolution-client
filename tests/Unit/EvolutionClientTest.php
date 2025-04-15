@@ -1,14 +1,14 @@
 <?php
 
-namespace SamuelTerra22\EvolutionLaravelClient\Tests\Unit;
+namespace SamuelTerra22\LaravelEvolutionClient\Tests\Unit;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use SamuelTerra22\EvolutionLaravelClient\EvolutionApiClient;
-use SamuelTerra22\EvolutionLaravelClient\Services\EvolutionService;
-use SamuelTerra22\EvolutionLaravelClient\Tests\TestCase;
+use SamuelTerra22\LaravelEvolutionClient\EvolutionApiClient;
+use SamuelTerra22\LaravelEvolutionClient\Services\EvolutionService;
+use SamuelTerra22\LaravelEvolutionClient\Tests\TestCase;
 
 class EvolutionClientTest extends TestCase
 {
