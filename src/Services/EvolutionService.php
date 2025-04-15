@@ -81,8 +81,9 @@ class EvolutionService
      * @param string $endpoint
      * @param array  $queryParams
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function get(string $endpoint, array $queryParams = []): array
     {
@@ -96,8 +97,9 @@ class EvolutionService
      * @param string $endpoint
      * @param array  $options
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     protected function request(string $method, string $endpoint, array $options = []): array
     {
@@ -132,8 +134,9 @@ class EvolutionService
      * @param string $endpoint
      * @param array  $data
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function post(string $endpoint, array $data = []): array
     {
@@ -146,8 +149,9 @@ class EvolutionService
      * @param string $endpoint
      * @param array  $data
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function put(string $endpoint, array $data = []): array
     {
@@ -160,8 +164,9 @@ class EvolutionService
      * @param string $endpoint
      * @param array  $queryParams
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function delete(string $endpoint, array $queryParams = []): array
     {

@@ -20,11 +20,11 @@ class PollMessage
      * @param QuotedMessage|null $quoted
      */
     public function __construct(
-        string         $number,
-        string         $name,
-        int            $selectableCount,
-        array          $values,
-        ?int           $delay = null,
+        string $number,
+        string $name,
+        int $selectableCount,
+        array $values,
+        ?int $delay = null,
         ?QuotedMessage $quoted = null
     ) {
         $this->attributes = [

@@ -21,12 +21,12 @@ class LocationMessage
      * @param QuotedMessage|null $quoted
      */
     public function __construct(
-        string         $number,
-        string         $name,
-        string         $address,
-        float          $latitude,
-        float          $longitude,
-        ?int           $delay = null,
+        string $number,
+        string $name,
+        string $address,
+        float $latitude,
+        float $longitude,
+        ?int $delay = null,
         ?QuotedMessage $quoted = null
     ) {
         $this->attributes = [

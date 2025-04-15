@@ -105,8 +105,9 @@ class EvolutionApiClient
     /**
      * Get the QR code for the instance.
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function getQrCode(): array
     {
@@ -116,8 +117,9 @@ class EvolutionApiClient
     /**
      * Check if the instance is connected.
      *
-     * @return bool
      * @throws EvolutionApiException
+     *
+     * @return bool
      */
     public function isConnected(): bool
     {
@@ -127,8 +129,9 @@ class EvolutionApiClient
     /**
      * Disconnect the instance.
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function disconnect(): array
     {
@@ -141,8 +144,9 @@ class EvolutionApiClient
      * @param string $phoneNumber
      * @param string $message
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function sendText(string $phoneNumber, string $message): array
     {

@@ -21,12 +21,12 @@ class ButtonMessage
      * @param QuotedMessage|null $quoted
      */
     public function __construct(
-        string         $number,
-        string         $title,
-        string         $description,
-        string         $footer,
-        array          $buttons,
-        ?int           $delay = null,
+        string $number,
+        string $title,
+        string $description,
+        string $footer,
+        array $buttons,
+        ?int $delay = null,
         ?QuotedMessage $quoted = null
     ) {
         $buttonsArray = [];

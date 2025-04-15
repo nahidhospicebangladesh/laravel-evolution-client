@@ -54,8 +54,9 @@ class Instance
     /**
      * Get the QR code for the instance.
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function getQrCode(): array
     {
@@ -65,8 +66,9 @@ class Instance
     /**
      * Check if the instance is connected.
      *
-     * @return bool
      * @throws EvolutionApiException
+     *
+     * @return bool
      */
     public function isConnected(): bool
     {
@@ -78,8 +80,9 @@ class Instance
     /**
      * Get the status of the instance.
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function getStatus(): array
     {
@@ -89,8 +92,9 @@ class Instance
     /**
      * Connect the instance.
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function connect(): array
     {
@@ -100,8 +104,9 @@ class Instance
     /**
      * Disconnect the instance.
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function disconnect(): array
     {
@@ -111,8 +116,9 @@ class Instance
     /**
      * Delete the instance.
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function delete(): array
     {
@@ -122,8 +128,9 @@ class Instance
     /**
      * Restart the instance.
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function restart(): array
     {
@@ -136,8 +143,9 @@ class Instance
      * @param string $url
      * @param array  $events
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function setWebhook(string $url, array $events = []): array
     {

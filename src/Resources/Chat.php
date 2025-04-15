@@ -54,8 +54,9 @@ class Chat
     /**
      * Get all chats.
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function all(): array
     {
@@ -67,8 +68,9 @@ class Chat
      *
      * @param string $phoneNumber
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function find(string $phoneNumber): array
     {
@@ -101,8 +103,9 @@ class Chat
      * @param string $phoneNumber
      * @param int    $count
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function messages(string $phoneNumber, int $count = 20): array
     {
@@ -119,8 +122,9 @@ class Chat
      *
      * @param string $phoneNumber
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function clearMessages(string $phoneNumber): array
     {
@@ -136,8 +140,9 @@ class Chat
      *
      * @param string $phoneNumber
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function archive(string $phoneNumber): array
     {
@@ -154,8 +159,9 @@ class Chat
      *
      * @param string $phoneNumber
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function unarchive(string $phoneNumber): array
     {
@@ -172,8 +178,9 @@ class Chat
      *
      * @param string $phoneNumber
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function delete(string $phoneNumber): array
     {
@@ -189,8 +196,9 @@ class Chat
      *
      * @param string $phoneNumber
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function markAsRead(string $phoneNumber): array
     {
@@ -207,8 +215,9 @@ class Chat
      * @param string $phoneNumber
      * @param int    $duration
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function startTyping(string $phoneNumber, int $duration = 1000): array
     {
@@ -226,8 +235,9 @@ class Chat
      *
      * @param string $phoneNumber
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function stopTyping(string $phoneNumber): array
     {

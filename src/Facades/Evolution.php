@@ -19,7 +19,6 @@ use SamuelTerra22\EvolutionLaravelClient\Resources\WebSocket;
  * @method static bool isConnected()
  * @method static array disconnect()
  * @method static array sendText(string $phoneNumber, string $message)
- *
  * @method static Chat getChatAttribute()
  * @method static Group getGroupAttribute()
  * @method static Message getMessageAttribute()
@@ -29,7 +28,7 @@ use SamuelTerra22\EvolutionLaravelClient\Resources\WebSocket;
  * @method static Profile getProfileAttribute()
  * @method static WebSocket getWebsocketAttribute()
  *
- * @see \SamuelTerra22\EvolutionLaravelClient\EvolutionApiClient
+ * @see EvolutionApiClient
  */
 class Evolution extends Facade
 {

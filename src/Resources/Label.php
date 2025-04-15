@@ -55,8 +55,9 @@ class Label
     /**
      * Find all labels.
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function findLabels(): array
     {
@@ -69,8 +70,9 @@ class Label
      * @param string $number
      * @param string $labelId
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function addLabel(string $number, string $labelId): array
     {
@@ -84,8 +86,9 @@ class Label
      * @param string $labelId
      * @param string $action
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function handleLabel(string $number, string $labelId, string $action): array
     {
@@ -100,8 +103,9 @@ class Label
      * @param string $number
      * @param string $labelId
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function removeLabel(string $number, string $labelId): array
     {

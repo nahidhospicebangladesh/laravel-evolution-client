@@ -21,13 +21,13 @@ class TextMessage
      * @param array|null         $mentioned
      */
     public function __construct(
-        string         $number,
-        string         $text,
-        ?int           $delay = null,
+        string $number,
+        string $text,
+        ?int $delay = null,
         ?QuotedMessage $quoted = null,
-        ?bool          $linkPreview = null,
-        ?bool          $mentionsEveryOne = null,
-        ?array         $mentioned = null
+        ?bool $linkPreview = null,
+        ?bool $mentionsEveryOne = null,
+        ?array $mentioned = null
     ) {
         $this->attributes = [
             'number' => $number,

@@ -45,9 +45,9 @@ class Contact
      * @param string|null $url
      */
     public function __construct(
-        string  $fullName,
-        string  $wuid,
-        string  $phoneNumber,
+        string $fullName,
+        string $wuid,
+        string $phoneNumber,
         ?string $organization = null,
         ?string $email = null,
         ?string $url = null

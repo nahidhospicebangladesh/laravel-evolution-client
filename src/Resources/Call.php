@@ -59,8 +59,9 @@ class Call
      * @param bool   $isVideo
      * @param int    $callDuration
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function fakeCall(string $number, bool $isVideo = false, int $callDuration = 45): array
     {

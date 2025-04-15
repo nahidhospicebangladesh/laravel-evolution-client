@@ -54,8 +54,9 @@ class Group
     /**
      * Get all groups.
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function all(): array
     {
@@ -67,8 +68,9 @@ class Group
      *
      * @param string $groupId
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function find(string $groupId): array
     {
@@ -83,8 +85,9 @@ class Group
      * @param string $name
      * @param array  $participants
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function create(string $name, array $participants): array
     {
@@ -118,8 +121,9 @@ class Group
      * @param string $groupId
      * @param string $subject
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function updateSubject(string $groupId, string $subject): array
     {
@@ -135,8 +139,9 @@ class Group
      * @param string $groupId
      * @param string $description
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function updateDescription(string $groupId, string $description): array
     {
@@ -152,8 +157,9 @@ class Group
      * @param string $groupId
      * @param array  $participants
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function addParticipants(string $groupId, array $participants): array
     {
@@ -174,8 +180,9 @@ class Group
      * @param string $groupId
      * @param array  $participants
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function removeParticipants(string $groupId, array $participants): array
     {
@@ -196,8 +203,9 @@ class Group
      * @param string $groupId
      * @param string $participant
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function promoteToAdmin(string $groupId, string $participant): array
     {
@@ -215,8 +223,9 @@ class Group
      * @param string $groupId
      * @param string $participant
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function demoteFromAdmin(string $groupId, string $participant): array
     {
@@ -233,8 +242,9 @@ class Group
      *
      * @param string $groupId
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function leave(string $groupId): array
     {
@@ -248,8 +258,9 @@ class Group
      *
      * @param string $groupId
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function getInviteCode(string $groupId): array
     {
@@ -263,8 +274,9 @@ class Group
      *
      * @param string $inviteCode
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function joinWithInviteCode(string $inviteCode): array
     {

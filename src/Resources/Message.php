@@ -70,16 +70,17 @@ class Message
      * @param bool|null  $mentionsEveryOne
      * @param array|null $mentioned
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function sendText(
         string $phoneNumber,
         string $message,
-        bool   $isGroup = false,
-        ?int   $delay = null,
-        ?bool  $linkPreview = null,
-        ?bool  $mentionsEveryOne = null,
+        bool $isGroup = false,
+        ?int $delay = null,
+        ?bool $linkPreview = null,
+        ?bool $mentionsEveryOne = null,
         ?array $mentioned = null
     ): array {
         $recipient = $isGroup
@@ -123,8 +124,9 @@ class Message
      * @param string $caption
      * @param bool   $isGroup
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function sendImage(string $phoneNumber, string $image, string $caption = '', bool $isGroup = false): array
     {
@@ -154,8 +156,9 @@ class Message
      * @param string $caption
      * @param bool   $isGroup
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function sendDocument(string $phoneNumber, string $document, string $fileName, string $caption = '', bool $isGroup = false): array
     {
@@ -187,8 +190,9 @@ class Message
      * @param string $address
      * @param bool   $isGroup
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function sendLocation(string $phoneNumber, float $latitude, float $longitude, string $name = '', string $address = '', bool $isGroup = false): array
     {
@@ -219,8 +223,9 @@ class Message
      * @param string $contactNumber
      * @param bool   $isGroup
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function sendContact(string $phoneNumber, string $contactName, string $contactNumber, bool $isGroup = false): array
     {
@@ -252,16 +257,17 @@ class Message
      * @param int|null $delay
      * @param bool     $isGroup
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function sendPoll(
         string $phoneNumber,
         string $name,
-        int    $selectableCount,
-        array  $values,
-        ?int   $delay = null,
-        bool   $isGroup = false
+        int $selectableCount,
+        array $values,
+        ?int $delay = null,
+        bool $isGroup = false
     ): array {
         $recipient = $isGroup
             ? $phoneNumber . '@g.us'
@@ -290,8 +296,9 @@ class Message
      * @param int|null $delay
      * @param bool     $isGroup
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function sendList(
         string $phoneNumber,
@@ -299,9 +306,9 @@ class Message
         string $description,
         string $buttonText,
         string $footerText,
-        array  $sections,
-        ?int   $delay = null,
-        bool   $isGroup = false
+        array $sections,
+        ?int $delay = null,
+        bool $isGroup = false
     ): array {
         $recipient = $isGroup
             ? $phoneNumber . '@g.us'
@@ -331,17 +338,18 @@ class Message
      * @param int|null $delay
      * @param bool     $isGroup
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function sendButtons(
         string $phoneNumber,
         string $title,
         string $description,
         string $footer,
-        array  $buttons,
-        ?int   $delay = null,
-        bool   $isGroup = false
+        array $buttons,
+        ?int $delay = null,
+        bool $isGroup = false
     ): array {
         $recipient = $isGroup
             ? $phoneNumber . '@g.us'
@@ -365,8 +373,9 @@ class Message
      * @param array  $key
      * @param string $reaction
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function sendReaction(array $key, string $reaction): array
     {
@@ -389,17 +398,18 @@ class Message
      * @param bool        $allContacts
      * @param array|null  $statusJidList
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function sendStatus(
-        string  $type,
-        string  $content,
+        string $type,
+        string $content,
         ?string $caption = null,
         ?string $backgroundColor = null,
-        ?int    $font = null,
-        bool    $allContacts = false,
-        ?array  $statusJidList = null
+        ?int $font = null,
+        bool $allContacts = false,
+        ?array $statusJidList = null
     ): array {
         $statusMessage = new StatusMessage(
             $type,

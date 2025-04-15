@@ -22,13 +22,13 @@ class ListMessage
      * @param QuotedMessage|null $quoted
      */
     public function __construct(
-        string         $number,
-        string         $title,
-        string         $description,
-        string         $buttonText,
-        string         $footerText,
-        array          $sections,
-        ?int           $delay = null,
+        string $number,
+        string $title,
+        string $description,
+        string $buttonText,
+        string $footerText,
+        array $sections,
+        ?int $delay = null,
         ?QuotedMessage $quoted = null
     ) {
         $sectionsArray = [];

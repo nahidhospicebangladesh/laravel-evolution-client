@@ -61,8 +61,9 @@ class Profile
      *
      * @param string $number
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function fetchBusinessProfile(string $number): array
     {
@@ -76,8 +77,9 @@ class Profile
      *
      * @param string $number
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function fetchProfile(string $number): array
     {
@@ -91,8 +93,9 @@ class Profile
      *
      * @param string $name
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function updateProfileName(string $name): array
     {
@@ -106,8 +109,9 @@ class Profile
      *
      * @param string $status
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function updateProfileStatus(string $status): array
     {
@@ -121,8 +125,9 @@ class Profile
      *
      * @param string $picture
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function updateProfilePicture(string $picture): array
     {
@@ -134,8 +139,9 @@ class Profile
     /**
      * Remove profile picture.
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function removeProfilePicture(): array
     {
@@ -145,8 +151,9 @@ class Profile
     /**
      * Fetch privacy settings.
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function fetchPrivacySettings(): array
     {
@@ -163,8 +170,9 @@ class Profile
      * @param string $last
      * @param string $groupadd
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function updatePrivacySettings(
         string $readreceipts,

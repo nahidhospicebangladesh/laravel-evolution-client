@@ -72,8 +72,8 @@ class WebSocketClient
         string $baseUrl,
         string $instanceId,
         string $apiToken,
-        int    $maxRetries = 5,
-        float  $retryDelay = 1.0
+        int $maxRetries = 5,
+        float $retryDelay = 1.0
     ) {
         $this->baseUrl = rtrim(preg_replace('/^http/', 'ws', $baseUrl), '/');
         $this->instanceId = $instanceId;

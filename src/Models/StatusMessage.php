@@ -21,13 +21,13 @@ class StatusMessage
      * @param array|null  $statusJidList
      */
     public function __construct(
-        string  $type,
-        string  $content,
+        string $type,
+        string $content,
         ?string $caption = null,
         ?string $backgroundColor = null,
-        ?int    $font = null,
-        bool    $allContacts = false,
-        ?array  $statusJidList = null
+        ?int $font = null,
+        bool $allContacts = false,
+        ?array $statusJidList = null
     ) {
         $this->attributes = [
             'type' => $type,

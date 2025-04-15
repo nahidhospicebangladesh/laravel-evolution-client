@@ -59,8 +59,9 @@ class WebSocket
      * @param bool  $enabled
      * @param array $events
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function setWebSocket(bool $enabled, array $events = []): array
     {
@@ -72,8 +73,9 @@ class WebSocket
     /**
      * Get WebSocket settings.
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      */
     public function findWebSocket(): array
     {
