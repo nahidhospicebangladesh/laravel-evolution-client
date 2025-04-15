@@ -5,6 +5,7 @@
     "laravel",
     "evolution",
     "api",
+    "evolution-api",
     "whatsapp"
   ],
   "homepage": "https://github.com/samuelterra22/laravel-evolution-client",
