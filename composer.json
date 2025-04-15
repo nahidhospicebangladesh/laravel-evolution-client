@@ -8,6 +8,10 @@
         "whatsapp"
     ],
     "homepage": "https://github.com/samuelterra22/evolution-laravel-client",
+    "support": {
+        "issues": "https://github.com/samuelterra22/evolution-laravel-client/issues",
+        "source": "https://github.com/samuelterra22/evolution-laravel-client"
+    },
     "license": "MIT",
     "authors": [
         {
