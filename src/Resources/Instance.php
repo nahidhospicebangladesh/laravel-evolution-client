@@ -25,7 +25,7 @@ class Instance
      */
     public function __construct(EvolutionService $service, string $instanceName)
     {
-        $this->service = $service;
+        $this->service      = $service;
         $this->instanceName = $instanceName;
     }
 
@@ -150,7 +150,7 @@ class Instance
     public function setWebhook(string $url, array $events = []): array
     {
         return $this->service->post("/instance/webhook/{$this->instanceName}", [
-            'url' => $url,
+            'url'    => $url,
             'events' => $events,
         ]);
     }

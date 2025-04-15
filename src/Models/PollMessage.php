@@ -28,10 +28,10 @@ class PollMessage
         ?QuotedMessage $quoted = null
     ) {
         $this->attributes = [
-            'number' => $number,
-            'name' => $name,
+            'number'          => $number,
+            'name'            => $name,
             'selectableCount' => $selectableCount,
-            'values' => $values,
+            'values'          => $values,
         ];
 
         if ($delay !== null) {

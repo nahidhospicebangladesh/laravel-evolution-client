@@ -31,7 +31,7 @@ class TextMessage
     ) {
         $this->attributes = [
             'number' => $number,
-            'text' => $text,
+            'text'   => $text,
         ];
 
         if ($delay !== null) {

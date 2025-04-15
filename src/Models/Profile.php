@@ -114,11 +114,11 @@ class PrivacySettings extends Profile
 
         parent::__construct([
             'readreceipts' => $readreceipts,
-            'profile' => $profile,
-            'status' => $status,
-            'online' => $online,
-            'last' => $last,
-            'groupadd' => $groupadd,
+            'profile'      => $profile,
+            'status'       => $status,
+            'online'       => $online,
+            'last'         => $last,
+            'groupadd'     => $groupadd,
         ]);
     }
 

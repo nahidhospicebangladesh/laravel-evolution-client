@@ -33,14 +33,14 @@ class EvolutionService
     public function __construct(string $baseUrl, string $apiKey, int $timeout = 30)
     {
         $this->baseUrl = rtrim($baseUrl, '/');
-        $this->apiKey = $apiKey;
-        $this->client = new Client([
+        $this->apiKey  = $apiKey;
+        $this->client  = new Client([
             'base_uri' => $this->baseUrl,
-            'timeout' => $timeout,
-            'headers' => [
+            'timeout'  => $timeout,
+            'headers'  => [
                 'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-                'apikey' => $this->apiKey,
+                'Accept'       => 'application/json',
+                'apikey'       => $this->apiKey,
             ],
         ]);
     }
@@ -107,11 +107,11 @@ class EvolutionService
 
         try {
             $response = $this->client->request($method, $url, $options);
-            $body = $response->getBody()->getContents();
+            $body     = $response->getBody()->getContents();
 
             return json_decode($body, true) ?? [];
         } catch (GuzzleException $e) {
-            $message = $e->getMessage();
+            $message    = $e->getMessage();
             $statusCode = $e->getCode();
 
             // Try to parse error response

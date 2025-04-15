@@ -28,8 +28,8 @@ class Call
      */
     public function __construct(string $number, bool $isVideo, int $callDuration)
     {
-        $this->number = $number;
-        $this->isVideo = $isVideo;
+        $this->number       = $number;
+        $this->isVideo      = $isVideo;
         $this->callDuration = $callDuration;
     }
 
@@ -41,8 +41,8 @@ class Call
     public function toArray(): array
     {
         return [
-            'number' => $this->number,
-            'isVideo' => $this->isVideo,
+            'number'       => $this->number,
+            'isVideo'      => $this->isVideo,
             'callDuration' => $this->callDuration,
         ];
     }

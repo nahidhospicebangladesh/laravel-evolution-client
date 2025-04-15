@@ -36,9 +36,9 @@ class Label
             throw new InvalidArgumentException("Action must be 'add' or 'remove'");
         }
 
-        $this->number = $number;
+        $this->number  = $number;
         $this->labelId = $labelId;
-        $this->action = $action;
+        $this->action  = $action;
     }
 
     /**
@@ -49,9 +49,9 @@ class Label
     public function toArray(): array
     {
         return [
-            'number' => $this->number,
+            'number'  => $this->number,
             'labelId' => $this->labelId,
-            'action' => $this->action,
+            'action'  => $this->action,
         ];
     }
 }

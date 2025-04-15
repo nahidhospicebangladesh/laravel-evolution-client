@@ -30,10 +30,10 @@ class LocationMessage
         ?QuotedMessage $quoted = null
     ) {
         $this->attributes = [
-            'number' => $number,
-            'name' => $name,
-            'address' => $address,
-            'latitude' => $latitude,
+            'number'    => $number,
+            'name'      => $name,
+            'address'   => $address,
+            'latitude'  => $latitude,
             'longitude' => $longitude,
         ];
 

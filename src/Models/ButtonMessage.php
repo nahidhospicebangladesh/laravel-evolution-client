@@ -40,11 +40,11 @@ class ButtonMessage
         }
 
         $this->attributes = [
-            'number' => $number,
-            'title' => $title,
+            'number'      => $number,
+            'title'       => $title,
             'description' => $description,
-            'footer' => $footer,
-            'buttons' => $buttonsArray,
+            'footer'      => $footer,
+            'buttons'     => $buttonsArray,
         ];
 
         if ($delay !== null) {

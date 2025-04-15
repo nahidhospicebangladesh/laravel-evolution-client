@@ -75,12 +75,12 @@ class WebSocketClient
         int $maxRetries = 5,
         float $retryDelay = 1.0
     ) {
-        $this->baseUrl = rtrim(preg_replace('/^http/', 'ws', $baseUrl), '/');
+        $this->baseUrl    = rtrim(preg_replace('/^http/', 'ws', $baseUrl), '/');
         $this->instanceId = $instanceId;
-        $this->apiToken = $apiToken;
+        $this->apiToken   = $apiToken;
         $this->maxRetries = $maxRetries;
         $this->retryDelay = $retryDelay;
-        $this->loop = Factory::create();
+        $this->loop       = Factory::create();
     }
 
     /**
@@ -174,7 +174,7 @@ class WebSocketClient
     {
         try {
             if (isset($data['event']) && isset($this->handlers[$data['event']])) {
-                $event = $data['event'];
+                $event     = $data['event'];
                 $eventData = $data['data'] ?? [];
 
                 call_user_func($this->handlers[$event], $eventData);

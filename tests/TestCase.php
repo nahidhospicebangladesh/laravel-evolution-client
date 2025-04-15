@@ -34,13 +34,13 @@ abstract class TestCase extends BaseTestCase
 
         $this->mockHandler = new MockHandler([
             new Response(200, [], json_encode([
-                'status' => 'success',
+                'status'  => 'success',
                 'message' => 'Mock response',
             ])),
         ]);
 
         $handlerStack = HandlerStack::create($this->mockHandler);
-        $httpClient = new Client(['handler' => $handlerStack]);
+        $httpClient   = new Client(['handler' => $handlerStack]);
 
         $this->service = $this->getMockBuilder(EvolutionService::class)
             ->setConstructorArgs(['http://localhost:8080', 'test-api-key', 30])
@@ -119,7 +119,7 @@ abstract class TestCase extends BaseTestCase
     protected function createMockService()
     {
         $mockResponse = [
-            'status' => 'success',
+            'status'  => 'success',
             'message' => 'Mock response',
         ];
 

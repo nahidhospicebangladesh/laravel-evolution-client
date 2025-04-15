@@ -33,7 +33,7 @@ class Message
      */
     public function __construct(EvolutionService $service, string $instanceName)
     {
-        $this->service = $service;
+        $this->service      = $service;
         $this->instanceName = $instanceName;
     }
 
@@ -135,13 +135,13 @@ class Message
             : $this->formatPhoneNumber($phoneNumber);
 
         return $this->service->post("/message/chat/send/image/{$this->instanceName}", [
-            'number' => $recipient,
+            'number'  => $recipient,
             'options' => [
-                'delay' => 1200,
+                'delay'    => 1200,
                 'presence' => 'composing',
             ],
             'imageMessage' => [
-                'image' => $image,
+                'image'   => $image,
                 'caption' => $caption,
             ],
         ]);
@@ -167,15 +167,15 @@ class Message
             : $this->formatPhoneNumber($phoneNumber);
 
         return $this->service->post("/message/chat/send/document/{$this->instanceName}", [
-            'number' => $recipient,
+            'number'  => $recipient,
             'options' => [
-                'delay' => 1200,
+                'delay'    => 1200,
                 'presence' => 'composing',
             ],
             'documentMessage' => [
                 'document' => $document,
                 'fileName' => $fileName,
-                'caption' => $caption,
+                'caption'  => $caption,
             ],
         ]);
     }
@@ -201,15 +201,15 @@ class Message
             : $this->formatPhoneNumber($phoneNumber);
 
         return $this->service->post("/message/chat/send/location/{$this->instanceName}", [
-            'number' => $recipient,
+            'number'  => $recipient,
             'options' => [
-                'delay' => 1200,
+                'delay'    => 1200,
                 'presence' => 'composing',
             ],
             'locationMessage' => [
-                'lat' => $latitude,
-                'lng' => $longitude,
-                'name' => $name,
+                'lat'     => $latitude,
+                'lng'     => $longitude,
+                'name'    => $name,
                 'address' => $address,
             ],
         ]);

@@ -138,16 +138,16 @@ class MessageResourceTest extends TestCase
         $this->mockHandler = new MockHandler([
             new Response(200, [], json_encode([
                 'status' => 'success',
-                'key' => [
-                    'id' => '12345',
+                'key'    => [
+                    'id'        => '12345',
                     'remoteJid' => '5511999999999@c.us',
-                    'fromMe' => true,
+                    'fromMe'    => true,
                 ],
             ])),
         ]);
 
         $handlerStack = HandlerStack::create($this->mockHandler);
-        $httpClient = new Client(['handler' => $handlerStack]);
+        $httpClient   = new Client(['handler' => $handlerStack]);
 
         $this->service = $this->createMockService();
 

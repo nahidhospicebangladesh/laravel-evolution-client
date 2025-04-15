@@ -71,13 +71,13 @@ class EvolutionApiClientTest extends TestCase
 
         $this->mockHandler = new MockHandler([
             new Response(200, [], json_encode([
-                'status' => 'success',
+                'status'  => 'success',
                 'message' => 'Mock response',
             ])),
         ]);
 
         $handlerStack = HandlerStack::create($this->mockHandler);
-        $httpClient = new Client(['handler' => $handlerStack]);
+        $httpClient   = new Client(['handler' => $handlerStack]);
 
         // Mock the EvolutionService but allow actual method calls
         $service = $this->getMockBuilder(EvolutionService::class)

@@ -28,9 +28,9 @@ class Button
      */
     public function __construct(string $type, string $displayText, array $attributes = [])
     {
-        $this->type = $type;
+        $this->type        = $type;
         $this->displayText = $displayText;
-        $this->attributes = $attributes;
+        $this->attributes  = $attributes;
     }
 
     /**
@@ -41,7 +41,7 @@ class Button
     public function toArray(): array
     {
         $result = [
-            'type' => $this->type,
+            'type'        => $this->type,
             'displayText' => $this->displayText,
         ];
 

@@ -25,7 +25,7 @@ class Group
      */
     public function __construct(EvolutionService $service, string $instanceName)
     {
-        $this->service = $service;
+        $this->service      = $service;
         $this->instanceName = $instanceName;
     }
 
@@ -97,7 +97,7 @@ class Group
         }, $participants);
 
         return $this->service->post("/group/create/{$this->instanceName}", [
-            'name' => $name,
+            'name'         => $name,
             'participants' => $formattedParticipants,
         ]);
     }
@@ -146,7 +146,7 @@ class Group
     public function updateDescription(string $groupId, string $description): array
     {
         return $this->service->put("/group/update-description/{$this->instanceName}", [
-            'groupId' => $groupId,
+            'groupId'     => $groupId,
             'description' => $description,
         ]);
     }
@@ -169,7 +169,7 @@ class Group
         }, $participants);
 
         return $this->service->post("/group/add-participants/{$this->instanceName}", [
-            'groupId' => $groupId,
+            'groupId'      => $groupId,
             'participants' => $formattedParticipants,
         ]);
     }
@@ -192,7 +192,7 @@ class Group
         }, $participants);
 
         return $this->service->post("/group/remove-participants/{$this->instanceName}", [
-            'groupId' => $groupId,
+            'groupId'      => $groupId,
             'participants' => $formattedParticipants,
         ]);
     }
@@ -212,7 +212,7 @@ class Group
         $formattedParticipant = $this->formatPhoneNumber($participant);
 
         return $this->service->post("/group/promote-participants/{$this->instanceName}", [
-            'groupId' => $groupId,
+            'groupId'      => $groupId,
             'participants' => [$formattedParticipant],
         ]);
     }
@@ -232,7 +232,7 @@ class Group
         $formattedParticipant = $this->formatPhoneNumber($participant);
 
         return $this->service->post("/group/demote-participants/{$this->instanceName}", [
-            'groupId' => $groupId,
+            'groupId'      => $groupId,
             'participants' => [$formattedParticipant],
         ]);
     }

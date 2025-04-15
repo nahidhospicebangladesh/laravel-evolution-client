@@ -28,9 +28,9 @@ class ListRow
      */
     public function __construct(string $title, string $description, string $rowId)
     {
-        $this->title = $title;
+        $this->title       = $title;
         $this->description = $description;
-        $this->rowId = $rowId;
+        $this->rowId       = $rowId;
     }
 
     /**
@@ -41,9 +41,9 @@ class ListRow
     public function toArray(): array
     {
         return [
-            'title' => $this->title,
+            'title'       => $this->title,
             'description' => $this->description,
-            'rowId' => $this->rowId,
+            'rowId'       => $this->rowId,
         ];
     }
 }

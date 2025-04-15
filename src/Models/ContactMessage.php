@@ -28,7 +28,7 @@ class ContactMessage
         }
 
         $this->attributes = [
-            'number' => $number,
+            'number'  => $number,
             'contact' => $contactsArray,
         ];
     }

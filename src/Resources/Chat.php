@@ -25,7 +25,7 @@ class Chat
      */
     public function __construct(EvolutionService $service, string $instanceName)
     {
-        $this->service = $service;
+        $this->service      = $service;
         $this->instanceName = $instanceName;
     }
 
@@ -113,7 +113,7 @@ class Chat
 
         return $this->service->get("/chat/messages/{$this->instanceName}", [
             'number' => $number,
-            'count' => $count,
+            'count'  => $count,
         ]);
     }
 
@@ -149,7 +149,7 @@ class Chat
         $number = $this->formatPhoneNumber($phoneNumber);
 
         return $this->service->post("/chat/archive/{$this->instanceName}", [
-            'number' => $number,
+            'number'  => $number,
             'archive' => true,
         ]);
     }
@@ -168,7 +168,7 @@ class Chat
         $number = $this->formatPhoneNumber($phoneNumber);
 
         return $this->service->post("/chat/archive/{$this->instanceName}", [
-            'number' => $number,
+            'number'  => $number,
             'archive' => false,
         ]);
     }
@@ -224,7 +224,7 @@ class Chat
         $number = $this->formatPhoneNumber($phoneNumber);
 
         return $this->service->post("/chat/presence/{$this->instanceName}", [
-            'number' => $number,
+            'number'   => $number,
             'presence' => 'composing',
             'duration' => $duration,
         ]);
@@ -244,7 +244,7 @@ class Chat
         $number = $this->formatPhoneNumber($phoneNumber);
 
         return $this->service->post("/chat/presence/{$this->instanceName}", [
-            'number' => $number,
+            'number'   => $number,
             'presence' => 'paused',
         ]);
     }

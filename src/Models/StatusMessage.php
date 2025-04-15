@@ -30,8 +30,8 @@ class StatusMessage
         ?array $statusJidList = null
     ) {
         $this->attributes = [
-            'type' => $type,
-            'content' => $content,
+            'type'        => $type,
+            'content'     => $content,
             'allContacts' => $allContacts,
         ];
 

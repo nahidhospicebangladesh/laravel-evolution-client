@@ -26,7 +26,7 @@ class Call
      */
     public function __construct(EvolutionService $service, string $instanceName)
     {
-        $this->service = $service;
+        $this->service      = $service;
         $this->instanceName = $instanceName;
     }
 

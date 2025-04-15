@@ -52,14 +52,14 @@ class WebSocketResourceTest extends TestCase
         $client = new class('ws://localhost:8080', 'test-instance', 'test-api-key') extends WebSocketClient {
             public function __construct($baseUrl, $instanceId, $apiToken)
             {
-                $this->baseUrl = $baseUrl;
+                $this->baseUrl    = $baseUrl;
                 $this->instanceId = $instanceId;
-                $this->apiToken = $apiToken;
+                $this->apiToken   = $apiToken;
             }
         };
 
         // Use reflection to verify the instance creation works
-        $reflectionClass = new ReflectionClass($this->webSocketResource);
+        $reflectionClass  = new ReflectionClass($this->webSocketResource);
         $reflectionMethod = $reflectionClass->getMethod('createClient');
         $reflectionMethod->setAccessible(true);
 
@@ -71,7 +71,7 @@ class WebSocketResourceTest extends TestCase
     {
         parent::setUp();
 
-        $this->service = $this->createMockService();
+        $this->service           = $this->createMockService();
         $this->webSocketResource = new WebSocket($this->service, 'test-instance');
     }
 }
