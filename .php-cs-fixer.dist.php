@@ -33,9 +33,9 @@ return (new PhpCsFixer\Config())
         'single_trait_insert_per_statement' => true,
 
         'braces'                             => [
-            'position_after_functions_and_oop_constructs' => 'next_line',
-            'position_after_anonymous_constructs'         => 'same_line',
-            'position_after_control_structures'           => 'same_line',
+            'position_after_functions_and_oop_constructs' => 'next',
+            'position_after_anonymous_constructs'         => 'same',
+            'position_after_control_structures'           => 'same',
         ],
         'class_attributes_separation'        => ['elements' => ['method' => 'one']],
         'concat_space'                       => ['spacing' => 'one'],
