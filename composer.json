@@ -1,6 +1,6 @@
 {
     "name": "samuelterra22/evolution-laravel-client",
-    "description": "Cliente Laravel para Evolution API",
+    "description": "Laravel Client for Evolution API",
     "keywords": [
         "laravel",
         "evolution",
