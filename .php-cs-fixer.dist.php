@@ -29,6 +29,7 @@ return (new PhpCsFixer\Config())
         'method_argument_space'             => [
             'on_multiline'                     => 'ensure_fully_multiline',
             'keep_multiple_spaces_after_comma' => true,
+            'align_multiline'                  => true
         ],
         'single_trait_insert_per_statement' => true,
 
