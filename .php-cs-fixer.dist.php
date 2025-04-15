@@ -31,5 +31,39 @@ return (new PhpCsFixer\Config())
             'keep_multiple_spaces_after_comma' => true,
         ],
         'single_trait_insert_per_statement' => true,
+
+        'braces'                             => [
+            'position_after_functions_and_oop_constructs' => 'next_line',
+            'position_after_anonymous_constructs'         => 'same_line',
+            'position_after_control_structures'           => 'same_line',
+        ],
+        'class_attributes_separation'        => ['elements' => ['method' => 'one']],
+        'concat_space'                       => ['spacing' => 'one'],
+        'no_blank_lines_after_class_opening' => true,
+        'blank_line_after_namespace'         => true,
+        'single_blank_line_before_namespace' => true,
+        'align_multiline_comment'            => ['comment_type' => 'phpdocs_only'],
+        'function_typehint_space'            => true,
+        'no_extra_blank_lines'               => [
+            'tokens' => [
+                'extra',
+                'parenthesis_brace_block',
+                'square_brace_block',
+                'throw',
+                'use',
+                'curly_brace_block',
+            ],
+        ],
+        'ternary_operator_spaces'            => true,
+        'whitespace_after_comma_in_array'    => true,
+        'phpdoc_align'                       => ['tags' => ['param']],
+        'phpdoc_order'                       => true,
+        'phpdoc_separation'                  => true,
+        'single_blank_line_at_eof'           => true,
+        'fully_qualified_strict_types'       => true,
+
+        'psr_autoloading' => [
+            'dir' => null,
+        ],
     ])
     ->setFinder($finder);
