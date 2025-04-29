@@ -33,7 +33,7 @@ php artisan vendor:publish --tag="evolution-config"
 This is the content of the published configuration file:
 
 ```php
-phpreturn [
+return [
     /*
     |--------------------------------------------------------------------------
     | Evolution API Base URL
