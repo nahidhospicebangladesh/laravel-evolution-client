@@ -1,4 +1,5 @@
 <?php
+// src/EvolutionServiceProvider.php
 
 namespace SamuelTerra22\LaravelEvolutionClient;
 

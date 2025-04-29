@@ -1,4 +1,5 @@
 <?php
+// src/Resources/Chat.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Resources;
 

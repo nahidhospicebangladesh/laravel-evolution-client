@@ -1,4 +1,5 @@
 <?php
+// src/Models/Contact.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Models;
 

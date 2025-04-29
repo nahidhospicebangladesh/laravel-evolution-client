@@ -1,4 +1,5 @@
 <?php
+// src/Models/ListSection.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Models;
 

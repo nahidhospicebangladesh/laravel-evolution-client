@@ -1,4 +1,5 @@
 <?php
+// src/Services/EvolutionService.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Services;
 
@@ -108,8 +109,21 @@ class EvolutionService
         try {
             $response = $this->client->request($method, $url, $options);
             $body     = $response->getBody()->getContents();
+            $data     = json_decode($body, true);
 
-            return json_decode($body, true) ?? [];
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                throw new EvolutionApiException('Invalid JSON response from API', 500);
+            }
+
+            // Check for API error response
+            if (isset($data['error']) || (isset($data['status']) && $data['status'] === 'error')) {
+                $message = $data['error'] ?? $data['message'] ?? 'Unknown API error';
+                $code    = $data['code'] ?? 400;
+
+                throw new EvolutionApiException($message, $code);
+            }
+
+            return $data ?? [];
         } catch (GuzzleException $e) {
             $message    = $e->getMessage();
             $statusCode = $e->getCode();
@@ -124,7 +138,9 @@ class EvolutionService
                 }
             }
 
-            throw new EvolutionApiException($message, $statusCode);
+            throw new EvolutionApiException($message, $statusCode, $e);
+        } catch (Exception $e) {
+            throw new EvolutionApiException('Unexpected error: ' . $e->getMessage(), $e->getCode(), $e);
         }
     }
 

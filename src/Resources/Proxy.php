@@ -1,13 +1,13 @@
 <?php
-// src/Resources/Call.php
+// src/Resources/Proxy.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Resources;
 
 use SamuelTerra22\LaravelEvolutionClient\Exceptions\EvolutionApiException;
-use SamuelTerra22\LaravelEvolutionClient\Models\Call as CallModel;
+use SamuelTerra22\LaravelEvolutionClient\Models\Proxy as ProxyModel;
 use SamuelTerra22\LaravelEvolutionClient\Services\EvolutionService;
 
-class Call
+class Proxy
 {
     /**
      * @var EvolutionService The Evolution service
@@ -20,7 +20,7 @@ class Call
     protected string $instanceName;
 
     /**
-     * Create a new Call resource instance.
+     * Create a new Proxy resource instance.
      *
      * @param EvolutionService $service
      * @param string           $instanceName
@@ -54,20 +54,41 @@ class Call
     }
 
     /**
-     * Make a fake call.
+     * Set a proxy for the instance.
      *
-     * @param string $number
-     * @param bool   $isVideo
-     * @param int    $callDuration
+     * @param bool        $enabled
+     * @param string      $host
+     * @param string      $port
+     * @param string      $protocol
+     * @param string|null $username
+     * @param string|null $password
      *
      * @throws EvolutionApiException
      *
      * @return array
      */
-    public function fakeCall(string $number, bool $isVideo = false, int $callDuration = 45): array
-    {
-        $call = new CallModel($number, $isVideo, $callDuration);
+    public function set(
+        bool $enabled,
+        string $host,
+        string $port,
+        string $protocol,
+        ?string $username = null,
+        ?string $password = null
+    ): array {
+        $proxy = new ProxyModel($enabled, $host, $port, $protocol, $username, $password);
 
-        return $this->service->post("/call/offer/{$this->instanceName}", $call->toArray());
+        return $this->service->post("/proxy/set/{$this->instanceName}", $proxy->toArray());
+    }
+
+    /**
+     * Find proxy settings for the instance.
+     *
+     * @throws EvolutionApiException
+     *
+     * @return array
+     */
+    public function find(): array
+    {
+        return $this->service->get("/proxy/find/{$this->instanceName}");
     }
 }

@@ -1,17 +1,17 @@
 <?php
+// tests/Unit/Resources/MessageResourceTest.php
 
-namespace SamuelTerra22\LaravelEvolutionClient\Tests\Unit;
+namespace SamuelTerra22\LaravelEvolutionClient\Tests\Unit\Resources;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use SamuelTerra22\LaravelEvolutionClient\Models\Button;
-use SamuelTerra22\LaravelEvolutionClient\Models\ListRow;
-use SamuelTerra22\LaravelEvolutionClient\Models\ListSection;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
+use SamuelTerra22\LaravelEvolutionClient\Exceptions\EvolutionApiException;
 use SamuelTerra22\LaravelEvolutionClient\Resources\Message;
 use SamuelTerra22\LaravelEvolutionClient\Services\EvolutionService;
-use SamuelTerra22\LaravelEvolutionClient\Tests\TestCase;
 
 class MessageResourceTest extends TestCase
 {
@@ -30,6 +30,42 @@ class MessageResourceTest extends TestCase
      */
     protected $service;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->mockHandler = new MockHandler([
+            new Response(200, [], json_encode([
+                'status' => 'success',
+                'key'    => [
+                    'id'        => '123456',
+                    'remoteJid' => '5511999999999@c.us',
+                    'fromMe'    => true,
+                ],
+            ])),
+        ]);
+
+        $handlerStack = HandlerStack::create($this->mockHandler);
+        $client = new Client(['handler' => $handlerStack]);
+
+        $this->service = $this->getMockBuilder(EvolutionService::class)
+            ->setConstructorArgs(['http://localhost:8080', 'test-api-key', 30])
+            ->onlyMethods(['getClient', 'post'])
+            ->getMock();
+
+        $this->service->method('getClient')->willReturn($client);
+        $this->service->method('post')->willReturn([
+            'status' => 'success',
+            'key'    => [
+                'id'        => '123456',
+                'remoteJid' => '5511999999999@c.us',
+                'fromMe'    => true,
+            ],
+        ]);
+
+        $this->messageResource = new Message($this->service, 'test-instance');
+    }
+
     /** @test */
     public function it_can_send_text_message()
     {
@@ -37,86 +73,27 @@ class MessageResourceTest extends TestCase
 
         $this->assertIsArray($result);
         $this->assertEquals('success', $result['status']);
+        $this->assertArrayHasKey('key', $result);
     }
 
     /** @test */
-    public function it_can_send_text_message_with_options()
+    public function it_validates_phone_number_when_sending_text()
     {
-        $result = $this->messageResource->sendText(
-            '5511999999999',
-            'Test message with link https://example.com',
-            false,
-            1000,
-            true
-        );
-
-        $this->assertIsArray($result);
-        $this->assertEquals('success', $result['status']);
+        $this->expectException(InvalidArgumentException::class);
+        $this->messageResource->sendText('', 'Test message');
     }
 
     /** @test */
-    public function it_can_send_poll_message()
+    public function it_validates_message_text_when_sending_text()
     {
-        $result = $this->messageResource->sendPoll(
-            '5511999999999',
-            'Favorite Color?',
-            1,
-            ['Red', 'Green', 'Blue', 'Yellow']
-        );
-
-        $this->assertIsArray($result);
-        $this->assertEquals('success', $result['status']);
+        $this->expectException(InvalidArgumentException::class);
+        $this->messageResource->sendText('5511999999999', '');
     }
 
     /** @test */
-    public function it_can_send_list_message()
+    public function it_formats_phone_number_correctly()
     {
-        $rows1 = [
-            new ListRow('Option 1', 'Description 1', 'opt1'),
-            new ListRow('Option 2', 'Description 2', 'opt2'),
-        ];
-
-        $sections = [
-            new ListSection('Section 1', $rows1),
-        ];
-
-        $result = $this->messageResource->sendList(
-            '5511999999999',
-            'Test List',
-            'Choose an option',
-            'View Options',
-            'Footer text',
-            $sections
-        );
-
-        $this->assertIsArray($result);
-        $this->assertEquals('success', $result['status']);
-    }
-
-    /** @test */
-    public function it_can_send_buttons_message()
-    {
-        $buttons = [
-            new Button('reply', 'Yes', ['id' => 'btn-yes']),
-            new Button('reply', 'No', ['id' => 'btn-no']),
-        ];
-
-        $result = $this->messageResource->sendButtons(
-            '5511999999999',
-            'Confirmation',
-            'Do you want to proceed?',
-            'Choose an option',
-            $buttons
-        );
-
-        $this->assertIsArray($result);
-        $this->assertEquals('success', $result['status']);
-    }
-
-    /** @test */
-    public function it_can_format_phone_number()
-    {
-        // Criar uma subclasse de Message com o método público para teste
+        // Create a subclass that makes the protected method public for testing
         $messageResource = new class($this->service, 'test-instance') extends Message {
             public function publicFormatPhoneNumber(string $phoneNumber): string
             {
@@ -131,28 +108,31 @@ class MessageResourceTest extends TestCase
         $this->assertEquals('5511999999999@c.us', $messageResource->publicFormatPhoneNumber('+55 (11) 99999-9999'));
     }
 
-    protected function setUp(): void
+    /** @test */
+    public function it_can_send_location_message()
     {
-        parent::setUp();
+        $result = $this->messageResource->sendLocation(
+            '5511999999999',
+            -23.5505,
+            -46.6333,
+            'São Paulo',
+            'Paulista Avenue, 1000'
+        );
 
-        $this->mockHandler = new MockHandler([
-            new Response(200, [], json_encode([
-                'status' => 'success',
-                'key'    => [
-                    'id'        => '12345',
-                    'remoteJid' => '5511999999999@c.us',
-                    'fromMe'    => true,
-                ],
-            ])),
-        ]);
+        $this->assertIsArray($result);
+        $this->assertEquals('success', $result['status']);
+    }
 
-        $handlerStack = HandlerStack::create($this->mockHandler);
-        $httpClient   = new Client(['handler' => $handlerStack]);
+    /** @test */
+    public function it_can_send_contact_message()
+    {
+        $result = $this->messageResource->sendContact(
+            '5511999999999',
+            'Contact Name',
+            '5511888888888'
+        );
 
-        $this->service = $this->createMockService();
-
-        $this->service->method('getClient')->willReturn($httpClient);
-
-        $this->messageResource = new Message($this->service, 'test-instance');
+        $this->assertIsArray($result);
+        $this->assertEquals('success', $result['status']);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+// src/Models/PollMessage.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Models;
 

@@ -1,4 +1,5 @@
 <?php
+// tests/Unit/WebSocketClientTest.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Tests\Unit;
 

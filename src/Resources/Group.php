@@ -1,4 +1,5 @@
 <?php
+// src/Resources/Group.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Resources;
 

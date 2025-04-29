@@ -1,4 +1,5 @@
 <?php
+// src/Models/Profile.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Models;
 

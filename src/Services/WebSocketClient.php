@@ -1,4 +1,5 @@
 <?php
+// src/Services/WebSocketClient.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Services;
 

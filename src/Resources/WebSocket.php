@@ -1,4 +1,5 @@
 <?php
+// src/Resources/WebSocket.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Resources;
 

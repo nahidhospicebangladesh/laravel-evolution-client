@@ -1,4 +1,5 @@
 <?php
+// tests/TestCase.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Tests;
 
