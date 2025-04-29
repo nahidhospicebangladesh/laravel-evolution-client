@@ -1,15 +1,20 @@
 # Laravel Evolution Client
 
-[//]: # ([![Latest Version on Packagist]&#40;https://img.shields.io/packagist/v/samuelterra22/laravel-evolution-client.svg?style=flat-square&#41;]&#40;https://packagist.org/packages/samuelterra22/laravel-evolution-client&#41;)
-[![run-tests](https://github.com/samuelterra22/laravel-evolution-client/actions/workflows/run-tests.yml/badge.svg)](https://github.com/samuelterra22/laravel-evolution-client/actions/workflows/run-tests.yml)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/samuelterra22/laravel-evolution-client.svg?style=flat-square)](https://packagist.org/packages/samuelterra22/laravel-evolution-client)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/samuelterra22/laravel-evolution-client/run-tests?label=tests)](https://github.com/samuelterra22/laravel-evolution-client/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/samuelterra22/laravel-evolution-client/Check%20&%20fix%20styling?label=code%20style)](https://github.com/samuelterra22/laravel-evolution-client/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/samuelterra22/laravel-evolution-client.svg?style=flat-square)](https://packagist.org/packages/samuelterra22/laravel-evolution-client)
 
-[//]: # ([![GitHub Code Style Action Status]&#40;https://img.shields.io/github/workflow/status/samuelterra22/laravel-evolution-client/Check%20&%20fix%20styling?label=code%20style&#41;]&#40;https://github.com/samuelterra22/laravel-evolution-client/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain&#41;)
-[//]: # ([![Github All Releases]&#40;https://img.shields.io/github/downloads/samuelterra22/laravel-evolution-client/total.svg&#41;]&#40;&#41;)
+A Laravel client for the Evolution API, providing simple integration with WhatsApp for messaging, group management, and more.
 
-[//]: # ([![Total Downloads]&#40;https://img.shields.io/packagist/dt/samuelterra22/laravel-evolution-client.svg?style=flat-square&#41;]&#40;https://packagist.org/packages/samuelterra22/laravel-evolution-client&#41;)
-# Laravel Evolution Client
+## Features
 
-Laravel Client for Evolution API, allowing easy integration with WhatsApp.
+- Complete WhatsApp functionality through Evolution API
+- Send and receive messages (text, media, buttons, lists, polls)
+- Create and manage groups
+- Manage contacts and labels
+- Handle webhook events
+- Simple and clean Laravel integration
 
 ## Installation
 
@@ -28,16 +33,73 @@ php artisan vendor:publish --tag="evolution-config"
 This is the content of the published configuration file:
 
 ```php
-return [
+phpreturn [
+    /*
+    |--------------------------------------------------------------------------
+    | Evolution API Base URL
+    |--------------------------------------------------------------------------
+    |
+    | This is the base URL for the Evolution API endpoints. This should be
+    | the URL of your Evolution API server.
+    |
+    */
     'base_url' => env('EVOLUTION_API_URL', 'http://localhost:8080'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Evolution API Key
+    |--------------------------------------------------------------------------
+    |
+    | This is your API key which is used to authenticate with the Evolution API.
+    | You can get this from your Evolution API configuration.
+    |
+    */
     'api_key' => env('EVOLUTION_API_KEY', ''),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Default Instance Name
+    |--------------------------------------------------------------------------
+    |
+    | The default instance name to use when none is provided.
+    |
+    */
     'default_instance' => env('EVOLUTION_DEFAULT_INSTANCE', 'default'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Request Timeout
+    |--------------------------------------------------------------------------
+    |
+    | This value determines the maximum number of seconds to wait for a response
+    | from the Evolution API server.
+    |
+    */
     'timeout' => env('EVOLUTION_API_TIMEOUT', 30),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Webhook URL
+    |--------------------------------------------------------------------------
+    |
+    | The URL where Evolution API will send webhook events.
+    |
+    */
     'webhook_url' => env('EVOLUTION_WEBHOOK_URL', null),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Webhook Events
+    |--------------------------------------------------------------------------
+    |
+    | The events that should trigger the webhook.
+    |
+    */
     'webhook_events' => [
         'message',
         'message.ack',
         'status.instance',
+        // Add more events as needed
     ],
 ];
 ```
@@ -300,8 +362,97 @@ $webSocketClient->connect();
 $webSocketClient->disconnect();
 ```
 
-## Testing
+Working with Templates
 
+```php
+// Create a template
+$response = Evolution::template->create(
+    'my_template',
+    'MARKETING',
+    'en_US',
+    [
+        [
+            'type' => 'BODY',
+            'text' => 'Hello {{1}}, welcome to our service!',
+            'example' => [
+                'body_text' => [
+                    ['John Doe']
+                ]
+            ]
+        ],
+        [
+            'type' => 'BUTTONS',
+            'buttons' => [
+                [
+                    'type' => 'QUICK_REPLY',
+                    'text' => 'Yes, please'
+                ],
+                [
+                    'type' => 'QUICK_REPLY',
+                    'text' => 'No, thanks'
+                ]
+            ]
+        ]
+    ]
+);
+
+// Find templates
+$templates = Evolution::template->find();
+
+// Send a template message
+Evolution::message->sendTemplate(
+    '5511999999999',
+    'my_template',
+    'en_US',
+    [
+        [
+            'type' => 'body',
+            'parameters' => [
+                [
+                    'type' => 'text',
+                    'text' => 'John Doe'
+                ]
+            ]
+        ]
+    ]
+);
+```
+
+Managing Settings
+
+```php
+// Set instance settings
+Evolution::settings->set(
+    true,  // reject calls
+    'I cannot take calls right now', // call message
+    false, // don't ignore groups
+    true,  // always show online
+    false, // don't read messages automatically
+    false, // don't sync full history
+    false  // don't read status automatically
+);
+
+// Get current settings
+$settings = Evolution::settings->find();
+```
+
+Using Proxy
+```php
+// Set proxy
+Evolution::proxy->set(
+    true,     // enabled
+    '127.0.0.1', // host
+    '8080',   // port
+    'http',   // protocol
+    'username', // optional
+    'password'  // optional
+);
+
+// Get current proxy settings
+$proxy = Evolution::proxy->find();
+```
+
+## Testing
 ```bash
 composer test
 ```
