@@ -1,4 +1,4 @@
-# Evolution Client PHP
+# Laravel Evolution Client
 
 [//]: # ([![Latest Version on Packagist]&#40;https://img.shields.io/packagist/v/samuelterra22/laravel-evolution-client.svg?style=flat-square&#41;]&#40;https://packagist.org/packages/samuelterra22/laravel-evolution-client&#41;)
 [![run-tests](https://github.com/samuelterra22/laravel-evolution-client/actions/workflows/run-tests.yml/badge.svg)](https://github.com/samuelterra22/laravel-evolution-client/actions/workflows/run-tests.yml)
