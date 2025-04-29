@@ -9,7 +9,6 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use SamuelTerra22\LaravelEvolutionClient\Exceptions\EvolutionApiException;
 use SamuelTerra22\LaravelEvolutionClient\Models\Button;
 use SamuelTerra22\LaravelEvolutionClient\Models\ListRow;
 use SamuelTerra22\LaravelEvolutionClient\Models\ListSection;
@@ -195,14 +194,14 @@ class MessageResourceTest extends TestCase
             'en_US',
             [
                 [
-                    'type' => 'body',
+                    'type'       => 'body',
                     'parameters' => [
                         [
                             'type' => 'text',
-                            'text' => 'John Doe'
-                        ]
-                    ]
-                ]
+                            'text' => 'John Doe',
+                        ],
+                    ],
+                ],
             ]
         );
 
@@ -226,7 +225,7 @@ class MessageResourceTest extends TestCase
         ]);
 
         $handlerStack = HandlerStack::create($this->mockHandler);
-        $client = new Client(['handler' => $handlerStack]);
+        $client       = new Client(['handler' => $handlerStack]);
 
         $this->service = $this->getMockBuilder(EvolutionService::class)
             ->disableOriginalConstructor()

@@ -118,7 +118,7 @@ class EvolutionService
             // Check for API error response
             if (isset($data['error']) || (isset($data['status']) && $data['status'] === 'error')) {
                 $message = $data['error'] ?? $data['message'] ?? 'Unknown API error';
-                $code    = $data['code'] ?? 400;
+                $code    = $data['code']  ?? 400;
 
                 throw new EvolutionApiException($message, $code);
             }

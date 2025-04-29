@@ -5,10 +5,8 @@ namespace SamuelTerra22\LaravelEvolutionClient\Tests\Unit\Resources;
 
 use GuzzleHttp\Handler\MockHandler;
 use PHPUnit\Framework\TestCase;
-use ReflectionClass;
 use SamuelTerra22\LaravelEvolutionClient\Resources\WebSocket;
 use SamuelTerra22\LaravelEvolutionClient\Services\EvolutionService;
-use SamuelTerra22\LaravelEvolutionClient\Services\WebSocketClient;
 
 class WebSocketResourceTest extends TestCase
 {
@@ -50,7 +48,7 @@ class WebSocketResourceTest extends TestCase
     public function it_can_create_websocket_client()
     {
         // Define PHPUNIT_RUNNING constant to make createClient return null for testing
-        if (!defined('PHPUNIT_RUNNING')) {
+        if (! defined('PHPUNIT_RUNNING')) {
             define('PHPUNIT_RUNNING', true);
         }
 
@@ -67,16 +65,16 @@ class WebSocketResourceTest extends TestCase
             ->getMock();
 
         $this->service->method('post')->willReturn([
-            'status' => 'success',
-            'message' => 'WebSocket settings updated'
+            'status'  => 'success',
+            'message' => 'WebSocket settings updated',
         ]);
 
         $this->service->method('get')->willReturn([
-            'status' => 'success',
+            'status'    => 'success',
             'websocket' => [
                 'enabled' => true,
-                'events' => ['message', 'message.ack']
-            ]
+                'events'  => ['message', 'message.ack'],
+            ],
         ]);
 
         $this->webSocketResource = new WebSocket($this->service, 'test-instance');

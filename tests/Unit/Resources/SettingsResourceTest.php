@@ -54,21 +54,21 @@ class SettingsResourceTest extends TestCase
             ->getMock();
 
         $this->service->method('post')->willReturn([
-            'status' => 'success',
-            'message' => 'Settings updated'
+            'status'  => 'success',
+            'message' => 'Settings updated',
         ]);
 
         $this->service->method('get')->willReturn([
-            'status' => 'success',
+            'status'   => 'success',
             'settings' => [
-                'rejectCall' => true,
-                'msgCall' => 'I do not accept calls',
-                'groupsIgnore' => false,
-                'alwaysOnline' => true,
-                'readMessages' => false,
+                'rejectCall'      => true,
+                'msgCall'         => 'I do not accept calls',
+                'groupsIgnore'    => false,
+                'alwaysOnline'    => true,
+                'readMessages'    => false,
                 'syncFullHistory' => false,
-                'readStatus' => false
-            ]
+                'readStatus'      => false,
+            ],
         ]);
 
         $this->settingsResource = new Settings($this->service, 'test-instance');

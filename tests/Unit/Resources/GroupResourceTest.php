@@ -43,7 +43,7 @@ class GroupResourceTest extends TestCase
     {
         $result = $this->groupResource->create('Test Group', [
             '5511999999999',
-            '5511888888888'
+            '5511888888888',
         ]);
 
         $this->assertIsArray($result);
@@ -72,7 +72,7 @@ class GroupResourceTest extends TestCase
     public function it_can_add_participants()
     {
         $result = $this->groupResource->addParticipants('123456789@g.us', [
-            '5511777777777'
+            '5511777777777',
         ]);
 
         $this->assertIsArray($result);
@@ -83,7 +83,7 @@ class GroupResourceTest extends TestCase
     public function it_can_remove_participants()
     {
         $result = $this->groupResource->removeParticipants('123456789@g.us', [
-            '5511777777777'
+            '5511777777777',
         ]);
 
         $this->assertIsArray($result);
@@ -120,24 +120,24 @@ class GroupResourceTest extends TestCase
             'status' => 'success',
             'groups' => [
                 [
-                    'id' => '123456789@g.us',
-                    'subject' => 'Test Group',
+                    'id'       => '123456789@g.us',
+                    'subject'  => 'Test Group',
                     'creation' => 1678901234,
-                    'owner' => '5511999999999@c.us',
-                    'desc' => 'Group description'
-                ]
-            ]
+                    'owner'    => '5511999999999@c.us',
+                    'desc'     => 'Group description',
+                ],
+            ],
         ]);
 
         $this->service->method('post')->willReturn([
-            'status' => 'success',
+            'status'  => 'success',
             'message' => 'Operation successful',
-            'groupId' => '123456789@g.us'
+            'groupId' => '123456789@g.us',
         ]);
 
         $this->service->method('put')->willReturn([
-            'status' => 'success',
-            'message' => 'Group updated successfully'
+            'status'  => 'success',
+            'message' => 'Group updated successfully',
         ]);
 
         $this->groupResource = new Group($this->service, 'test-instance');

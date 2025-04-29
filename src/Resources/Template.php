@@ -55,11 +55,11 @@ class Template
     /**
      * Create a template.
      *
-     * @param string $name
-     * @param string $category
-     * @param string $language
-     * @param array  $components
-     * @param bool   $allowCategoryChange
+     * @param string      $name
+     * @param string      $category
+     * @param string      $language
+     * @param array       $components
+     * @param bool        $allowCategoryChange
      * @param string|null $webhookUrl
      *
      * @throws EvolutionApiException

@@ -3,6 +3,7 @@
 
 namespace SamuelTerra22\LaravelEvolutionClient\Resources;
 
+use InvalidArgumentException;
 use SamuelTerra22\LaravelEvolutionClient\Exceptions\EvolutionApiException;
 use SamuelTerra22\LaravelEvolutionClient\Models\ButtonMessage;
 use SamuelTerra22\LaravelEvolutionClient\Models\Contact;
@@ -14,7 +15,6 @@ use SamuelTerra22\LaravelEvolutionClient\Models\StatusMessage;
 use SamuelTerra22\LaravelEvolutionClient\Models\TemplateMessage;
 use SamuelTerra22\LaravelEvolutionClient\Models\TextMessage;
 use SamuelTerra22\LaravelEvolutionClient\Services\EvolutionService;
-use InvalidArgumentException;
 
 class Message
 {
@@ -442,7 +442,7 @@ class Message
      * Send an audio message.
      *
      * @param string $phoneNumber
-     * @param string $audio URL or base64
+     * @param string $audio       URL or base64
      * @param bool   $isGroup
      * @param int    $delay
      *
@@ -467,7 +467,7 @@ class Message
      * Send a sticker message.
      *
      * @param string $phoneNumber
-     * @param string $sticker URL or base64
+     * @param string $sticker     URL or base64
      * @param bool   $isGroup
      * @param int    $delay
      *

@@ -28,27 +28,27 @@ class TemplateResourceTest extends TestCase
             'en_US',
             [
                 [
-                    'type' => 'BODY',
-                    'text' => 'Hello {{1}}, welcome to our service!',
+                    'type'    => 'BODY',
+                    'text'    => 'Hello {{1}}, welcome to our service!',
                     'example' => [
                         'body_text' => [
-                            ['John Doe']
-                        ]
-                    ]
+                            ['John Doe'],
+                        ],
+                    ],
                 ],
                 [
-                    'type' => 'BUTTONS',
+                    'type'    => 'BUTTONS',
                     'buttons' => [
                         [
                             'type' => 'QUICK_REPLY',
-                            'text' => 'Yes, please'
+                            'text' => 'Yes, please',
                         ],
                         [
                             'type' => 'QUICK_REPLY',
-                            'text' => 'No, thanks'
-                        ]
-                    ]
-                ]
+                            'text' => 'No, thanks',
+                        ],
+                    ],
+                ],
             ]
         );
 
@@ -74,20 +74,20 @@ class TemplateResourceTest extends TestCase
             ->getMock();
 
         $this->service->method('post')->willReturn([
-            'status' => 'success',
-            'message' => 'Template created successfully'
+            'status'  => 'success',
+            'message' => 'Template created successfully',
         ]);
 
         $this->service->method('get')->willReturn([
-            'status' => 'success',
+            'status'    => 'success',
             'templates' => [
                 [
-                    'name' => 'my_template',
-                    'status' => 'APPROVED',
+                    'name'     => 'my_template',
+                    'status'   => 'APPROVED',
                     'category' => 'MARKETING',
-                    'language' => 'en_US'
-                ]
-            ]
+                    'language' => 'en_US',
+                ],
+            ],
         ]);
 
         $this->templateResource = new Template($this->service, 'test-instance');

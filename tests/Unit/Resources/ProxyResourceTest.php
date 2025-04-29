@@ -53,20 +53,20 @@ class ProxyResourceTest extends TestCase
             ->getMock();
 
         $this->service->method('post')->willReturn([
-            'status' => 'success',
-            'message' => 'Proxy settings updated'
+            'status'  => 'success',
+            'message' => 'Proxy settings updated',
         ]);
 
         $this->service->method('get')->willReturn([
             'status' => 'success',
-            'proxy' => [
-                'enabled' => true,
-                'host' => '127.0.0.1',
-                'port' => '8080',
+            'proxy'  => [
+                'enabled'  => true,
+                'host'     => '127.0.0.1',
+                'port'     => '8080',
                 'protocol' => 'http',
                 'username' => 'username',
-                'password' => '********'
-            ]
+                'password' => '********',
+            ],
         ]);
 
         $this->proxyResource = new Proxy($this->service, 'test-instance');

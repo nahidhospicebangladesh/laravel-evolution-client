@@ -68,16 +68,16 @@ class LabelResourceTest extends TestCase
             'status' => 'success',
             'labels' => [
                 [
-                    'id' => 'label-id-123',
-                    'name' => 'Important',
-                    'color' => 4
-                ]
-            ]
+                    'id'    => 'label-id-123',
+                    'name'  => 'Important',
+                    'color' => 4,
+                ],
+            ],
         ]);
 
         $this->service->method('post')->willReturn([
-            'status' => 'success',
-            'message' => 'Label operation successful'
+            'status'  => 'success',
+            'message' => 'Label operation successful',
         ]);
 
         $this->labelResource = new Label($this->service, 'test-instance');

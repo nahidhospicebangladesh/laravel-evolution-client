@@ -80,21 +80,21 @@ class EvolutionApiClient
      */
     public function __construct(EvolutionService $service, string $instanceName = 'default')
     {
-        $this->service = $service;
+        $this->service      = $service;
         $this->instanceName = $instanceName;
 
         // Initialize resources
-        $this->chat = new Chat($service, $instanceName);
-        $this->group = new Group($service, $instanceName);
-        $this->message = new Message($service, $instanceName);
-        $this->instance = new Instance($service, $instanceName);
-        $this->call = new Call($service, $instanceName);
-        $this->label = new Label($service, $instanceName);
-        $this->profile = new Profile($service, $instanceName);
+        $this->chat      = new Chat($service, $instanceName);
+        $this->group     = new Group($service, $instanceName);
+        $this->message   = new Message($service, $instanceName);
+        $this->instance  = new Instance($service, $instanceName);
+        $this->call      = new Call($service, $instanceName);
+        $this->label     = new Label($service, $instanceName);
+        $this->profile   = new Profile($service, $instanceName);
         $this->websocket = new WebSocket($service, $instanceName);
-        $this->template = new Template($service, $instanceName);
-        $this->proxy = new Proxy($service, $instanceName);
-        $this->settings = new Settings($service, $instanceName);
+        $this->template  = new Template($service, $instanceName);
+        $this->proxy     = new Proxy($service, $instanceName);
+        $this->settings  = new Settings($service, $instanceName);
     }
 
     /**
@@ -127,8 +127,9 @@ class EvolutionApiClient
     /**
      * Get the QR code for the instance.
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      *
      */
     public function getQrCode(): array
@@ -139,8 +140,9 @@ class EvolutionApiClient
     /**
      * Check if the instance is connected.
      *
-     * @return bool
      * @throws EvolutionApiException
+     *
+     * @return bool
      *
      */
     public function isConnected(): bool
@@ -151,8 +153,9 @@ class EvolutionApiClient
     /**
      * Disconnect the instance.
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      *
      */
     public function disconnect(): array
@@ -166,8 +169,9 @@ class EvolutionApiClient
      * @param string $phoneNumber
      * @param string $message
      *
-     * @return array
      * @throws EvolutionApiException
+     *
+     * @return array
      *
      */
     public function sendText(string $phoneNumber, string $message): array

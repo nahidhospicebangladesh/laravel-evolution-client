@@ -27,9 +27,9 @@ class TemplateMessage
         ?string $webhookUrl = null
     ) {
         $this->attributes = [
-            'number'   => $number,
-            'name'     => $name,
-            'language' => $language,
+            'number'     => $number,
+            'name'       => $name,
+            'language'   => $language,
             'components' => $components,
         ];
 

@@ -209,19 +209,19 @@ class MessageModelTest extends TestCase
     /** @test */
     public function it_can_create_template_message()
     {
-        $number = '5511999999999';
-        $name = 'hello_world';
-        $language = 'en_US';
+        $number     = '5511999999999';
+        $name       = 'hello_world';
+        $language   = 'en_US';
         $components = [
             [
-                'type' => 'body',
+                'type'       => 'body',
                 'parameters' => [
                     [
                         'type' => 'text',
-                        'text' => 'John Doe'
-                    ]
-                ]
-            ]
+                        'text' => 'John Doe',
+                    ],
+                ],
+            ],
         ];
 
         $message = new TemplateMessage($number, $name, $language, $components);
@@ -236,9 +236,9 @@ class MessageModelTest extends TestCase
     /** @test */
     public function it_can_create_template_message_with_webhook_url()
     {
-        $number = '5511999999999';
-        $name = 'hello_world';
-        $language = 'en_US';
+        $number     = '5511999999999';
+        $name       = 'hello_world';
+        $language   = 'en_US';
         $components = [];
         $webhookUrl = 'https://example.com/webhook';
 

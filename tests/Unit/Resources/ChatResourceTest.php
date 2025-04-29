@@ -85,31 +85,31 @@ class ChatResourceTest extends TestCase
 
         $this->service->method('get')->willReturn([
             'status' => 'success',
-            'chats' => [
+            'chats'  => [
                 [
-                    'id' => '5511999999999@c.us',
-                    'name' => 'Contact Name',
-                    'unreadCount' => 0
-                ]
+                    'id'          => '5511999999999@c.us',
+                    'name'        => 'Contact Name',
+                    'unreadCount' => 0,
+                ],
             ],
             'messages' => [
                 [
                     'key' => [
                         'remoteJid' => '5511999999999@c.us',
-                        'fromMe' => true,
-                        'id' => '12345'
+                        'fromMe'    => true,
+                        'id'        => '12345',
                     ],
                     'message' => [
-                        'conversation' => 'Hello'
+                        'conversation' => 'Hello',
                     ],
-                    'timestamp' => 1678901234
-                ]
-            ]
+                    'timestamp' => 1678901234,
+                ],
+            ],
         ]);
 
         $this->service->method('post')->willReturn([
-            'status' => 'success',
-            'message' => 'Operation successful'
+            'status'  => 'success',
+            'message' => 'Operation successful',
         ]);
 
         $this->chatResource = new Chat($this->service, 'test-instance');

@@ -37,7 +37,7 @@ class InstanceResourceTest extends TestCase
             ->getMock();
 
         $this->service->method('get')->willReturn([
-            'status' => 'connected'
+            'status' => 'connected',
         ]);
 
         $this->instanceResource = new Instance($this->service, 'test-instance');
@@ -113,18 +113,18 @@ class InstanceResourceTest extends TestCase
         $this->service->method('get')->willReturn([
             'status' => 'connected',
             'qrcode' => [
-                'base64' => 'data:image/png;base64,...'
-            ]
+                'base64' => 'data:image/png;base64,...',
+            ],
         ]);
 
         $this->service->method('post')->willReturn([
-            'status' => 'success',
-            'message' => 'Operation successful'
+            'status'  => 'success',
+            'message' => 'Operation successful',
         ]);
 
         $this->service->method('delete')->willReturn([
-            'status' => 'success',
-            'message' => 'Instance operation successful'
+            'status'  => 'success',
+            'message' => 'Instance operation successful',
         ]);
 
         $this->instanceResource = new Instance($this->service, 'test-instance');

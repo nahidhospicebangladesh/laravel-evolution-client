@@ -46,8 +46,8 @@ class CallResourceTest extends TestCase
             ->getMock();
 
         $this->service->method('post')->willReturn([
-            'status' => 'success',
-            'message' => 'Fake call sent'
+            'status'  => 'success',
+            'message' => 'Fake call sent',
         ]);
 
         $this->callResource = new Call($this->service, 'test-instance');
