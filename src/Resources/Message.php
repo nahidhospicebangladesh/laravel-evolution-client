@@ -14,6 +14,7 @@ use SamuelTerra22\LaravelEvolutionClient\Models\StatusMessage;
 use SamuelTerra22\LaravelEvolutionClient\Models\TemplateMessage;
 use SamuelTerra22\LaravelEvolutionClient\Models\TextMessage;
 use SamuelTerra22\LaravelEvolutionClient\Services\EvolutionService;
+use InvalidArgumentException;
 
 class Message
 {
