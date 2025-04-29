@@ -1,14 +1,14 @@
 <?php
-// tests/Unit/WebsocketResourceTest.php
+// tests/Unit/Resources/WebSocketResourceTest.php
 
-namespace SamuelTerra22\LaravelEvolutionClient\Tests\Unit;
+namespace SamuelTerra22\LaravelEvolutionClient\Tests\Unit\Resources;
 
 use GuzzleHttp\Handler\MockHandler;
+use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use SamuelTerra22\LaravelEvolutionClient\Resources\WebSocket;
 use SamuelTerra22\LaravelEvolutionClient\Services\EvolutionService;
 use SamuelTerra22\LaravelEvolutionClient\Services\WebSocketClient;
-use SamuelTerra22\LaravelEvolutionClient\Tests\TestCase;
 
 class WebSocketResourceTest extends TestCase
 {
@@ -49,30 +49,36 @@ class WebSocketResourceTest extends TestCase
     /** @test */
     public function it_can_create_websocket_client()
     {
-        // Create a simple subclass for testing
-        $client = new class('ws://localhost:8080', 'test-instance', 'test-api-key') extends WebSocketClient {
-            public function __construct($baseUrl, $instanceId, $apiToken)
-            {
-                $this->baseUrl    = $baseUrl;
-                $this->instanceId = $instanceId;
-                $this->apiToken   = $apiToken;
-            }
-        };
+        // Define PHPUNIT_RUNNING constant to make createClient return null for testing
+        if (!defined('PHPUNIT_RUNNING')) {
+            define('PHPUNIT_RUNNING', true);
+        }
 
-        // Use reflection to verify the instance creation works
-        $reflectionClass  = new ReflectionClass($this->webSocketResource);
-        $reflectionMethod = $reflectionClass->getMethod('createClient');
-        $reflectionMethod->setAccessible(true);
-
-        // We just need to verify that the method completes without error
-        $this->assertNull($reflectionMethod->invokeArgs($this->webSocketResource, []));
+        $client = $this->webSocketResource->createClient();
+        $this->assertNull($client);
     }
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->service           = $this->createMockService();
+        $this->service = $this->getMockBuilder(EvolutionService::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->service->method('post')->willReturn([
+            'status' => 'success',
+            'message' => 'WebSocket settings updated'
+        ]);
+
+        $this->service->method('get')->willReturn([
+            'status' => 'success',
+            'websocket' => [
+                'enabled' => true,
+                'events' => ['message', 'message.ack']
+            ]
+        ]);
+
         $this->webSocketResource = new WebSocket($this->service, 'test-instance');
     }
 }

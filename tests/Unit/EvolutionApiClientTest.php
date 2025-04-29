@@ -48,6 +48,9 @@ class EvolutionApiClientTest extends TestCase
         $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Label', $this->client->label);
         $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Profile', $this->client->profile);
         $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\WebSocket', $this->client->websocket);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Proxy', $this->client->proxy);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Settings', $this->client->settings);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Template', $this->client->template);
     }
 
     /** @test */
@@ -64,6 +67,9 @@ class EvolutionApiClientTest extends TestCase
         $this->assertEquals($instanceName, $this->client->label->getInstanceName());
         $this->assertEquals($instanceName, $this->client->profile->getInstanceName());
         $this->assertEquals($instanceName, $this->client->websocket->getInstanceName());
+        $this->assertEquals($instanceName, $this->client->proxy->getInstanceName());
+        $this->assertEquals($instanceName, $this->client->settings->getInstanceName());
+        $this->assertEquals($instanceName, $this->client->template->getInstanceName());
     }
 
     protected function setUp(): void

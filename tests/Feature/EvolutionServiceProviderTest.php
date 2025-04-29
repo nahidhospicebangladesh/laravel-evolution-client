@@ -43,6 +43,9 @@ class EvolutionServiceProviderTest extends TestCase
         $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Label', $client->label);
         $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Profile', $client->profile);
         $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\WebSocket', $client->websocket);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Proxy', $client->proxy);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Settings', $client->settings);
+        $this->assertInstanceOf('SamuelTerra22\LaravelEvolutionClient\Resources\Template', $client->template);
     }
 
     /** @test */
@@ -72,7 +75,7 @@ class EvolutionServiceProviderTest extends TestCase
 
     protected function getEnvironmentSetUp($app)
     {
-        // Configurações para testes
+        // Configurations for tests
         $app['config']->set('evolution.base_url', 'http://localhost:8080');
         $app['config']->set('evolution.api_key', 'test-api-key');
         $app['config']->set('evolution.default_instance', 'test-instance');

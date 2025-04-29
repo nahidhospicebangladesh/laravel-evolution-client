@@ -1,8 +1,9 @@
 <?php
-// tests/Unit/MessageModelTest.php
+// tests/Unit/Models/MessageModelTest.php
 
-namespace SamuelTerra22\LaravelEvolutionClient\Tests\Unit;
+namespace SamuelTerra22\LaravelEvolutionClient\Tests\Unit\Models;
 
+use PHPUnit\Framework\TestCase;
 use SamuelTerra22\LaravelEvolutionClient\Models\Contact;
 use SamuelTerra22\LaravelEvolutionClient\Models\ContactMessage;
 use SamuelTerra22\LaravelEvolutionClient\Models\ListMessage;
@@ -13,8 +14,8 @@ use SamuelTerra22\LaravelEvolutionClient\Models\PollMessage;
 use SamuelTerra22\LaravelEvolutionClient\Models\QuotedMessage;
 use SamuelTerra22\LaravelEvolutionClient\Models\ReactionMessage;
 use SamuelTerra22\LaravelEvolutionClient\Models\StatusMessage;
+use SamuelTerra22\LaravelEvolutionClient\Models\TemplateMessage;
 use SamuelTerra22\LaravelEvolutionClient\Models\TextMessage;
-use SamuelTerra22\LaravelEvolutionClient\Tests\TestCase;
 
 class MessageModelTest extends TestCase
 {
@@ -203,5 +204,51 @@ class MessageModelTest extends TestCase
         $this->assertEquals($backgroundColor, $data['backgroundColor']);
         $this->assertEquals($font, $data['font']);
         $this->assertTrue($data['allContacts']);
+    }
+
+    /** @test */
+    public function it_can_create_template_message()
+    {
+        $number = '5511999999999';
+        $name = 'hello_world';
+        $language = 'en_US';
+        $components = [
+            [
+                'type' => 'body',
+                'parameters' => [
+                    [
+                        'type' => 'text',
+                        'text' => 'John Doe'
+                    ]
+                ]
+            ]
+        ];
+
+        $message = new TemplateMessage($number, $name, $language, $components);
+        $data    = $message->toArray();
+
+        $this->assertEquals($number, $data['number']);
+        $this->assertEquals($name, $data['name']);
+        $this->assertEquals($language, $data['language']);
+        $this->assertEquals($components, $data['components']);
+    }
+
+    /** @test */
+    public function it_can_create_template_message_with_webhook_url()
+    {
+        $number = '5511999999999';
+        $name = 'hello_world';
+        $language = 'en_US';
+        $components = [];
+        $webhookUrl = 'https://example.com/webhook';
+
+        $message = new TemplateMessage($number, $name, $language, $components, $webhookUrl);
+        $data    = $message->toArray();
+
+        $this->assertEquals($number, $data['number']);
+        $this->assertEquals($name, $data['name']);
+        $this->assertEquals($language, $data['language']);
+        $this->assertEquals($components, $data['components']);
+        $this->assertEquals($webhookUrl, $data['webhookUrl']);
     }
 }

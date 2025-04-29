@@ -1,7 +1,7 @@
 <?php
-// tests/Unit/WebSocketClientTest.php
+// tests/Unit/Services/WebSocketClientTest.php
 
-namespace SamuelTerra22\LaravelEvolutionClient\Tests\Unit;
+namespace SamuelTerra22\LaravelEvolutionClient\Tests\Unit\Services;
 
 use PHPUnit\Framework\TestCase;
 use SamuelTerra22\LaravelEvolutionClient\Services\WebSocketClient;

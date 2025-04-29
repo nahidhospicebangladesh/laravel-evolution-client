@@ -113,7 +113,7 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * Create a mocked service for testing
+     * Create a mocked service for testing.
      *
      * @return EvolutionService
      */
