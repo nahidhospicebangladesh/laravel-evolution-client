@@ -1,4 +1,5 @@
 <?php
+// src/Models/ListMessage.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Models;
 

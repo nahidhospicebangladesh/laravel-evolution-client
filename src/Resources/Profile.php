@@ -1,4 +1,5 @@
 <?php
+// src/Resources/Profile.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Resources;
 

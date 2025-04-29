@@ -1,4 +1,5 @@
 <?php
+// src/Models/TextMessage.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Models;
 

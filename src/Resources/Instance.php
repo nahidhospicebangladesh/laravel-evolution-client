@@ -1,4 +1,5 @@
 <?php
+// src/Resources/Instance.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Resources;
 

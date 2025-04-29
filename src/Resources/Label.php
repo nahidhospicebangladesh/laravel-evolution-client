@@ -1,4 +1,5 @@
 <?php
+// src/Resources/Label.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Resources;
 

@@ -1,4 +1,5 @@
 <?php
+// src/Models/ListRow.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Models;
 

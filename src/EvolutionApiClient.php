@@ -1,4 +1,5 @@
 <?php
+// src/EvolutionApiClient.php
 
 namespace SamuelTerra22\LaravelEvolutionClient;
 
@@ -10,6 +11,9 @@ use SamuelTerra22\LaravelEvolutionClient\Resources\Instance;
 use SamuelTerra22\LaravelEvolutionClient\Resources\Label;
 use SamuelTerra22\LaravelEvolutionClient\Resources\Message;
 use SamuelTerra22\LaravelEvolutionClient\Resources\Profile;
+use SamuelTerra22\LaravelEvolutionClient\Resources\Proxy;
+use SamuelTerra22\LaravelEvolutionClient\Resources\Settings;
+use SamuelTerra22\LaravelEvolutionClient\Resources\Template;
 use SamuelTerra22\LaravelEvolutionClient\Resources\WebSocket;
 use SamuelTerra22\LaravelEvolutionClient\Services\EvolutionService;
 
@@ -55,6 +59,18 @@ class EvolutionApiClient
      * @var EvolutionService The Evolution API service
      */
     protected EvolutionService $service;
+    /**
+     * @var Template The Template resource
+     */
+    public Template $template;
+    /**
+     * @var Proxy The Proxy resource
+     */
+    public Proxy $proxy;
+    /**
+     * @var Settings The Settings resource
+     */
+    public Settings $settings;
 
     /**
      * Create a new EvolutionApiClient instance.
@@ -76,6 +92,9 @@ class EvolutionApiClient
         $this->label     = new Label($service, $instanceName);
         $this->profile   = new Profile($service, $instanceName);
         $this->websocket = new WebSocket($service, $instanceName);
+        $this->template  = new Template($service, $instanceName);
+        $this->proxy     = new Proxy($service, $instanceName);
+        $this->settings  = new Settings($service, $instanceName);
     }
 
     /**
@@ -98,6 +117,9 @@ class EvolutionApiClient
         $this->label->setInstanceName($instanceName);
         $this->profile->setInstanceName($instanceName);
         $this->websocket->setInstanceName($instanceName);
+        $this->template->setInstanceName($instanceName);
+        $this->proxy->setInstanceName($instanceName);
+        $this->settings->setInstanceName($instanceName);
 
         return $this;
     }
@@ -108,6 +130,7 @@ class EvolutionApiClient
      * @throws EvolutionApiException
      *
      * @return array
+     *
      */
     public function getQrCode(): array
     {
@@ -120,6 +143,7 @@ class EvolutionApiClient
      * @throws EvolutionApiException
      *
      * @return bool
+     *
      */
     public function isConnected(): bool
     {
@@ -132,6 +156,7 @@ class EvolutionApiClient
      * @throws EvolutionApiException
      *
      * @return array
+     *
      */
     public function disconnect(): array
     {
@@ -147,6 +172,7 @@ class EvolutionApiClient
      * @throws EvolutionApiException
      *
      * @return array
+     *
      */
     public function sendText(string $phoneNumber, string $message): array
     {

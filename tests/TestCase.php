@@ -1,4 +1,5 @@
 <?php
+// tests/TestCase.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Tests;
 
@@ -112,7 +113,7 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * Create a mocked service for testing
+     * Create a mocked service for testing.
      *
      * @return EvolutionService
      */

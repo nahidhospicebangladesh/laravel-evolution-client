@@ -1,4 +1,5 @@
 <?php
+// src/Exceptions/EvolutionApiException.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Exceptions;
 

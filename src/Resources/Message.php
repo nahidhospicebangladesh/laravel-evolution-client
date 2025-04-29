@@ -1,7 +1,9 @@
 <?php
+// src/Resources/Message.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Resources;
 
+use InvalidArgumentException;
 use SamuelTerra22\LaravelEvolutionClient\Exceptions\EvolutionApiException;
 use SamuelTerra22\LaravelEvolutionClient\Models\ButtonMessage;
 use SamuelTerra22\LaravelEvolutionClient\Models\Contact;
@@ -10,6 +12,7 @@ use SamuelTerra22\LaravelEvolutionClient\Models\ListMessage;
 use SamuelTerra22\LaravelEvolutionClient\Models\PollMessage;
 use SamuelTerra22\LaravelEvolutionClient\Models\ReactionMessage;
 use SamuelTerra22\LaravelEvolutionClient\Models\StatusMessage;
+use SamuelTerra22\LaravelEvolutionClient\Models\TemplateMessage;
 use SamuelTerra22\LaravelEvolutionClient\Models\TextMessage;
 use SamuelTerra22\LaravelEvolutionClient\Services\EvolutionService;
 
@@ -59,6 +62,8 @@ class Message
         $this->instanceName = $instanceName;
     }
 
+    // src/Resources/Message.php - Modify sendText method
+
     /**
      * Send a text message.
      *
@@ -71,6 +76,7 @@ class Message
      * @param array|null $mentioned
      *
      * @throws EvolutionApiException
+     * @throws InvalidArgumentException
      *
      * @return array
      */
@@ -83,6 +89,14 @@ class Message
         ?bool $mentionsEveryOne = null,
         ?array $mentioned = null
     ): array {
+        if (empty($phoneNumber)) {
+            throw new InvalidArgumentException('Phone number is required');
+        }
+
+        if (empty($message)) {
+            throw new InvalidArgumentException('Message text is required');
+        }
+
         $recipient = $isGroup
             ? $phoneNumber . '@g.us'
             : $this->formatPhoneNumber($phoneNumber);
@@ -422,5 +436,92 @@ class Message
         );
 
         return $this->service->post("/message/sendStatus/{$this->instanceName}", $statusMessage->toArray());
+    }
+
+    /**
+     * Send an audio message.
+     *
+     * @param string $phoneNumber
+     * @param string $audio       URL or base64
+     * @param bool   $isGroup
+     * @param int    $delay
+     *
+     * @throws EvolutionApiException
+     *
+     * @return array
+     */
+    public function sendAudio(string $phoneNumber, string $audio, bool $isGroup = false, int $delay = 1200): array
+    {
+        $recipient = $isGroup
+            ? $phoneNumber . '@g.us'
+            : $this->formatPhoneNumber($phoneNumber);
+
+        return $this->service->post("/message/sendWhatsAppAudio/{$this->instanceName}", [
+            'number' => $recipient,
+            'audio'  => $audio,
+            'delay'  => $delay,
+        ]);
+    }
+
+    /**
+     * Send a sticker message.
+     *
+     * @param string $phoneNumber
+     * @param string $sticker     URL or base64
+     * @param bool   $isGroup
+     * @param int    $delay
+     *
+     * @throws EvolutionApiException
+     *
+     * @return array
+     */
+    public function sendSticker(string $phoneNumber, string $sticker, bool $isGroup = false, int $delay = 1200): array
+    {
+        $recipient = $isGroup
+            ? $phoneNumber . '@g.us'
+            : $this->formatPhoneNumber($phoneNumber);
+
+        return $this->service->post("/message/sendSticker/{$this->instanceName}", [
+            'number'  => $recipient,
+            'sticker' => $sticker,
+            'delay'   => $delay,
+        ]);
+    }
+
+    /**
+     * Send a template message.
+     *
+     * @param string      $phoneNumber
+     * @param string      $name
+     * @param string      $language
+     * @param array       $components
+     * @param string|null $webhookUrl
+     * @param bool        $isGroup
+     *
+     * @throws EvolutionApiException
+     *
+     * @return array
+     */
+    public function sendTemplate(
+        string $phoneNumber,
+        string $name,
+        string $language,
+        array $components,
+        ?string $webhookUrl = null,
+        bool $isGroup = false
+    ): array {
+        $recipient = $isGroup
+            ? $phoneNumber . '@g.us'
+            : $this->formatPhoneNumber($phoneNumber);
+
+        $template = new TemplateMessage(
+            $recipient,
+            $name,
+            $language,
+            $components,
+            $webhookUrl
+        );
+
+        return $this->service->post("/message/sendTemplate/{$this->instanceName}", $template->toArray());
     }
 }
