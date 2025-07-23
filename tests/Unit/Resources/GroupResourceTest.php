@@ -125,12 +125,12 @@ class GroupResourceTest extends TestCase
             ->getMock();
 
         $service->method('get')->willReturn([
-            'status' => 'success',
+            'status'     => 'success',
             'inviteCode' => 'ABC123XYZ789',
         ]);
 
         $groupResource = new Group($service, 'test-instance');
-        $result = $groupResource->getInviteCode('123456789@g.us');
+        $result        = $groupResource->getInviteCode('123456789@g.us');
 
         $this->assertIsArray($result);
         $this->assertEquals('success', $result['status']);
@@ -167,7 +167,7 @@ class GroupResourceTest extends TestCase
         $participants = ['+55 (11) 99999-9999', '5511888888888', '+1-234-567-8900'];
         
         $this->service->method('post')->willReturn([
-            'status' => 'success',
+            'status'  => 'success',
             'groupId' => '123456789@g.us',
         ]);
 
