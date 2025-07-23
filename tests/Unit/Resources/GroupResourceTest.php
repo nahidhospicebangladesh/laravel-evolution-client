@@ -108,6 +108,111 @@ class GroupResourceTest extends TestCase
         $this->assertEquals('success', $result['status']);
     }
 
+    /** @test */
+    public function it_can_leave_group()
+    {
+        $result = $this->groupResource->leave('123456789@g.us');
+
+        $this->assertIsArray($result);
+        $this->assertEquals('success', $result['status']);
+    }
+
+    /** @test */
+    public function it_can_get_group_invite_code()
+    {
+        $service = $this->getMockBuilder(EvolutionService::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $service->method('get')->willReturn([
+            'status' => 'success',
+            'inviteCode' => 'ABC123XYZ789',
+        ]);
+
+        $groupResource = new Group($service, 'test-instance');
+        $result = $groupResource->getInviteCode('123456789@g.us');
+
+        $this->assertIsArray($result);
+        $this->assertEquals('success', $result['status']);
+        $this->assertArrayHasKey('inviteCode', $result);
+        $this->assertEquals('ABC123XYZ789', $result['inviteCode']);
+    }
+
+    /** @test */
+    public function it_can_join_group_with_invite_code()
+    {
+        $result = $this->groupResource->joinWithInviteCode('ABC123XYZ789');
+
+        $this->assertIsArray($result);
+        $this->assertEquals('success', $result['status']);
+    }
+
+    /** @test */
+    public function it_can_get_instance_name()
+    {
+        $this->assertEquals('test-instance', $this->groupResource->getInstanceName());
+    }
+
+    /** @test */
+    public function it_can_set_instance_name()
+    {
+        $this->groupResource->setInstanceName('new-instance');
+        $this->assertEquals('new-instance', $this->groupResource->getInstanceName());
+    }
+
+    /** @test */
+    public function it_formats_phone_numbers_for_participants()
+    {
+        // Test that participant numbers are formatted correctly
+        $participants = ['+55 (11) 99999-9999', '5511888888888', '+1-234-567-8900'];
+        
+        $this->service->method('post')->willReturn([
+            'status' => 'success',
+            'groupId' => '123456789@g.us',
+        ]);
+
+        $result = $this->groupResource->create('Test Group', $participants);
+
+        $this->assertIsArray($result);
+        $this->assertEquals('success', $result['status']);
+    }
+
+    /** @test */
+    public function it_can_create_group_with_single_participant()
+    {
+        $result = $this->groupResource->create('Single Participant Group', ['5511999999999']);
+
+        $this->assertIsArray($result);
+        $this->assertEquals('success', $result['status']);
+    }
+
+    /** @test */
+    public function it_can_add_single_participant()
+    {
+        $result = $this->groupResource->addParticipants('123456789@g.us', ['5511555555555']);
+
+        $this->assertIsArray($result);
+        $this->assertEquals('success', $result['status']);
+    }
+
+    /** @test */
+    public function it_can_remove_single_participant()
+    {
+        $result = $this->groupResource->removeParticipants('123456789@g.us', ['5511555555555']);
+
+        $this->assertIsArray($result);
+        $this->assertEquals('success', $result['status']);
+    }
+
+    /** @test */
+    public function it_can_create_group_with_empty_participants()
+    {
+        $result = $this->groupResource->create('Empty Group', []);
+
+        $this->assertIsArray($result);
+        $this->assertEquals('success', $result['status']);
+    }
+
     protected function setUp(): void
     {
         parent::setUp();

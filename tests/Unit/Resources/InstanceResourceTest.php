@@ -102,6 +102,69 @@ class InstanceResourceTest extends TestCase
         $this->assertEquals('success', $result['status']);
     }
 
+    /** @test */
+    public function it_can_get_instance_name()
+    {
+        $this->assertEquals('test-instance', $this->instanceResource->getInstanceName());
+    }
+
+    /** @test */
+    public function it_can_set_instance_name()
+    {
+        $this->instanceResource->setInstanceName('new-instance');
+        $this->assertEquals('new-instance', $this->instanceResource->getInstanceName());
+    }
+
+    /** @test */
+    public function it_returns_false_when_not_connected()
+    {
+        $this->service = $this->getMockBuilder(EvolutionService::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->service->method('get')->willReturn([
+            'status' => 'disconnected',
+        ]);
+
+        $this->instanceResource = new Instance($this->service, 'test-instance');
+
+        $this->assertFalse($this->instanceResource->isConnected());
+    }
+
+    /** @test */
+    public function it_returns_false_when_status_is_missing()
+    {
+        $this->service = $this->getMockBuilder(EvolutionService::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->service->method('get')->willReturn([
+            'message' => 'No status field',
+        ]);
+
+        $this->instanceResource = new Instance($this->service, 'test-instance');
+
+        $this->assertFalse($this->instanceResource->isConnected());
+    }
+
+    /** @test */
+    public function it_can_set_webhook_with_empty_events()
+    {
+        $result = $this->instanceResource->setWebhook('https://example.com/webhook', []);
+
+        $this->assertIsArray($result);
+        $this->assertEquals('success', $result['status']);
+    }
+
+    /** @test */
+    public function it_can_set_webhook_without_events()
+    {
+        $result = $this->instanceResource->setWebhook('https://example.com/webhook');
+
+        $this->assertIsArray($result);
+        $this->assertEquals('success', $result['status']);
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
