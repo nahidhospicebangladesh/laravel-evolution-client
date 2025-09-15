@@ -109,7 +109,7 @@ class LabelResourceTest extends TestCase
         ]);
 
         $labelResource = new Label($service, 'test-instance');
-        $result = $labelResource->findLabels();
+        $result        = $labelResource->findLabels();
 
         $this->assertIsArray($result);
         $this->assertEquals('success', $result['status']);

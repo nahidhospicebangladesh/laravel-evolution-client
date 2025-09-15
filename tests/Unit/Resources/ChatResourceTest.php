@@ -133,7 +133,7 @@ class ChatResourceTest extends TestCase
     public function it_formats_phone_number_correctly()
     {
         // We need to create a way to test the protected method
-        $chatResourceMock = new class($this->service, 'test') extends \SamuelTerra22\LaravelEvolutionClient\Resources\Chat {
+        $chatResourceMock = new class($this->service, 'test') extends Chat {
             public function publicFormatPhoneNumber(string $phoneNumber): string
             {
                 return $this->formatPhoneNumber($phoneNumber);
