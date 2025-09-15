@@ -1,10 +1,11 @@
 <?php
-// src/Services/EvolutionService.php
 
 namespace SamuelTerra22\LaravelEvolutionClient\Services;
 
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\RequestException;
 use SamuelTerra22\LaravelEvolutionClient\Exceptions\EvolutionApiException;
 
 class EvolutionService
@@ -128,8 +129,8 @@ class EvolutionService
             $message    = $e->getMessage();
             $statusCode = $e->getCode();
 
-            // Try to parse error response
-            if ($e->hasResponse()) {
+            // Try to parse error response if the exception has a response
+            if ($e instanceof RequestException && $e->hasResponse()) {
                 $errorBody = $e->getResponse()->getBody()->getContents();
                 $errorData = json_decode($errorBody, true);
 
